@@ -1,0 +1,68 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/apollo-insurance-affiliates.yml (EmbeddedOptions schema, quoteLink response),
+  openapi/apollo-insurance-affiliates-legacy.yml (quoteLink example),
+  https://apollocover.com/partnerships
+note: >-
+  APOLLO ships no JavaScript element library, no web components and no npm-installable UI kit.
+  What it does ship — and what the whole Affiliates API is built to feed — is a HOSTED prebuilt
+  surface: a co-branded quote-and-purchase launchpad the partner links to, plus an embedded
+  enrolment workflow driven from a property-management system. Both are real and documented in
+  the public specs; both are captured here because they are the only client-side integration
+  surfaces APOLLO offers, and they are how every application is actually completed.
+
+loader_libraries: []
+npm_packages: []
+web_components: []
+
+hosted_surfaces:
+- name: Co-branded APOLLO Launchpad
+  family: hosted quote-and-purchase funnel
+  type: hosted-redirect
+  integration: >-
+    POST an application to the Affiliates API and receive `data.quoteLink`, a URL into the
+    affiliate's co-branded APOLLO launchpad with the consumer's answers pre-filled. The consumer
+    completes purchase and pays there; the partner never handles card data.
+  returned_by:
+  - openapi/apollo-insurance-affiliates.yml#public-api-affiliates-application-post
+  - openapi/apollo-insurance-affiliates-legacy.yml#post-affiliates-affiliateId-application
+  branding: >-
+    Scoped by affiliateId (the partner's co-branded APOLLO subdomain). leadSource.partnerSubdomain
+    routes to a sub-launchpad under the partner; if empty it falls back to the partner default
+    launchpad.
+  published_example_url: 'https://apollo.securequotebot.com/tenants?quote={uuid}'
+  customisation: affiliate subdomain + partner name/subdomain attribution only; no theming API published
+- name: CoverTrack proof-of-insurance upload
+  family: hosted tenant self-service
+  type: hosted-link
+  integration: >-
+    Each compliance record carries a `links.upload` URL the partner surfaces to the tenant so
+    they can submit proof of a third-party policy.
+  returned_by: openapi/apollo-insurance-covertrack.yml#/components/schemas/ComplianceStatus
+  note: The link is returned per tenant record; no embeddable widget wraps it.
+
+embedded_workflows:
+- name: Yardi embedded enrolment
+  family: property-management-system embed
+  platform: yardi
+  driven_by: openapi/apollo-insurance-affiliates.yml#/components/schemas/EmbeddedOptions
+  parameters:
+  - {field: embeddedPlatform, enum: [yardi], required: true}
+  - {field: embeddedType, enum: [start], default: start}
+  - {field: tenantId, meaning: the Yardi tcode / residentId, example: T12345678}
+  - {field: propertyId, meaning: the Yardi property code / propertyId, example: P12345678}
+  behaviour: >-
+    When embeddedOptions is supplied, insuranceData is not required — the application is created
+    against the Yardi tenant and property codes and the resident is walked into the APOLLO flow
+    at lease signing. This is the mechanism behind APOLLO's automated resident enrolment and
+    real-time building-level compliance tracking for REITs and property managers.
+  restriction: >-
+    Yardi is the only embeddedPlatform value in the public enum. No other property-management
+    system is exposed.
+
+absent:
+  javascript_sdk: none published
+  ui_kit: none published
+  iframe_embed_snippet: none published
+  design_system: none published

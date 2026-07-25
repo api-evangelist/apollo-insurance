@@ -1,0 +1,58 @@
+generated: '2026-07-25'
+method: searched
+source: live probes of every apis.yml baseURL host, every OpenAPI servers[] host, and the docs/website hosts
+note: >-
+  APOLLO publishes no /.well-known/ discovery surface on any host. Every probe below is a
+  recorded negative — no security.txt (RFC 9116), no OIDC discovery, no RFC 8414
+  authorization-server metadata, no api-catalog (RFC 9727), no ai-plugin.json. The API
+  hosts on execute-api.ca-central-1.amazonaws.com return 403 for any unrouted path (AWS
+  API Gateway default), which is a "not routed" answer rather than a 404.
+documents: []
+probed:
+- host: https://api.covertrack.ca
+  results:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com
+  results:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+- host: https://docs.apollocover.com
+  results:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://apollocover.com
+  results:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+contract_discovery:
+  note: >-
+    Contract discovery was re-run against the API host roots and the docs host before
+    concluding no additional machine-readable contract exists beyond the three harvested
+    Stoplight OpenAPIs.
+  probes:
+  - {url: 'https://api.covertrack.ca/openapi.json', status: 404}
+  - {url: 'https://api.covertrack.ca/openapi.yaml', status: 404}
+  - {url: 'https://api.covertrack.ca/swagger.json', status: 404}
+  - {url: 'https://api.covertrack.ca/api-docs', status: 404}
+  - {url: 'https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/openapi.json', status: 403}
+  - {url: 'https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/swagger.json', status: 403}
+  - {url: 'https://docs.apollocover.com/openapi.json', status: 404}
+  - {url: 'https://apollocover.com/openapi.json', status: 404}
+  graphql: none advertised on any APOLLO host
+  mcp: no hosted MCP server advertised anywhere on apollocover.com or docs.apollocover.com
+  outcome: >-
+    No additional contract found. The three OpenAPI definitions already in openapi/ (harvested
+    verbatim from the public Stoplight projects) are the complete machine-readable surface.

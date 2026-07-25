@@ -26,7 +26,7 @@ description: >-
   conduct, and Consumer-Driven Banking excludes insurance entirely — so nothing forces
   this disclosure; APOLLO published it as a distribution strategy. No ACORD, AL3, IVANS or
   agency-management-system reference appears anywhere in its public site or documentation.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://platform-assets.apollocover.com/apollo.svg
 tags:
 - Insurance
 - Canada
@@ -67,6 +67,10 @@ apis:
     url: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
   - type: OpenAPI
     url: openapi/apollo-insurance-affiliates.yml
+  - type: Overlay
+    url: overlays/apollo-insurance-affiliates-overlay.yaml
+  - type: GettingStarted
+    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
 - aid: apollo-insurance:apollo-public-api-affiliates
   name: APOLLO Public API - Affiliates
   description: >-
@@ -89,6 +93,8 @@ apis:
     url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
   - type: OpenAPI
     url: openapi/apollo-insurance-affiliates-legacy.yml
+  - type: Overlay
+    url: overlays/apollo-insurance-affiliates-legacy-overlay.yaml
 - aid: apollo-insurance:apollo-covertrack-api
   name: APOLLO CoverTrack API
   description: >-
@@ -115,7 +121,51 @@ apis:
     url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
   - type: OpenAPI
     url: openapi/apollo-insurance-covertrack.yml
+  - type: Overlay
+    url: overlays/apollo-insurance-covertrack-overlay.yaml
+  - type: Webhooks
+    url: asyncapi/apollo-insurance-covertrack-webhooks.yml
 common:
+- type: LLMsTxt
+  url: llms/apollo-insurance-llms.txt
+- type: MCPServer
+  url: mcp/apollo-insurance-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/apollo-insurance-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Conventions
+  url: conventions/apollo-insurance-conventions.yml
+- type: Idempotency
+  url: conventions/apollo-insurance-conventions.yml
+- type: ErrorCatalog
+  url: errors/apollo-insurance-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/apollo-insurance-lifecycle.yml
+- type: Sandbox
+  url: sandbox/apollo-insurance-sandbox.yml
+- type: DataModel
+  url: data-model/apollo-insurance-data-model.yml
+- type: Examples
+  url: examples/apollo-insurance-examples.yml
+- type: Components
+  url: components/apollo-insurance-components.yml
+- type: Webhooks
+  url: asyncapi/apollo-insurance-covertrack-webhooks.yml
+- type: Conformance
+  url: conformance/apollo-insurance-conformance.yml
+- type: Compliance
+  url: https://apollocover.com/security
+- type: SecurityPolicy
+  url: https://apollocover.com/security
+- type: AgenticAccess
+  url: agentic-access/apollo-insurance-agentic-access.yml
+- type: TrustCenter
+  url: security/apollo-insurance-trust-center.yml
+- type: DomainSecurity
+  url: security/apollo-insurance-domain-security.yml
+- type: Authentication
+  url: authentication/apollo-insurance-authentication.yml
 - type: Website
   url: https://apollocover.com/
 - type: DeveloperPortal
@@ -132,6 +182,38 @@ common:
   url: https://apollocover.com/magazine
 - type: PrivacyPolicy
   url: https://apollocover.com/privacy-policy
+- type: APIReference
+  url: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+- type: GettingStarted
+  url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
+- type: Support
+  url: https://help.apollocover.com/en/
+- type: TermsOfService
+  url: https://apollocover.com/terms-conditions/
+- type: Login
+  url: https://policy-portal.apollocover.com/
+- type: Contact
+  url: https://apollocover.com/contact-us
+- type: About
+  url: https://apollocover.com/about-us
+- type: Careers
+  url: https://apollocover.com/about-us/join-the-team
+- type: InvestorRelations
+  url: https://apollocover.com/about-us/investor-relations
+- type: Press
+  url: https://apollocover.com/about-us/in-the-news
+- type: Reviews
+  url: https://apollocover.com/reviews
+- type: SiteMap
+  url: https://apollocover.com/site-map
+- type: LinkedIn
+  url: https://www.linkedin.com/company/apolloexchange
+- type: Twitter
+  url: https://twitter.com/theapollomag
+- type: Facebook
+  url: https://www.facebook.com/apolloinsurance
+- type: Instagram
+  url: https://www.instagram.com/apolloinsurance
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

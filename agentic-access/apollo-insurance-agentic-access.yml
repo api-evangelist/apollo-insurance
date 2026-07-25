@@ -1,0 +1,133 @@
+generated: '2026-07-25'
+method: generated
+source: openapi/apollo-insurance-affiliates-legacy.yml, openapi/apollo-insurance-affiliates.yml,
+  openapi/apollo-insurance-covertrack.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 8
+  by_action_class:
+    acting: 6
+    connected: 2
+  by_consequence:
+    write: 6
+    read: 2
+  human_in_the_loop_required: 0
+operations:
+- path: /api/affiliates/{affiliateId}/tenant/quote
+  method: post
+  operationId: post-api-affiliates-affiliateId-tenant-quote
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/affiliates/{affiliateId}/tenant/application
+  method: post
+  operationId: post-affiliates-affiliateId-application
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/affiliates/{affiliateId}/{insuranceType}/application
+  method: post
+  operationId: public-api-affiliates-application-post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/affiliates/{affiliateId}/{insuranceType}/quote
+  method: post
+  operationId: public-api-affiliates-quote-post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /compliance/{partnerId}/{propertyId}/{tenantId}
+  method: get
+  operationId: get-compliance-status
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /compliance/{partnerId}/{propertyId}
+  method: get
+  operationId: get-compliance-partnerId-propertyId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /quote/tenant/{partnerId}
+  method: post
+  operationId: post-quote-tenant-partnerId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /compliance/callback/example
+  method: post
+  operationId: post-compliance-callback-example
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required

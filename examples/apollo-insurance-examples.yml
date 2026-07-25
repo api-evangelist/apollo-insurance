@@ -1,0 +1,203 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  Assembled verbatim from the example values APOLLO publishes inside its own OpenAPI
+  definitions — per-property `example:` keywords in openapi/apollo-insurance-affiliates.yml,
+  `x-examples` objects in openapi/apollo-insurance-covertrack.yml, and the fenced JSON block in
+  the 200 response description of openapi/apollo-insurance-affiliates-legacy.yml. No value here
+  was invented; each example object is the composition of published field examples.
+note: >-
+  The specs carry examples but no top-level `examples`/`example` payloads on the media types,
+  so nothing can be replayed straight out of the documentation. These assembled objects are the
+  runnable form of what APOLLO publishes.
+
+examples:
+
+- name: affiliates-quote-response
+  api: APOLLO Affiliates API
+  operation: openapi/apollo-insurance-affiliates.yml#public-api-affiliates-quote-post
+  kind: response
+  status: 200
+  media_type: application/json
+  method: derived
+  provenance: composed from the per-property `example:` values on the 200 response schema
+  value:
+    data:
+      premiums:
+        contentsPremium: 405
+        alePremium: 26
+        liabilityPremium: 178
+        addonPremium: 0
+      policyExpiryDate: '2023-07-05T00:01:00-07:00'
+      subtotal:
+        annual: 653.76
+        monthly: 714.72
+        instalment: 702.51
+      stripeFees:
+        annual: 19.84
+        monthly: 25.08
+        instalment: 24.1
+      taxesAndFees:
+        annual: 64.6
+        monthly: 130.8
+        instalment: 112.32
+
+- name: affiliates-application-response
+  api: APOLLO Affiliates API
+  operation: openapi/apollo-insurance-affiliates.yml#public-api-affiliates-application-post
+  kind: response
+  status: 200
+  media_type: application/json
+  method: derived
+  provenance: the published `example:` on data.quoteLink
+  value:
+    data:
+      quoteLink: 'https://apollo.securequotebotdev.com/tenant?quote=6fa455a8-8b11-4a6e-b7fa-80619f7d66e7'
+
+- name: affiliates-embedded-application-request
+  api: APOLLO Affiliates API
+  operation: openapi/apollo-insurance-affiliates.yml#public-api-affiliates-application-post
+  kind: request
+  media_type: application/json
+  method: derived
+  provenance: >-
+    composed from the published `example:` values on EmbeddedOptions, PaymentPeriod, ExternalId
+    and LeadSource
+  value:
+    embeddedOptions:
+      embeddedPlatform: yardi
+      embeddedType: start
+      tenantId: T12345678
+      propertyId: P12345678
+    paymentPeriod: annual
+    externalId: uniqueId_12345678
+    leadSource:
+      partnerName: APOLLO Insurance
+      partnerSubdomain: apollo
+
+- name: affiliates-validation-error
+  api: APOLLO Affiliates API
+  operation: openapi/apollo-insurance-affiliates.yml#public-api-affiliates-quote-post
+  kind: response
+  status: 400
+  media_type: application/json
+  method: derived
+  provenance: composed from the published `example:` values on 400InsuranceDataValidationError
+  value:
+    message:
+      details:
+      - message: '"body.insuranceData.businessAddressPostal" is required'
+        path: [body, insuranceData, businessAddressPostal]
+        type: any.required
+        context:
+          label: body.insuranceData.businessAddressPostal
+          key: businessAddressPostal
+
+- name: legacy-application-response
+  api: APOLLO Public API - Affiliates (superseded generation)
+  operation: openapi/apollo-insurance-affiliates-legacy.yml#post-affiliates-affiliateId-application
+  kind: response
+  status: 200
+  media_type: application/json
+  method: searched
+  provenance: >-
+    verbatim from the fenced JSON block APOLLO publishes as the 200 response description on this
+    operation — the one fully-formed example payload in the entire public surface
+  value:
+    data:
+      quoteLink: 'https://apollo.securequotebot.com/tenants?quote=2ed228e4-ee00-40f0-ac02-2e16376fed30'
+      quote:
+        premiums:
+          contentsPremium: 39
+          alePremium: 20
+          liabilityPremium: 185
+          addonPremium: 0
+        policyExpiryDate: '2024-01-23T14:29:42-08:00'
+        taxesAndFees:
+          annual: 28.35
+          monthly: 59.4
+        total:
+          annual: 272.35
+          monthly: 303.4
+          monthlyPayment: 25.2
+
+- name: covertrack-compliance-status
+  api: APOLLO CoverTrack API
+  operation: openapi/apollo-insurance-covertrack.yml#get-compliance-status
+  kind: response
+  status: 200
+  media_type: application/json
+  method: searched
+  provenance: verbatim from x-examples."Example 1" on components.schemas.ComplianceStatus
+  value:
+    partnerId: string
+    propertyId: string
+    tenantId: string
+    status: string
+    updatedAt: string
+    policy:
+      startDate: string
+      endDate: string
+      policyNumber: string
+      provider: string
+      liability: 0
+    links:
+      upload: string
+  caveat: >-
+    APOLLO's published example is a type-placeholder skeleton, not realistic data. The real
+    `status` values are the documented enum ACTIVE | PENDING | NOT_SUBMITTED | DECLINED.
+
+- name: covertrack-quote-request
+  api: APOLLO CoverTrack API
+  operation: openapi/apollo-insurance-covertrack.yml#post-quote-tenant-partnerId
+  kind: request
+  media_type: application/json
+  method: searched
+  provenance: verbatim from x-examples."Example 1" on the request body schema
+  value:
+    propertyId: string
+    tenantId: string
+    contents: 0
+    ale: 0
+    liability: 0
+    deductible: 0
+    water: true
+
+- name: covertrack-quote-response
+  api: APOLLO CoverTrack API
+  operation: openapi/apollo-insurance-covertrack.yml#post-quote-tenant-partnerId
+  kind: response
+  status: 200
+  media_type: application/json
+  method: searched
+  provenance: verbatim from x-examples."Example 1" on the 200 response schema
+  value:
+    link: string
+    annual: 0
+    monthly: 0
+    monthlyPayment: 0
+
+- name: covertrack-policy-event-callback
+  api: APOLLO CoverTrack API
+  operation: openapi/apollo-insurance-covertrack.yml#post-compliance-callback-example
+  kind: request
+  direction: apollo-to-partner
+  media_type: application/json
+  method: derived
+  provenance: >-
+    the callback body is $ref ComplianceStatus, so the published ComplianceStatus example is
+    the callback payload
+  value:
+    partnerId: string
+    propertyId: string
+    tenantId: string
+    status: string
+    updatedAt: string
+    policy:
+      startDate: string
+      endDate: string
+      policyNumber: string
+      provider: string
+      liability: 0
+    links:
+      upload: string

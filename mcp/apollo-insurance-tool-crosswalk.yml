@@ -1,0 +1,89 @@
+generated: '2026-07-25'
+method: derived
+source: mcp/apollo-insurance-mcp.yml + openapi/*.yml
+status: candidate
+note: >-
+  APOLLO has no live MCP server and no GraphQL surface, so there is no real surface divergence
+  to record. This crosswalk binds the candidate tool set in mcp/apollo-insurance-mcp.yml to the
+  OpenAPI operations that back it, so each tool inherits a REAL input schema (that operation's
+  parameters plus requestBody) rather than a guessed one. Confidence is high throughout because
+  every binding is one-to-one against a published operation.
+
+surfaces:
+  openapi:
+  - {file: openapi/apollo-insurance-affiliates.yml, title: Affiliates API, version: 1.0.0, operations: 2, gated: 'x-api-key, hand-issued'}
+  - {file: openapi/apollo-insurance-affiliates-legacy.yml, title: Public API - Affiliates, version: '1.0', operations: 2, gated: 'x-api-key, hand-issued'}
+  - {file: openapi/apollo-insurance-covertrack.yml, title: CoverTrack API's, version: '1.0', operations: 3 callable + 1 callback specification, gated: 'x-api-key header parameter'}
+  graphql:
+    endpoint: null
+    note: none advertised on any APOLLO host
+  mcp:
+    url: null
+    tools_list_probe: not applicable — no server published
+    note: candidate tool set only
+
+crosswalk:
+- tool: quote_tenant_application
+  category: quoting
+  rest: [public-api-affiliates-quote-post]
+  spec: openapi/apollo-insurance-affiliates.yml
+  binding: rest
+  confidence: high
+- tool: create_tenant_application
+  category: application
+  rest: [public-api-affiliates-application-post]
+  spec: openapi/apollo-insurance-affiliates.yml
+  binding: rest
+  confidence: high
+  note: >-
+    Returns a quoteLink, not a bound policy. The tool completes the machine-to-machine half of
+    BIND only; purchase happens on the hosted launchpad.
+- tool: get_tenant_compliance_status
+  category: compliance
+  rest: [get-compliance-status]
+  spec: openapi/apollo-insurance-covertrack.yml
+  binding: rest
+  confidence: high
+- tool: list_property_compliance
+  category: compliance
+  rest: [get-compliance-partnerId-propertyId]
+  spec: openapi/apollo-insurance-covertrack.yml
+  binding: rest
+  confidence: high
+  note: no pagination on the backing operation, so the tool inherits an unbounded result
+- tool: quote_covertrack_tenant
+  category: quoting
+  rest: [post-quote-tenant-partnerId]
+  spec: openapi/apollo-insurance-covertrack.yml
+  binding: rest
+  confidence: high
+  note: >-
+    Overlaps quote_tenant_application in purpose but is a genuinely different contract — keyed
+    on partnerId/propertyId/tenantId with coverage limits, not on the full tenant question set.
+
+mcp_only: []
+
+rest_only:
+- capability: superseded affiliate quoting
+  operations: [post-api-affiliates-affiliateId-tenant-quote]
+  spec: openapi/apollo-insurance-affiliates-legacy.yml
+  reason: superseded by public-api-affiliates-quote-post
+- capability: superseded affiliate application creation
+  operations: [post-affiliates-affiliateId-application]
+  spec: openapi/apollo-insurance-affiliates-legacy.yml
+  reason: superseded by public-api-affiliates-application-post
+- capability: partner policy-event callback specification
+  operations: [post-compliance-callback-example]
+  spec: openapi/apollo-insurance-covertrack.yml
+  reason: >-
+    Not a callable endpoint — it specifies the payload APOLLO POSTs outbound to a partner
+    destination. Not tool-able; see asyncapi/apollo-insurance-covertrack-webhooks.yml.
+
+coverage:
+  tools_named: 5
+  tools_bound: 5
+  mcp_only: 0
+  rest_operations_total: 8
+  rest_operations_with_a_tool: 5
+  rest_operations_excluded: 3
+  excluded_reason_breakdown: {superseded_generation: 2, callback_specification: 1}

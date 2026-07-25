@@ -1,0 +1,57 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for APOLLO Public API - Affiliates (superseded)
+  version: 1.0.0
+extends: openapi/apollo-insurance-affiliates-legacy.yml
+x-apievangelist:
+  generated: '2026-07-25'
+  method: generated
+  source: >-
+    API Evangelist enrichment pipeline. Captures our enhancements without mutating the
+    harvested definition in openapi/.
+actions:
+
+- target: $.info
+  update:
+    x-apievangelist-slug: apollo-insurance
+    x-apievangelist-generation: superseded
+    x-apievangelist-superseded-by: openapi/apollo-insurance-affiliates.yml
+    x-apievangelist-note: >-
+      Still published by APOLLO in its own public Stoplight project, on the same test and
+      production hosts as the current Affiliates API, with no deprecation marking, no sunset
+      date and no migration guide. Paths are hardcoded to /tenant/ rather than parameterised by
+      {insuranceType}; there is no declared securityScheme, no component schema library and no
+      documented error response. See lifecycle/apollo-insurance-lifecycle.yml.
+    x-apievangelist-artifacts:
+      lifecycle: lifecycle/apollo-insurance-lifecycle.yml
+      authentication: authentication/apollo-insurance-authentication.yml
+      examples: examples/apollo-insurance-examples.yml
+
+- target: $.servers[0]
+  update:
+    x-environment: test
+- target: $.servers[1]
+  update:
+    x-environment: production
+
+- target: $.paths['/api/affiliates/{affiliateId}/tenant/quote'].post
+  update:
+    x-apievangelist-superseded-by: public-api-affiliates-quote-post
+    x-agentic-access:
+      action-class: connected
+      consequence: read
+      note: POST for payload size only; quoting creates no record.
+
+- target: $.paths['/api/affiliates/{affiliateId}/tenant/application'].post
+  update:
+    x-apievangelist-superseded-by: public-api-affiliates-application-post
+    x-apievangelist-note: >-
+      The 200 response carries no schema — APOLLO documents it only as a fenced JSON block in the
+      response description. That block is the single fully-formed example payload in the whole
+      public surface; it is captured as `legacy-application-response` in
+      examples/apollo-insurance-examples.yml.
+    x-agentic-access:
+      action-class: acting
+      consequence: write
+      escalation:
+        human-in-the-loop: recommended

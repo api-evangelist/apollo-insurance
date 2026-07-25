@@ -1,0 +1,90 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction (info.description
+  of openapi/apollo-insurance-affiliates.yml) and the servers[] blocks of all three public specs
+summary: >-
+  APOLLO ships a real, published test/production separation on both product surfaces — distinct
+  hosts, distinct API keys, plus a Stoplight-hosted mock server for the current Affiliates API.
+  It publishes no magic test values: no test card numbers, no seeded test affiliateId, no test
+  property or tenant codes, no time simulation and no fixture/trigger tooling. Credentials for
+  the test environment are still issued by hand by an APOLLO contact, so the sandbox is
+  partner-gated rather than self-serve.
+
+separation:
+  model: separate-hosts-and-keys
+  key_prefixes: none published
+  published_guidance: >-
+    "The `Production Server` should only be used for live data. Feel free to test the API using
+    rather the `Test Server` or `Mock Server` to test out any endpoints before moving to
+    production."
+
+environments:
+- api: APOLLO Affiliates API
+  spec: openapi/apollo-insurance-affiliates.yml
+  servers:
+  - {name: Test Server, url: 'https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0', mode: test}
+  - {name: Production Server, url: 'https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0', mode: live}
+  mock_server:
+    available: true
+    provider: Stoplight
+    note: >-
+      The public Stoplight project exposes a hosted mock server for prototyping against the
+      documented response schemas without credentials.
+- api: APOLLO Public API - Affiliates (superseded generation)
+  spec: openapi/apollo-insurance-affiliates-legacy.yml
+  servers:
+  - {name: TEST, url: 'https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0', mode: test}
+  - {name: PRODUCTION, url: 'https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0', mode: live}
+- api: APOLLO CoverTrack API
+  spec: openapi/apollo-insurance-covertrack.yml
+  servers:
+  - {name: Test, url: 'https://api.covertrack-dev.ca', mode: test}
+  - {name: Production, url: 'https://api.covertrack.ca', mode: live}
+  mock_server: {available: false}
+
+credentials:
+  self_serve: false
+  mechanism: x-api-key header
+  per_environment: true
+  published_guidance: >-
+    "All endpoints require a `x-api-key` security token in the header. This token will be
+    provided to you by APOLLO." Test and production tokens are issued separately.
+  obtain: contact an APOLLO affiliate/partnerships contact — https://apollocover.com/partnerships
+
+test_values:
+  cards: none published
+  bank_accounts: none published
+  test_affiliate_id: none published
+  test_partner_id: none published
+  test_property_codes: none published
+  note: >-
+    Both affiliateId (Affiliates) and partnerId/propertyId/tenantId (CoverTrack) are
+    partner-issued and must come from APOLLO with the key; there are no documented magic
+    identifiers that work out of the box.
+
+time_simulation:
+  test_clocks: false
+  note: >-
+    No time simulation. policyExpiryDate is returned by the quote engine and cannot be advanced.
+
+fixtures_and_triggers:
+  available: false
+  note: >-
+    No fixture loader, event trigger, or CLI for replaying webhooks. The CoverTrack partner
+    callback (see asyncapi/apollo-insurance-covertrack-webhooks.yml) has no documented manual
+    trigger — it fires only on a real policy event.
+
+payments_note: >-
+  The quote response itemises `stripeFees` alongside subtotal, taxes and total, and APOLLO's
+  security page states payment processing is handled by Stripe. Card capture happens on the
+  hosted APOLLO launchpad, not through this API, so Stripe's own test cards are not exercised
+  through any documented APOLLO endpoint.
+
+placeholder_hosts_seen_in_examples:
+  note: >-
+    Recorded for accuracy, not as usable endpoints. The published examples in the specs point at
+    the hosted application launchpad, and the current spec's example uses a development host.
+  values:
+  - 'https://apollo.securequotebotdev.com/tenant?quote={uuid}   # example in openapi/apollo-insurance-affiliates.yml'
+  - 'https://apollo.securequotebot.com/tenants?quote={uuid}     # example in openapi/apollo-insurance-affiliates-legacy.yml'

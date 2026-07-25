@@ -1,0 +1,149 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/apollo-insurance-affiliates.yml, openapi/apollo-insurance-affiliates-legacy.yml,
+  openapi/apollo-insurance-covertrack.yml, plus the published operation descriptions in the
+  Stoplight documentation at https://docs.apollocover.com/
+summary: >-
+  APOLLO's cross-cutting semantics are minimal and partner-scoped. Every call is a static
+  header API key, every identifier is a partner-issued path segment, there is no pagination,
+  no versioning header, no request-id tracing and no rate-limit signalling published anywhere
+  in the three OpenAPI definitions or the docs. The one genuine runtime-semantics contract
+  APOLLO does publish is a client-supplied deduplication key (externalId) on application
+  creation.
+
+authentication:
+  style: api-key
+  transport: header
+  parameter: x-api-key
+  scheme_declared_in_spec: openapi/apollo-insurance-affiliates.yml (components.securitySchemes.apiKeyAuth)
+  applied: global security requirement on the Affiliates API
+  covertrack: >-
+    api.covertrack.ca declares no securitySchemes block, but every path carries an explicit
+    x-api-key header parameter; on the callback path it is described as "API Key (recommended)".
+  issuance: >-
+    Keys are issued by hand by an APOLLO contact to affiliates and property-manager partners.
+    There is no self-serve credential path and no key-provisioning screen.
+  separate_keys_per_environment: true
+  detail: authentication/apollo-insurance-authentication.yml
+
+identifiers:
+  scoping: >-
+    Every operation is scoped by a partner-issued identifier in the path, never by a token
+    claim. Nothing in the surface is consumer-scoped.
+  keys:
+  - name: affiliateId
+    surface: Affiliates API
+    meaning: the partner's co-branded APOLLO subdomain, provided by APOLLO
+    location: path
+  - name: insuranceType
+    surface: Affiliates API
+    meaning: insurance line; the documentation states only `tenant` is currently available
+    location: path
+  - name: partnerId
+    surface: CoverTrack API
+    meaning: the partner name
+    location: path
+  - name: propertyId
+    surface: CoverTrack API
+    meaning: the property ID, or "P-Code" (Yardi property code in embedded flows)
+    location: path
+  - name: tenantId
+    surface: CoverTrack API
+    meaning: the tenant ID, or "T-Code" (Yardi tcode / residentId in embedded flows)
+    location: path
+
+idempotency:
+  supported: true
+  style: client-supplied-external-id
+  mechanism: request body field
+  field: externalId
+  scope: POST /api/affiliates/{affiliateId}/{insuranceType}/application
+  header: null
+  retention: not published
+  published_definition: >-
+    "Customer's own unique ID. This ID will be included in the APOLLO application to prevent
+    duplicate applications from being created for the client."
+  source: openapi/apollo-insurance-affiliates.yml#/components/schemas/ExternalId
+  caveat: >-
+    This is a deduplication key, not an RFC-style Idempotency-Key header. APOLLO publishes no
+    Idempotency-Key header, no replay window, no stored-response semantics and no conflict
+    status code. The quote operations have no deduplication contract at all, and CoverTrack
+    publishes none on any of its operations.
+
+pagination:
+  supported: false
+  note: >-
+    GET /compliance/{partnerId}/{propertyId} returns an unbounded JSON array of every tenant's
+    compliance status for a property with no cursor, offset, limit or page parameter and no
+    envelope. Large properties are returned whole.
+
+filtering_and_expansion:
+  sparse_fields: false
+  expansion: false
+  note: >-
+    The single optional shape variation is the `policy` sub-object on ComplianceStatus, which
+    the schema describes as "Optional policy details" (start/end date, policyNumber, provider,
+    liability) — carrier policy detail returned when a third-party policy has been recorded.
+
+metadata:
+  supported: partial
+  fields:
+  - {field: externalId, purpose: partner's own client identifier, echoed into the APOLLO application}
+  - {field: leadSource.partnerName, purpose: attribution — e.g. the landlord name}
+  - {field: leadSource.partnerSubdomain, purpose: routes to a partner sub-launchpad; falls back to the partner default launchpad when empty}
+
+request_tracing:
+  request_id_header: null
+  correlation_id: null
+  note: No request-id, trace-id or correlation header is documented on any operation.
+
+versioning:
+  scheme: uri-path
+  current: 1_0_0
+  evidence: >-
+    Both Affiliates hosts are AWS API Gateway stages ending in /1_0_0
+    (https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0). CoverTrack has no
+    version segment at all (https://api.covertrack.ca).
+  header_versioning: false
+  date_versioning: false
+  detail: lifecycle/apollo-insurance-lifecycle.yml
+
+error_envelope:
+  format: proprietary
+  rfc9457: false
+  content_type: application/json
+  shape: >-
+    Validation failures return {"message": {"_original": {...}, "details": [{message, path[],
+    type, context{label, key}}]}} — a Joi/celebrate validation error passed through unmodified.
+  documented_statuses: [400, 403, 404]
+  undocumented: >-
+    403 and 404 carry a bare description ("Forbidden", "Not found") with no response body
+    schema. No 401, 409, 422, 429 or 5xx response is documented on any operation.
+  detail: errors/apollo-insurance-problem-types.yml
+
+rate_limiting:
+  published: false
+  headers: null
+  note: >-
+    No rate limit, quota, throttle or 429 response is documented in any of the three OpenAPI
+    definitions or on the docs site. The Affiliates hosts sit behind AWS API Gateway, which
+    applies account-level throttling, but APOLLO publishes no limit and no signalling headers.
+
+content_negotiation:
+  request: application/json
+  response: application/json
+  compression: not published
+
+async_and_events:
+  webhooks: asyncapi/apollo-insurance-covertrack-webhooks.yml
+  note: >-
+    One documented partner-destination callback on CoverTrack; no subscription-management API,
+    no signing scheme and no retry policy published.
+
+cross_links:
+  authentication: authentication/apollo-insurance-authentication.yml
+  errors: errors/apollo-insurance-problem-types.yml
+  lifecycle: lifecycle/apollo-insurance-lifecycle.yml
+  sandbox: sandbox/apollo-insurance-sandbox.yml
+  data_model: data-model/apollo-insurance-data-model.yml

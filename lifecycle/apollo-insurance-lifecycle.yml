@@ -1,0 +1,87 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/*.yml servers[] and info.version, plus a live search of apollocover.com and
+  docs.apollocover.com for versioning, deprecation, SLA, status-page and changelog surfaces
+note: >-
+  APOLLO publishes no versioning policy, no deprecation policy, no SLA, no status page and no
+  changelog. Everything recorded here is derived from the specs themselves plus recorded
+  negatives from live probes. The two coexisting Affiliates projects are the real lifecycle
+  signal: an older "Public API - Affiliates" project and a current "Affiliates API" project
+  are both still published, on the same hosts, with neither marked deprecated.
+
+versioning:
+  scheme: uri-path
+  current: 1_0_0
+  evidence: >-
+    Both Affiliates servers are AWS API Gateway stages ending in /1_0_0. CoverTrack
+    (https://api.covertrack.ca) carries no version segment at all.
+  spec_versions:
+  - {file: openapi/apollo-insurance-affiliates.yml, title: Affiliates API, version: 1.0.0, openapi: 3.0.0}
+  - {file: openapi/apollo-insurance-affiliates-legacy.yml, title: Public API - Affiliates, version: '1.0', openapi: 3.0.0}
+  - {file: openapi/apollo-insurance-covertrack.yml, title: CoverTrack API's, version: '1.0', openapi: 3.1.0}
+  header_versioning: false
+  date_versioning: false
+  policy_url: null
+
+generations:
+  note: >-
+    Two generations of the affiliate surface are published side by side in separate public
+    Stoplight projects, sharing the same test and production hosts.
+  superseded:
+    project: affiliate-api
+    title: Public API - Affiliates
+    file: openapi/apollo-insurance-affiliates-legacy.yml
+    paths_hardcoded_to: tenant
+    operations: [post-api-affiliates-affiliateId-tenant-quote, post-affiliates-affiliateId-application]
+    docs: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+    marked_deprecated: false
+  current:
+    project: public-affiliate-api
+    title: Affiliates API
+    file: openapi/apollo-insurance-affiliates.yml
+    paths_parameterized_by: insuranceType
+    operations: [public-api-affiliates-quote-post, public-api-affiliates-application-post]
+    docs: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+  observation: >-
+    The current project generalises the path from a hardcoded /tenant/ segment to a
+    parameterised {insuranceType}, adds a declared apiKeyAuth securityScheme, adds a component
+    schema library and adds documented 400/403/404 responses. The legacy project has none of
+    those. No sunset date, migration guide or deprecation notice links the two.
+
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  notice_period: not published
+  deprecated_operations: []
+  note: >-
+    No operation in any of the three specs carries `deprecated: true`, and no Sunset or
+    Deprecation response header is declared. The superseded affiliate generation is left
+    published without any deprecation marking.
+
+sla:
+  url: null
+  uptime_target: null
+  note: No SLA, uptime commitment or support-response target is published on apollocover.com.
+
+status_page:
+  url: null
+  probed:
+  - {url: 'https://status.apollocover.com/', result: no DNS / no response}
+  note: >-
+    No status page exists on any obvious host and none is linked from the website footer, the
+    help centre or the developer portal.
+
+changelog:
+  url: null
+  note: >-
+    No dated changelog, release-notes page or version history is published for any of the three
+    APIs. The Stoplight projects expose no revision history to anonymous readers.
+
+environments:
+  detail: sandbox/apollo-insurance-sandbox.yml
+  summary: >-
+    Test and production are separated by host (both Affiliates and CoverTrack ship distinct
+    test hosts) with separate API keys per environment.

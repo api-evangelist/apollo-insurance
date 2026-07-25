@@ -1,0 +1,102 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/apollo-insurance-affiliates.yml, openapi/apollo-insurance-affiliates-legacy.yml,
+  openapi/apollo-insurance-covertrack.yml
+format: proprietary
+rfc9457: false
+note: >-
+  APOLLO publishes no error reference page and no error-code registry. Everything below is
+  derived from the 4xx responses actually declared in the three public OpenAPI definitions.
+  Only the 400 validation error carries a response schema; 403 and 404 are bare descriptions.
+  No 401, 409, 422, 429 or 5xx response is declared on any operation, so nothing is recorded
+  for them — that is a documentation gap in APOLLO's spec, not an assertion that those
+  statuses never occur.
+
+envelope:
+  media_type: application/json
+  validation_shape:
+    message:
+      _original: object
+      details:
+      - message: string
+        path: [string]
+        type: string
+        context: {label: string, key: string}
+  published_example_message: '"body.insuranceData.businessAddressPostal" is required'
+  published_example_path: [body, insuranceData, businessAddressPostal]
+  published_example_type: any.required
+  inference: >-
+    The shape (message._original + message.details[].{message,path,type,context}) is the
+    verbatim output of the Joi / celebrate request-validation middleware, surfaced unmodified.
+
+problems:
+- status: 400
+  name: 400InsuranceDataValidationError
+  title: Validation error
+  component: openapi/apollo-insurance-affiliates.yml#/components/responses/400InsuranceDataValidationError
+  media_type: application/json
+  schema: true
+  remediation: >-
+    Correct the offending field named in message.details[].context.label. Required fields on
+    both tenant question sets are businessAddressPostal, businessAddressCity, operations and
+    businessAddressStreet; embeddedOptions.embeddedPlatform is required for embedded
+    applications, and insuranceData is required for non-embedded applications.
+  source_operations:
+  - openapi/apollo-insurance-affiliates.yml#public-api-affiliates-quote-post
+  - openapi/apollo-insurance-affiliates.yml#public-api-affiliates-application-post
+
+- status: 403
+  name: '403'
+  title: Forbidden
+  component: openapi/apollo-insurance-affiliates.yml#/components/responses/403
+  media_type: null
+  schema: false
+  remediation: >-
+    Supply a valid x-api-key header for the environment being called. Test and production use
+    separate tokens, both issued by hand by an APOLLO contact — a production token will not
+    authenticate against the test host and vice versa.
+  source_operations:
+  - openapi/apollo-insurance-affiliates.yml#public-api-affiliates-quote-post
+  - openapi/apollo-insurance-affiliates.yml#public-api-affiliates-application-post
+
+- status: 404
+  name: '404'
+  title: Not found
+  component: openapi/apollo-insurance-affiliates.yml#/components/responses/404
+  media_type: null
+  schema: false
+  remediation: >-
+    Verify the affiliateId (the partner's co-branded APOLLO subdomain) and the insuranceType
+    path segment. The documentation states only the `tenant` insurance type is currently
+    available, so any other line yields a not-found.
+  source_operations:
+  - openapi/apollo-insurance-affiliates.yml#public-api-affiliates-quote-post
+  - openapi/apollo-insurance-affiliates.yml#public-api-affiliates-application-post
+
+- status: 404
+  name: UserNotFound
+  title: User Not Found
+  media_type: null
+  schema: false
+  remediation: >-
+    Verify the partnerId, propertyId ("P-Code") and tenantId ("T-Code") triple. A tenant that
+    has never been enrolled at that property returns not-found rather than a NOT_SUBMITTED
+    compliance status.
+  source_operations:
+  - openapi/apollo-insurance-covertrack.yml#get-compliance-status
+
+not_documented:
+  statuses: [401, 409, 422, 429, 500, 502, 503]
+  note: >-
+    No authentication-challenge (401), conflict (409), rate-limit (429) or server-error
+    response is declared anywhere in the public surface. CoverTrack declares no error response
+    at all on get-compliance-partnerId-propertyId or post-quote-tenant-partnerId, and the
+    legacy Affiliates project declares none on either of its two operations.
+
+application_level_status_values:
+  note: >-
+    Not errors, but the values a partner must branch on. CoverTrack compliance status is a
+    string enum documented inline on the ComplianceStatus schema.
+  compliance_status: [ACTIVE, PENDING, NOT_SUBMITTED, DECLINED]
+  source: openapi/apollo-insurance-covertrack.yml#/components/schemas/ComplianceStatus

@@ -1,0 +1,97 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for APOLLO CoverTrack API
+  version: 1.0.0
+extends: openapi/apollo-insurance-covertrack.yml
+x-apievangelist:
+  generated: '2026-07-25'
+  method: generated
+  source: >-
+    API Evangelist enrichment pipeline. Captures our enhancements without mutating the
+    harvested definition in openapi/.
+actions:
+
+- target: $.info
+  update:
+    x-apievangelist-slug: apollo-insurance
+    x-apievangelist-product: CoverTrack
+    x-apievangelist-audience: REITs and property managers
+    x-apievangelist-artifacts:
+      authentication: authentication/apollo-insurance-authentication.yml
+      conventions: conventions/apollo-insurance-conventions.yml
+      errors: errors/apollo-insurance-problem-types.yml
+      webhooks: asyncapi/apollo-insurance-covertrack-webhooks.yml
+      data_model: data-model/apollo-insurance-data-model.yml
+      examples: examples/apollo-insurance-examples.yml
+      agentic_access: agentic-access/apollo-insurance-agentic-access.yml
+    x-apievangelist-access:
+      self_serve: false
+      credential: hand-issued x-api-key from an APOLLO contact
+      scoped_to: property-manager / REIT partner
+
+- target: $.servers[0]
+  update:
+    x-environment: production
+- target: $.servers[1]
+  update:
+    x-environment: test
+
+- target: $.components.securitySchemes
+  update:
+    x-apievangelist-note: >-
+      This spec declares no securitySchemes block, but every path carries an explicit x-api-key
+      header parameter and the callback path describes it as "API Key (recommended)". The
+      security model is real but undeclared. See authentication/apollo-insurance-authentication.yml.
+
+- target: $.paths['/compliance/{partnerId}/{propertyId}'].get
+  update:
+    x-apievangelist-note: >-
+      Returns an unbounded array of every tenant's compliance status for a property — no cursor,
+      offset, limit or page parameter, and no envelope. Large portfolios return whole.
+    x-agentic-access:
+      action-class: connected
+      consequence: read
+    x-pagination:
+      supported: false
+
+- target: $.paths['/compliance/{partnerId}/{propertyId}/{tenantId}'].get
+  update:
+    x-agentic-access:
+      action-class: connected
+      consequence: read
+    x-apievangelist-note: >-
+      Optional `policy` object describes the THIRD-PARTY carrier's policy the tenant submitted as
+      proof — `provider` is the carrier name, `policyNumber` the carrier's number. There is no
+      APOLLO-issued policy resource anywhere in the public surface.
+
+- target: $.paths['/quote/tenant/{partnerId}'].post
+  update:
+    x-agentic-access:
+      action-class: connected
+      consequence: read
+      note: POST for payload size only; quoting creates no record.
+
+- target: $.paths['/compliance/callback/example'].post
+  update:
+    x-apievangelist-note: >-
+      NOT a callable endpoint. This documents the payload APOLLO POSTs OUTBOUND to a
+      partner-supplied destination when a relevant policy event occurs — the only event-driven
+      surface APOLLO publishes. Modelled properly in
+      asyncapi/apollo-insurance-covertrack-webhooks.yml.
+    x-webhook:
+      direction: apollo-to-partner
+      payload_schema: '#/components/schemas/ComplianceStatus'
+      signature: none published
+      retries: none published
+
+- target: $.components.schemas.ComplianceStatus
+  update:
+    x-apievangelist-note: >-
+      `status` is an inline-documented string enum: ACTIVE | PENDING | NOT_SUBMITTED | DECLINED.
+      Not modelled as a JSON Schema enum in the published spec.
+
+- target: $.components.schemas.ComplianceStatusDetail
+  update:
+    x-apievangelist-note: >-
+      Structurally identical to ComplianceStatus in the published spec, and referenced by no
+      operation. Likely a leftover; recorded rather than removed.

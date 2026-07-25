@@ -1,0 +1,76 @@
+generated: '2026-07-25'
+method: derived
+source: openapi/apollo-insurance-covertrack.yml#post-compliance-callback-example
+spec_type: Webhooks
+asyncapi_published: false
+note: >-
+  APOLLO publishes no AsyncAPI document. It does publish exactly one event surface: a
+  partner-destination callback specified inside the CoverTrack OpenAPI as an ordinary path,
+  with the description "Example of a partner destination callback that is invoked when a
+  relevant Policy event occurs. **Note** - this is not an actual endpoint, just the
+  specification for the callback." The path is a specification of the payload APOLLO will POST
+  to a URL the partner supplies. Everything below is derived verbatim from that operation — no
+  event catalogue, subscription API, signing scheme, retry policy or delivery guarantee is
+  published anywhere. The legacy affiliate-api Stoplight project also carries a "Webhooks"
+  page, but it is empty.
+
+direction: apollo-to-partner
+delivery: HTTP POST to a partner-hosted destination URL
+subscription_management:
+  api: none
+  mechanism: configured out of band with an APOLLO contact
+  note: No endpoint exists to register, list, rotate or delete a destination URL.
+
+webhooks:
+- name: policy-event
+  summary: Post Policy Event to Partner Destination
+  description: >-
+    Invoked when a relevant Policy event occurs for a tenant CoverTrack is tracking. Carries the
+    tenant's full current compliance record, so it is a state snapshot rather than a typed
+    event — the partner diffs against its own last-known state to work out what changed.
+  method: POST
+  destination: partner-supplied URL
+  specification_path: /compliance/callback/example
+  operationId: post-compliance-callback-example
+  media_type: application/json
+  payload_schema: openapi/apollo-insurance-covertrack.yml#/components/schemas/ComplianceStatus
+  payload_fields:
+  - {field: partnerId, type: string}
+  - {field: propertyId, type: string}
+  - {field: tenantId, type: string}
+  - {field: status, type: string, values: [ACTIVE, PENDING, NOT_SUBMITTED, DECLINED]}
+  - {field: updatedAt, type: string}
+  - {field: policy, type: object, optional: true, fields: [startDate, endDate, policyNumber, provider, liability]}
+  - {field: links, type: object, fields: [upload]}
+  authentication:
+    header: x-api-key
+    required: false
+    published_description: 'API Key (recommended)'
+    note: >-
+      APOLLO sends an x-api-key header to the partner destination, described in the spec as
+      "recommended" rather than required. There is no HMAC signature, no timestamp, no replay
+      protection and no mTLS.
+  event_types: none published — a single undifferentiated "relevant Policy event"
+  ordering: not published
+  retries: not published
+  timeouts: not published
+  expected_response: not published (the operation declares an empty responses object)
+  idempotency: >-
+    None published. Because the payload is a full state snapshot keyed on
+    partnerId/propertyId/tenantId, a replayed delivery is naturally convergent, but APOLLO
+    publishes no delivery id or sequence number to deduplicate on.
+
+polling_alternative:
+  note: >-
+    The same state is readable on demand, so a partner that cannot host a callback can poll.
+  operations:
+  - openapi/apollo-insurance-covertrack.yml#get-compliance-status
+  - openapi/apollo-insurance-covertrack.yml#get-compliance-partnerId-propertyId
+
+affiliates_api:
+  webhooks: none
+  note: >-
+    Neither generation of the Affiliates API emits events. The application flow terminates in a
+    quoteLink handed to the consumer; the partner is never notified whether the consumer
+    completed purchase on the hosted launchpad. That is the largest event-surface gap in
+    APOLLO's public API.

@@ -1,0 +1,95 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for APOLLO Affiliates API
+  version: 1.0.0
+extends: openapi/apollo-insurance-affiliates.yml
+x-apievangelist:
+  generated: '2026-07-25'
+  method: generated
+  source: >-
+    API Evangelist enrichment pipeline. Captures our enhancements to APOLLO's published spec
+    without mutating it — the harvested definition in openapi/ stays verbatim.
+actions:
+
+- target: $.info
+  update:
+    x-apievangelist-slug: apollo-insurance
+    x-apievangelist-generation: current
+    x-apievangelist-supersedes: openapi/apollo-insurance-affiliates-legacy.yml
+    x-apievangelist-artifacts:
+      authentication: authentication/apollo-insurance-authentication.yml
+      conventions: conventions/apollo-insurance-conventions.yml
+      errors: errors/apollo-insurance-problem-types.yml
+      lifecycle: lifecycle/apollo-insurance-lifecycle.yml
+      sandbox: sandbox/apollo-insurance-sandbox.yml
+      data_model: data-model/apollo-insurance-data-model.yml
+      examples: examples/apollo-insurance-examples.yml
+      components: components/apollo-insurance-components.yml
+      agentic_access: agentic-access/apollo-insurance-agentic-access.yml
+    x-apievangelist-access:
+      self_serve: false
+      credential: hand-issued x-api-key from an APOLLO contact
+      scoped_to: affiliate partner
+    x-apievangelist-coverage:
+      insurance_verbs: [QUOTE, partial-BIND]
+      missing_verbs: [ISSUE, FNOL]
+      lines_exposed: [tenant]
+
+- target: $.servers[0]
+  update:
+    x-environment: test
+- target: $.servers[1]
+  update:
+    x-environment: production
+
+- target: $.paths['/api/affiliates/{affiliateId}/{insuranceType}/quote'].post
+  update:
+    x-agentic-access:
+      action-class: connected
+      consequence: read
+      note: >-
+        POST is used for payload size only; quoting creates no record and has no side effect.
+        Downgraded from the mechanical write classification in
+        agentic-access/apollo-insurance-agentic-access.yml after reading the operation.
+    x-idempotency:
+      supported: false
+      note: no deduplication contract on quoting
+
+- target: $.paths['/api/affiliates/{affiliateId}/{insuranceType}/application'].post
+  update:
+    x-agentic-access:
+      action-class: acting
+      consequence: write
+      escalation:
+        human-in-the-loop: recommended
+      note: >-
+        Produces a consumer-facing quoteLink and captures personal information (name,
+        birthdate, email, phone, address). Does not bind a policy.
+    x-idempotency:
+      supported: true
+      style: client-supplied-external-id
+      field: externalId
+      published_definition: >-
+        Customer's own unique ID. This ID will be included in the APOLLO application to prevent
+        duplicate applications from being created for the client.
+
+- target: $.components.schemas.EmbeddedOptions
+  update:
+    x-apievangelist-note: >-
+      The only embedded platform in the public enum is Yardi. This is the mechanism behind
+      APOLLO's automated resident enrolment at lease signing for REITs and property managers,
+      and the join point to the CoverTrack compliance surface (both use the Yardi P-Code and
+      T-Code). See components/apollo-insurance-components.yml.
+
+- target: $.components.responses['400InsuranceDataValidationError']
+  update:
+    x-apievangelist-note: >-
+      Proprietary envelope, not RFC 9457. The shape (message._original +
+      message.details[].{message,path,type,context}) is verbatim Joi/celebrate validation output
+      surfaced unmodified. See errors/apollo-insurance-problem-types.yml.
+
+- target: $.components.responses['403']
+  update:
+    x-apievangelist-note: >-
+      Returned for an invalid or wrong-environment x-api-key. Test and production tokens are
+      distinct; no 401 is documented anywhere in this spec.

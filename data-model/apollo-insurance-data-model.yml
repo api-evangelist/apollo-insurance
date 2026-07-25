@@ -1,0 +1,149 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/apollo-insurance-affiliates.yml (components.schemas + request/response bodies),
+  openapi/apollo-insurance-covertrack.yml (components.schemas), and the path parameters of
+  openapi/apollo-insurance-affiliates-legacy.yml
+summary: >-
+  APOLLO's public data model is two disconnected islands. The Affiliates island is a
+  quote/application funnel: a flat tenant question set in, a priced quote or a hosted
+  application link out. The CoverTrack island is a compliance ledger keyed on a
+  partner/property/tenant triple. Nothing joins them — no shared identifier, no policy entity,
+  no customer entity, no claim entity. There is no ISSUE and no FNOL surface, so the model
+  stops at the moment the consumer is handed to the hosted launchpad.
+
+id_conventions:
+  note: All identifiers are opaque strings supplied by the partner or by APOLLO; no prefixed id scheme is published.
+  documented:
+  - {id: affiliateId, meaning: the partner's co-branded APOLLO subdomain, issued_by: APOLLO}
+  - {id: partnerId, meaning: the partner name, issued_by: APOLLO}
+  - {id: propertyId, meaning: property ID / "P-Code"; the Yardi property code in embedded flows, example: P12345678}
+  - {id: tenantId, meaning: tenant ID / "T-Code"; the Yardi tcode / residentId in embedded flows, example: T12345678}
+  - {id: externalId, meaning: the partner's own unique client ID, issued_by: partner, purpose: duplicate-application prevention}
+  - {id: quote, meaning: opaque UUID carried on the returned quoteLink query string, example: 6fa455a8-8b11-4a6e-b7fa-80619f7d66e7}
+
+entities:
+- name: Affiliate
+  domain: distribution
+  surface: Affiliates API
+  key: affiliateId
+  materialised_as: path parameter only — no resource, no CRUD, no read endpoint
+  fields_observed: [affiliateId]
+- name: TenantInsuranceQuoteQuestions
+  domain: quoting
+  surface: Affiliates API
+  schema: openapi/apollo-insurance-affiliates.yml#/components/schemas/TenantInsuranceQuoteQuestions
+  required: [businessAddressPostal, businessAddressCity, operations, businessAddressStreet]
+  representative_fields: [businessAddressStreet, businessAddressUnit, businessAddressCity, businessAddressProvince, businessAddressPostal, buildingAge, birthdate, firstName, lastName, email, phoneNumber, ageApplicant, personalLiability, deductible, propertyLimitApplicant, aleLimitApplicant, offPremisesLimitApplicant, policyPackage, sewerDisclaimer, specialLimitException, jewelryLimit, bicyclesLimit, computersLimit]
+  note: >-
+    Flat, denormalised risk-capture record. The "business*" prefixes on what are residential
+    address fields are an artefact of a shared question engine across APOLLO's personal and
+    commercial lines.
+- name: TenantInsuranceQuestions
+  domain: application
+  surface: Affiliates API
+  schema: openapi/apollo-insurance-affiliates.yml#/components/schemas/TenantInsuranceQuestions
+  required: [businessAddressPostal, businessAddressCity, operations, businessAddressStreet]
+  note: The application-time superset of the quote question set; same required fields.
+- name: EmbeddedOptions
+  domain: embedded distribution
+  surface: Affiliates API
+  schema: openapi/apollo-insurance-affiliates.yml#/components/schemas/EmbeddedOptions
+  required: [embeddedPlatform]
+  fields: [embeddedPlatform, embeddedType, tenantId, propertyId]
+  enums:
+    embeddedPlatform: [yardi]
+    embeddedType: [start]
+  note: >-
+    The only named embedded platform in the entire public surface is Yardi. This is the join
+    point between the Affiliates funnel and the property-management world CoverTrack tracks.
+- name: LeadSource
+  domain: attribution
+  surface: Affiliates API
+  schema: openapi/apollo-insurance-affiliates.yml#/components/schemas/LeadSource
+  required: [partnerName]
+  fields: [partnerName, partnerSubdomain]
+- name: PaymentPeriod
+  domain: pricing
+  surface: Affiliates API
+  schema: openapi/apollo-insurance-affiliates.yml#/components/schemas/PaymentPeriod
+  type: string enum
+  values: [annual, monthly]
+  default: annual
+- name: ExternalId
+  domain: idempotency
+  surface: Affiliates API
+  schema: openapi/apollo-insurance-affiliates.yml#/components/schemas/ExternalId
+  type: string
+- name: Quote
+  domain: quoting
+  surface: Affiliates API
+  materialised_as: inline response schema on public-api-affiliates-quote-post
+  structure:
+    premiums: [contentsPremium, alePremium, liabilityPremium, addonPremium]
+    policyExpiryDate: date-time
+    subtotal: [annual, monthly, instalment]
+    stripeFees: [annual, monthly, instalment]
+    taxesAndFees: [annual, monthly, instalment]
+    total: [annual, monthly, monthlyPayment]
+  note: >-
+    Priced but not persisted as an addressable resource — there is no GET for a quote by id.
+- name: Application
+  domain: binding
+  surface: Affiliates API
+  materialised_as: inline response schema on public-api-affiliates-application-post
+  fields: [quoteLink]
+  note: >-
+    Creating an application does NOT bind a policy. It returns a quoteLink into the affiliate's
+    co-branded APOLLO launchpad with the consumer's answers pre-filled; purchase and payment
+    complete on that hosted funnel. There is no read-back, no status and no application id.
+- name: ComplianceStatus
+  domain: compliance
+  surface: CoverTrack API
+  schema: openapi/apollo-insurance-covertrack.yml#/components/schemas/ComplianceStatus
+  fields: [partnerId, propertyId, tenantId, status, updatedAt, policy, links]
+  enums:
+    status: [ACTIVE, PENDING, NOT_SUBMITTED, DECLINED]
+- name: ComplianceStatusDetail
+  domain: compliance
+  surface: CoverTrack API
+  schema: openapi/apollo-insurance-covertrack.yml#/components/schemas/ComplianceStatusDetail
+  note: >-
+    Structurally identical to ComplianceStatus in the published spec — declared but not
+    differentiated, and not referenced by any operation.
+- name: Policy
+  domain: compliance
+  surface: CoverTrack API
+  materialised_as: optional embedded object on ComplianceStatus.policy
+  fields: [startDate, endDate, policyNumber, provider, liability]
+  note: >-
+    The only policy representation APOLLO exposes, and it describes the THIRD-PARTY carrier's
+    policy a tenant uploaded as proof — carrier name in `provider`, carrier policy number in
+    `policyNumber`. There is no APOLLO-issued policy resource anywhere in the public surface.
+- name: QuoteRequest
+  domain: quoting
+  surface: CoverTrack API
+  schema: openapi/apollo-insurance-covertrack.yml#/components/schemas/QuoteRequest
+  note: Declared in components; the tenant-quote operation carries its own inline body of the same shape.
+
+relationships:
+- {from: Affiliate, to: Quote, kind: has_many, via: affiliateId (path), confidence: high}
+- {from: Affiliate, to: Application, kind: has_many, via: affiliateId (path), confidence: high}
+- {from: Quote, to: TenantInsuranceQuoteQuestions, kind: belongs_to, via: insuranceData (request body), confidence: high}
+- {from: Application, to: TenantInsuranceQuestions, kind: belongs_to, via: insuranceData (request body), confidence: high}
+- {from: Application, to: EmbeddedOptions, kind: has_one, via: embeddedOptions (request body), confidence: high}
+- {from: Application, to: PaymentPeriod, kind: has_one, via: paymentPeriod (request body), confidence: high}
+- {from: Application, to: ExternalId, kind: has_one, via: externalId (request body), confidence: high}
+- {from: Application, to: LeadSource, kind: has_one, via: leadSource (request body), confidence: high}
+- {from: Property, to: ComplianceStatus, kind: has_many, via: propertyId (path), confidence: high}
+- {from: ComplianceStatus, to: Policy, kind: has_one, via: policy (optional embedded object), confidence: high}
+- {from: Partner, to: Property, kind: has_many, via: partnerId (path), confidence: high}
+- {from: EmbeddedOptions, to: ComplianceStatus, kind: correlates_with, via: tenantId + propertyId (Yardi T-Code / P-Code), confidence: medium, note: 'Both surfaces use the Yardi property and tenant codes, but APOLLO never documents that they join; inferred from the identical code descriptions.'}
+
+gaps:
+  note: Entities a Canadian insurance distribution API would normally carry that are absent from the public surface.
+  missing: [Customer, Policy (APOLLO-issued), Endorsement, Renewal, Claim / FNOL, Payment, Document, Carrier, Broker, Commission]
+  verbs_covered: [QUOTE, partial BIND]
+  verbs_absent: [ISSUE, FNOL / claims]
+
+render: null
