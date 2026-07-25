@@ -1,0 +1,334 @@
+openapi: 3.1.0
+x-stoplight:
+  id: fu18p9wlkzenb
+info:
+  title: CoverTrack API's
+  version: '1.0'
+  summary: Various CoverTrack Functions
+  description: |-
+    Provides API endpoints for: 
+    * Accessing the current coverage status for partner tenants
+    * Generating Tenant Insurance quotes
+    * Policy access for Partner Properties
+servers:
+  - url: 'https://api.covertrack.ca'
+    description: Production
+  - url: 'https://api.covertrack-dev.ca'
+    description: Test
+paths:
+  '/compliance/{partnerId}/{propertyId}/{tenantId}':
+    parameters:
+      - schema:
+          type: string
+        name: partnerId
+        in: path
+        required: true
+        description: The Partner name
+      - schema:
+          type: string
+        name: propertyId
+        in: path
+        required: true
+        description: 'The Property ID, or "P-Code"'
+      - schema:
+          type: string
+        name: tenantId
+        in: path
+        required: true
+        description: 'The Tenant ID, or "T-Code"'
+      - schema:
+          type: string
+        in: header
+        name: x-api-key
+        description: 'The provided API Key '
+    get:
+      summary: Get Compliance Status for Tenant
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/ComplianceStatus'
+        '404':
+          description: User Not Found
+      operationId: get-compliance-status
+      description: Retrieve the Tenant's current Compliance Status
+      x-stoplight:
+        id: pq6qtjfthcmap
+  '/compliance/{partnerId}/{propertyId}':
+    parameters:
+      - schema:
+          type: string
+        name: partnerId
+        in: path
+        required: true
+        description: The Partner name
+      - schema:
+          type: string
+        name: propertyId
+        in: path
+        required: true
+        description: 'The Property ID, or "P-Code"'
+      - schema:
+          type: string
+        in: header
+        name: x-api-key
+        description: 'The provided API Key '
+    get:
+      summary: Get Compliance Status For Property
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComplianceStatus'
+                  x-stoplight:
+                    id: imi2rhmgrzb9h
+      operationId: get-compliance-partnerId-propertyId
+      x-stoplight:
+        id: v3560q3xybcpg
+      description: Retrieve the Compliance Statuses for all Tenants of a Property
+  '/quote/tenant/{partnerId}':
+    parameters:
+      - schema:
+          type: string
+        name: partnerId
+        in: path
+        required: true
+        description: The Partner name
+      - schema:
+          type: string
+        in: header
+        name: x-api-key
+        description: The provided API Key
+    servers:
+      - url: 'https://api.covertrack.ca'
+        description: Production
+      - url: 'https://api.covertrack-dev.ca'
+        description: Test
+    post:
+      summary: Get Tenant Quote
+      tags: []
+      responses:
+        '200':
+          description: Tenant Insurance Quote
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    link: string
+                    annual: 0
+                    monthly: 0
+                    monthlyPayment: 0
+                properties:
+                  link:
+                    type: string
+                    description: link to complete the insurance application
+                  annual:
+                    type: integer
+                    description: Annual policy cost
+                  monthly:
+                    type: integer
+                    description: 'Monthly policy cost, total'
+                  monthlyPayment:
+                    type: integer
+                    description: 'Monthly policy cost, per month'
+      operationId: post-quote-tenant-partnerId
+      x-stoplight:
+        id: sqh2u9cfzhvnk
+      description: Generate a quote for Tenant Insurance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                propertyId:
+                  type: string
+                tenantId:
+                  type: string
+                contents:
+                  type: integer
+                ale:
+                  type: integer
+                liability:
+                  type: integer
+                deductible:
+                  type: integer
+                water:
+                  type: boolean
+              x-examples:
+                Example 1:
+                  propertyId: string
+                  tenantId: string
+                  contents: 0
+                  ale: 0
+                  liability: 0
+                  deductible: 0
+                  water: true
+        description: Tenant Insurance Quote Parameters
+  /compliance/callback/example:
+    parameters:
+      - schema:
+          type: string
+        in: header
+        name: x-api-key
+        description: API Key (recommended)
+    post:
+      summary: Post Policy Event to Partner Destination
+      tags: []
+      responses: {}
+      operationId: post-compliance-callback-example
+      x-stoplight:
+        id: v0dqrojr6nrc7
+      description: |-
+        Example of a partner destination callback that is invoked when a relevant Policy event occurs 
+
+        **Note** - this is not an actual endpoint, just the specification for the callback.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComplianceStatus'
+components:
+  schemas:
+    ComplianceStatus:
+      type: object
+      x-examples:
+        Example 1:
+          partnerId: string
+          propertyId: string
+          tenantId: string
+          status: string
+          updatedAt: string
+          policy:
+            startDate: string
+            endDate: string
+            policyNumber: string
+            provider: string
+            liability: 0
+          links:
+            upload: string
+      properties:
+        partnerId:
+          type: string
+        propertyId:
+          type: string
+        tenantId:
+          type: string
+        status:
+          type: string
+          description: ACTIVE | PENDING | NOT_SUBMITTED | DECLINED
+        updatedAt:
+          type: string
+        policy:
+          type: object
+          description: Optional policy details
+          properties:
+            startDate:
+              type: string
+            endDate:
+              type: string
+            policyNumber:
+              type: string
+            provider:
+              type: string
+            liability:
+              type: integer
+    ComplianceStatusDetail:
+      type: object
+      x-stoplight:
+        id: 3ygubt0pp6y5f
+      x-examples:
+        Example 1:
+          partnerId: string
+          propertyId: string
+          tenantId: string
+          status: string
+          updatedAt: string
+          policy:
+            startDate: string
+            endDate: string
+            policyNumber: string
+            provider: string
+            liability: 0
+          links:
+            upload: string
+      properties:
+        partnerId:
+          type: string
+        propertyId:
+          type: string
+        tenantId:
+          type: string
+        status:
+          type: string
+          description: ACTIVE | PENDING | NOT_SUBMITTED | DECLINED
+        updatedAt:
+          type: string
+        policy:
+          type: object
+          description: Optional policy details
+          properties:
+            startDate:
+              type: string
+            endDate:
+              type: string
+            policyNumber:
+              type: string
+            provider:
+              type: string
+            liability:
+              type: integer
+        links:
+          type: object
+          properties:
+            upload:
+              type: string
+              description: Unique link for updating policy information
+      title: ComplianceStatusDetail
+    QuoteRequest:
+      type: object
+      properties:
+        propertyId:
+          type: string
+        tenantId:
+          type: string
+        contents:
+          type: integer
+        ale:
+          type: integer
+        liability:
+          type: integer
+        deductible:
+          type: integer
+        water:
+          type: boolean
+      x-examples:
+        Example 1:
+          propertyId: string
+          tenantId: string
+          contents: 0
+          ale: 0
+          liability: 0
+          deductible: 0
+          water: true
+      description: Tenant Insurance Quote Parameters
+  responses:
+    ComplianceStatus:
+      description: Policy Summary
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ComplianceStatusDetail'
+    Policies:
+      description: Property Policy Summary
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Policies'
+  requestBodies: {}

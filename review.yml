@@ -1,0 +1,377 @@
+aid: apollo-insurance
+name: APOLLO Insurance
+review:
+  question: >-
+    Does APOLLO Insurance expose a real, publicly documented API surface, and what is its
+    ACORD posture?
+  answer: true
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: Canada
+  sector: Insurance
+  tier: insurtech-dtc
+  gated: true
+  gatedNote: >-
+    The documentation is genuinely public — no login wall, no gate, no sign-in prompt — but
+    the integration itself is partner-scoped. Every operation requires an affiliateId (the
+    partner's co-branded APOLLO subdomain) and an x-api-key token that APOLLO issues by
+    hand. There is no self-serve signup, no key provisioning screen, and no consumer-facing
+    API. Open docs, closed credentials.
+findings:
+  summary: |
+    APOLLO Insurance is one of the rare Canadian insurance organizations that publishes a
+    real, self-serve-readable developer portal. https://docs.apollocover.com/ returns HTTP
+    200 and is a Stoplight-hosted workspace (workspace slug `apollocover`, id 36179,
+    created 2021-04-01, custom domain, hideSignIn true, allowPublicProjects true) whose
+    home content reads "Apollo Public API Documentation — Please select an API from the
+    side menu for details." It is NOT a login wall and NOT a marketing innovation page: it
+    serves operation-level reference docs, request/response schemas, curl examples, a
+    hosted mock server, and downloadable OpenAPI definitions, all anonymously.
+
+    Three public Stoplight projects were confirmed and all three OpenAPI definitions were
+    harvested verbatim via Stoplight's own export URLs:
+      * public-affiliate-api (project 148175) -> Affiliates API, OpenAPI 3.0.0
+      * affiliate-api        (project 52344)  -> Public API - Affiliates, OpenAPI 3.0.0
+      * covertrack-api       (project 260414) -> CoverTrack API's, OpenAPI 3.1.0
+
+    Of the four real insurance API verbs, APOLLO covers QUOTE and the front half of BIND.
+    There is no ISSUE endpoint and no FNOL/claims endpoint anywhere in the public surface.
+    The "create an application" operation does not bind a policy; it returns a `quoteLink`
+    into the affiliate's co-branded APOLLO launchpad where the consumer completes purchase
+    and pays. The API therefore hands off to a hosted web funnel rather than transacting
+    policy issuance machine-to-machine. Coverage is partner-facing (affiliate / property
+    manager / REIT), never consumer-facing and never agent-facing in the traditional
+    broker-AMS sense.
+
+    Only the tenant (renter) line is exposed. The Affiliates API parameterizes
+    `insuranceType` in the path but the documentation states plainly that "currently only
+    the `tenant` insurance type is available". None of APOLLO's homeowner, condo, landlord,
+    pet, general liability, professional liability or D&O products have an API.
+
+    CoverTrack is the more interesting artifact: a compliance-tracking API for property
+    managers that returns a tenant's coverage status (ACTIVE | PENDING | NOT_SUBMITTED |
+    DECLINED) including, where present, the policy number and the name of the third-party
+    provider — i.e. APOLLO reads and reports coverage placed with competing carriers. That
+    is a genuine data-exchange surface, not a sales funnel.
+  developerPortal:
+    url: https://docs.apollocover.com/
+    httpStatus: 200
+    confirmed: true
+    classification: real self-serve developer portal with operation-level reference docs
+    platform: Stoplight (hosted, custom domain, workspace slug `apollocover`, id 36179)
+    loginRequired: false
+    note: >-
+      Reference documentation, schemas, curl examples and OpenAPI exports are all readable
+      anonymously. Credentials are not self-serve.
+  portalProbes:
+  - url: https://docs.apollocover.com/
+    status: 200
+    note: Live Stoplight developer portal — the real surface.
+  - url: https://api.apollocover.com
+    status: 403
+    note: 'Responds {"message":"Forbidden"} — AWS API Gateway default deny. Not a portal.'
+  - url: https://developer.apollocover.com
+    status: 0
+    note: DNS does not resolve.
+  - url: https://developers.apollocover.com
+    status: 0
+    note: DNS does not resolve.
+  - url: https://apollocover.com/developers
+    status: 404
+  - url: https://apollocover.com/developer
+    status: 404
+  - url: https://apollocover.com/api
+    status: 404
+  - url: https://apollocover.com/partners
+    status: 404
+  - url: https://apollocover.com/integrations
+    status: 404
+  - url: https://apollocover.com/embedded-insurance
+    status: 404
+  - url: https://apollocover.com/partnerships
+    status: 200
+    note: >-
+      Marketing page for REITs and property managers. Describes automated resident
+      enrolment, embedded coverage at lease signing, and real-time compliance data, and
+      states APOLLO "is the only insurance provider in Canada that is integrated with Yardi
+      Systems". Contains no link to the developer portal and no occurrence of the word API.
+  - url: https://apollocover.com/brokers
+    status: 200
+    note: Broker marketing page. No API, ACORD, or integration reference.
+  - url: https://help.apollocover.com
+    status: 200
+    note: Customer support center, not developer documentation.
+  - url: https://policy-portal.apollocover.com
+    status: 200
+    note: Policyholder self-service portal (login), not a developer surface.
+  acordPosture:
+    posture: no ACORD reference found
+    verbatim: >-
+      No ACORD reference found. A case-insensitive search for ACORD, AL3, ACORD XML, NGDS,
+      IVANS, agency download, Applied Epic and Vertafore AMS360 across apollocover.com
+      (home, /partnerships, /brokers, /about-us, /contact-us), the docs.apollocover.com
+      portal, and all three harvested OpenAPI definitions returned zero matches. APOLLO's
+      only named third-party system integration is Yardi Systems — a property-management
+      platform, not an insurance agency management system. Its data model is bespoke JSON
+      (ComplianceStatus, QuoteRequest, TenantInsuranceQuestions), not ACORD-derived.
+    acordFound: false
+    al3Found: false
+    ivansFound: false
+    amsIntegrationFound: false
+    namedIntegrations:
+    - Yardi Systems (property management; named in marketing only, no public API docs)
+    searchedTerms:
+    - ACORD
+    - AL3
+    - ACORD XML
+    - ACORD certified
+    - NGDS
+    - IVANS
+    - agency download
+    - Applied Epic
+    - Vertafore AMS360
+  insuranceVerbs:
+    quote:
+      exposed: true
+      audience: partner-only
+      note: >-
+        POST /api/affiliates/{affiliateId}/{insuranceType}/quote (Affiliates API), POST
+        /api/affiliates/{affiliateId}/tenant/quote (legacy), and POST
+        /quote/tenant/{partnerId} (CoverTrack). Returns premium components — contents, ALE,
+        liability, add-on — plus annual/monthly cost and a completion link.
+    bind:
+      exposed: partial
+      audience: partner-only
+      note: >-
+        POST .../application creates a pre-filled application and returns a `quoteLink`
+        into the co-branded APOLLO launchpad. It does not bind; the consumer completes and
+        pays in the hosted web flow. Machine-to-machine binding is not exposed.
+    issue:
+      exposed: false
+      note: No policy-issuance endpoint is documented.
+    fnol:
+      exposed: false
+      note: >-
+        No FNOL, claims intake, claims status or loss-reporting endpoint exists in any of
+        the three public definitions. Claims are handled off-API.
+    other:
+      complianceLookup:
+        exposed: true
+        audience: partner-only
+        note: >-
+          CoverTrack GET /compliance/{partnerId}/{propertyId}/{tenantId} and GET
+          /compliance/{partnerId}/{propertyId} return coverage status for a tenant or an
+          entire property, including third-party carrier policy details where known.
+  authModel:
+    scheme: API key (header)
+    header: x-api-key
+    declaredIn: >-
+      components.securitySchemes.apiKeyAuth (type apiKey, in header) on the current
+      Affiliates API, with a document-level security requirement. The legacy Public API -
+      Affiliates definition declares no securitySchemes at all, though its prose and the
+      CoverTrack path-level header parameter both require x-api-key.
+    provisioning: >-
+      Manual. "The x-api-key API token will be provided to you by your APOLLO contact."
+      Separate tokens for the test and production servers. The partner must also already
+      hold a co-branded APOLLO subdomain, which serves as the affiliateId.
+    selfServe: false
+    oauth: false
+    mtls: false
+    wellKnown:
+    - url: https://apollocover.com/.well-known/openid-configuration
+      status: 404
+    - url: https://apollocover.com/.well-known/oauth-authorization-server
+      status: 404
+    - url: https://api.covertrack.ca/.well-known/openid-configuration
+      status: 404
+    note: >-
+      No OAuth2, no OIDC discovery document, no mTLS, no scopes of any kind. A single
+      shared static API key per environment is the whole authorization model.
+  webhooks:
+    documented: partial
+    asyncapi: false
+    note: >-
+      No AsyncAPI document and no event catalog. Two partial signals only: (1) the
+      CoverTrack definition includes POST /compliance/callback/example, explicitly labelled
+      "not an actual endpoint, just the specification for the callback", describing the
+      ComplianceStatus payload APOLLO POSTs to a partner destination when a relevant policy
+      event occurs; (2) the legacy affiliate-api project carries a documentation page
+      titled "Webhooks" whose body is empty apart from the heading. Nothing else — no
+      signature scheme, no retry policy, no event type list, no subscription endpoint.
+  postman:
+    found: false
+    note: >-
+      No public Postman collection or workspace was found. Stoplight does publish hosted
+      mock servers for both affiliate projects
+      (https://stoplight.io/mocks/apollocover/public-affiliate-api/79527127 and
+      https://stoplight.io/mocks/apollocover/affiliate-api/43850647), which serve the same
+      prototyping role.
+  graphql:
+    found: false
+    note: >-
+      POST {"query":"{__typename}"} to https://apollocover.com/graphql returned 404,
+      https://api.apollocover.com/graphql returned 403 (AWS API Gateway deny),
+      https://api.covertrack.ca/graphql returned 404. No GraphQL surface. (The GraphQL
+      endpoint reachable at docs.apollocover.com/graphql belongs to Stoplight's own
+      documentation platform, not to APOLLO, and is not counted as an APOLLO API.)
+  grpc:
+    found: false
+    note: No published .proto files.
+  sdks:
+    found: false
+    note: >-
+      No client libraries, no CLI, no code-generation links. The documented integration
+      path is raw curl. No confirmable first-party GitHub organization was found
+      (github.com/apollocover 404; github.com/apollo-insurance resolves to an empty account
+      that cannot be attributed to this company).
+  marketContext: >-
+    Canada has the most fragmented insurance supervision of the four markets studied: OSFI
+    supervises federally-regulated insurers prudentially while the provinces regulate
+    market conduct (FSRA in Ontario, AMF in Quebec). There is no open-insurance mandate,
+    and Consumer-Driven Banking — Canada's open-banking framework — excludes insurance
+    entirely. The market is a Big-Few oligopoly (Intact, Definity, Co-operators, Desjardins,
+    plus the life trio Manulife/Sun Life/Great-West) with a thin digital-broker layer
+    (Zensurance, APOLLO, Goose). Nothing compelled APOLLO to publish these definitions;
+    it did so to win embedded distribution deals with property managers and REITs. That
+    makes APOLLO a commercially-motivated outlier rather than evidence of a Canadian
+    open-insurance trend.
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
+    documented: true
+    note: Affiliates API production server (AWS API Gateway, ca-central-1).
+  - protocol: REST
+    scheme: https
+    baseURL: https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0
+    documented: true
+    note: Affiliates API test server — sandboxed data, separate API key, sends real emails.
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.covertrack.ca
+    documented: true
+    note: CoverTrack production.
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.covertrack-dev.ca
+    documented: true
+    note: CoverTrack test.
+  - protocol: HTTP callback
+    scheme: https
+    documented: partial
+    note: >-
+      Partner-destination policy-event callback, specified by example only in the
+      CoverTrack definition. No subscription or delivery contract published.
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+    note: No WebSocket surface documented.
+  - protocol: GraphQL
+    documented: false
+  - protocol: gRPC
+    documented: false
+  endpointsConfirmed:
+  - POST https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0/api/affiliates/{affiliateId}/{insuranceType}/application
+  - POST https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0/api/affiliates/{affiliateId}/{insuranceType}/quote
+  - POST https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0/api/affiliates/{affiliateId}/tenant/quote
+  - POST https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0/api/affiliates/{affiliateId}/tenant/application
+  - GET  https://api.covertrack.ca/compliance/{partnerId}/{propertyId}/{tenantId}
+  - GET  https://api.covertrack.ca/compliance/{partnerId}/{propertyId}
+  - POST https://api.covertrack.ca/quote/tenant/{partnerId}
+  - POST https://api.covertrack.ca/compliance/callback/example
+specs:
+  count: 3
+  harvested: true
+  files:
+  - path: openapi/apollo-insurance-affiliates.yml
+    title: Affiliates API
+    version: 1.0.0
+    specVersion: OpenAPI 3.0.0
+    operations: 2
+    sourceURL: https://stoplight.io/api/v1/projects/apollocover/public-affiliate-api/nodes/documentation/reference/affiliates-openapi.yaml?fromExportButton=true&snapshotType=http_service
+    sourceNode: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+    httpStatus: 200
+    fetched: '2026-07-25'
+    bytes: 43323
+    parsed: true
+    verbatim: true
+    note: >-
+      Exported unmodified from the Stoplight project's own export URL. Declares apiKeyAuth
+      (x-api-key, header) and tags affiliates / api / application / quote.
+  - path: openapi/apollo-insurance-affiliates-legacy.yml
+    title: Public API - Affiliates
+    version: '1.0'
+    specVersion: OpenAPI 3.0.0
+    operations: 2
+    sourceURL: https://stoplight.io/api/v1/projects/apollocover/affiliate-api/nodes/reference/ApolloPubllicAPIAffilicates.yaml?fromExportButton=true&snapshotType=http_service
+    sourceNode: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+    httpStatus: 200
+    fetched: '2026-07-25'
+    bytes: 38305
+    parsed: true
+    verbatim: true
+    note: >-
+      The earlier tenant-only affiliate definition, still published alongside the current
+      one. Declares no securitySchemes despite requiring x-api-key in prose.
+  - path: openapi/apollo-insurance-covertrack.yml
+    title: CoverTrack API's
+    version: '1.0'
+    specVersion: OpenAPI 3.1.0
+    operations: 4
+    sourceURL: https://stoplight.io/api/v1/projects/apollocover/covertrack-api/nodes/reference/Compliance-Status-API.yaml?fromExportButton=true&snapshotType=http_service
+    sourceNode: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
+    httpStatus: 200
+    fetched: '2026-07-25'
+    bytes: 9125
+    parsed: true
+    verbatim: true
+    note: >-
+      Compliance status, property-level compliance list, tenant quote, and an example
+      partner-destination callback. Declares no securitySchemes; x-api-key appears as a
+      path-level header parameter instead.
+sources:
+- url: https://apollocover.com/
+  type: Website
+  status: 200
+  note: >-
+    Company identity, product lines, provincial coverage, 500,000+ customers, 1,000,000+
+    quotes, commission-based brokerage model, A+ to A- rated carrier partners.
+- url: https://docs.apollocover.com/
+  type: DeveloperPortal
+  status: 200
+  note: >-
+    Stoplight workspace `apollocover` (id 36179). Home content — "Apollo Public API
+    Documentation. Please select an API from the side menu for details."
+- url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
+  type: Documentation
+  status: 200
+  note: >-
+    Introduction and Overview. States the RESTful/JSON/HTTPS design, names the production,
+    test and mock servers, documents the x-api-key authentication and manual token
+    provisioning, and confirms "Currently only the `tenant` insurance type is available".
+- url: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+  type: APIReference
+  status: 200
+- url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+  type: APIReference
+  status: 200
+- url: https://docs.apollocover.com/docs/affiliate-api/ZG9jOjExMTkxNg-webhooks
+  type: Documentation
+  status: 200
+  note: Page titled "Webhooks" whose body contains only the heading. No event contract.
+- url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
+  type: APIReference
+  status: 200
+- url: https://apollocover.com/partnerships
+  type: Partners
+  status: 200
+  note: REIT / property-manager partner marketing. Names the Yardi Systems integration.
+actions:
+  apisYmlCreated: true
+  openapiHarvested: 3
+  status: built
+  reason: >-
+    A real, publicly readable, self-serve developer portal was confirmed live at
+    docs.apollocover.com and three genuine OpenAPI definitions were exported verbatim from
+    it. The record is classified `built` rather than `built-stub`, but flagged gated
+    because credentials and the affiliateId are issued by hand to partners only.
