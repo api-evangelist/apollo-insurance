@@ -1,0 +1,313 @@
+{
+  "item": [
+    {
+      "id": "8489ef74-8e5a-4995-ae8b-cd61e85b3d15",
+      "name": "Generate a quote",
+      "request": {
+        "name": "Generate a quote",
+        "description": {
+          "content": "Create a quote, based on a specific affiliate\n\nThe route expects your affiliate subdomain, which will be provided to your by your APOLLO contact.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "affiliates",
+            ":affiliateId",
+            "tenant",
+            "quote"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "affiliateId",
+              "description": "(Required) Your affiliate name. Provided by APOLLO"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) API key for request",
+            "key": "x-api-key",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"insuranceData\": \"<object>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "283f83f5-ff29-4c67-b6e9-1ed777dddd39",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                "tenant",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Your affiliate name. Provided by APOLLO"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for request",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insuranceData\": {\n    \"businessAddressProvince\": \"bc\",\n    \"operations\": \"Detached House\",\n    \"businessAddressPostal\": \"V6Y2X2\",\n    \"businessAddressCity\": \"Richmond\",\n    \"businessAddressStreet\": \"8220 Lunen Road\",\n    \"firstName\": \"Tester First\",\n    \"lastName\": \"Tester Last\",\n    \"email\": \"abc@test.com\",\n    \"phoneNumber\": \"1234567890\",\n    \"buildingAge\": \"Under 35 years\",\n    \"ageApplicant\": \"25-50\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 2500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"No\",\n    \"priorFlood\": \"No\",\n    \"sburiskBelowGround\": \"No\",\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"totalSemesters\": \"12 months\",\n    \"claims\": \"No Claims\",\n    \"birthdate\": \"1985-03-20\",\n    \"policyUTCOffset\": -420,\n    \"policyStartDate\": \"2022-04-15\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 2,\n    \"nameRoommate1\": \"Roommate 1\",\n    \"ageRoommate1\": \"25-50\",\n    \"propertyLimitRoommate1\": 0,\n    \"nameRoommate2\": \"Roommate 2\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 60000,\n    \"aleLimitRoommate2\": 30000\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": {\n    \"premiums\": {\n      \"contentsPremium\": 405,\n      \"alePremium\": 26,\n      \"liabilityPremium\": 178,\n      \"addonPremium\": 0\n    },\n    \"policyExpiryDate\": \"2023-07-05T00:01:00-07:00\",\n    \"subtotal\": {\n      \"annual\": 653.76,\n      \"monthly\": 714.72,\n      \"instalment\": 702.51\n    },\n    \"stripeFees\": {\n      \"annual\": 19.84,\n      \"monthly\": 25.08,\n      \"instalment\": 24.1\n    },\n    \"taxesAndFees\": {\n      \"annual\": 64.6,\n      \"monthly\": 130.8,\n      \"instalment\": 112.32\n    },\n    \"total\": {\n      \"annual\": 673.6,\n      \"monthly\": 739.8,\n      \"monthlyPayment\": 61.65,\n      \"instalment\": 726.61,\n      \"instalmentDownPayment\": 171.85,\n      \"instalmentMonthlyPayment\": 61.64,\n      \"instalmentNumMonths\": 9\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "78c13236-8f53-4a5c-b42e-dc47532e3769",
+          "name": "Created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                "tenant",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Your affiliate name. Provided by APOLLO"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for request",
+                "key": "x-api-key",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insuranceData\": {\n    \"businessAddressProvince\": \"bc\",\n    \"operations\": \"Detached House\",\n    \"businessAddressPostal\": \"V6Y2X2\",\n    \"businessAddressCity\": \"Richmond\",\n    \"businessAddressStreet\": \"8220 Lunen Road\",\n    \"firstName\": \"Tester First\",\n    \"lastName\": \"Tester Last\",\n    \"email\": \"abc@test.com\",\n    \"phoneNumber\": \"1234567890\",\n    \"buildingAge\": \"Under 35 years\",\n    \"ageApplicant\": \"25-50\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 2500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"No\",\n    \"priorFlood\": \"No\",\n    \"sburiskBelowGround\": \"No\",\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"totalSemesters\": \"12 months\",\n    \"claims\": \"No Claims\",\n    \"birthdate\": \"1985-03-20\",\n    \"policyUTCOffset\": -420,\n    \"policyStartDate\": \"2022-04-15\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 2,\n    \"nameRoommate1\": \"Roommate 1\",\n    \"ageRoommate1\": \"25-50\",\n    \"propertyLimitRoommate1\": 0,\n    \"nameRoommate2\": \"Roommate 2\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 60000,\n    \"aleLimitRoommate2\": 30000\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c7b2eada-700c-46a8-b7d7-310a80402f45",
+      "name": "Create an application",
+      "request": {
+        "name": "Create an application",
+        "description": {
+          "content": "Create a pre-filled application, based on a specific affiliate\n\nThe route expects your affiliate subdomain, which will be provided to your by your APOLLO contact.\n\nIn the payload there are four top-level keys, `insuranceData`, `externalId`, `paymentPeriod`, `leadSource`, and `embeddedOptions`. \n\n\t\n\tinsuranceData: Object, containing application form question answers. The field is required if embeddedOptions is not included in the body.\n\t\n\tpaymentPeriod: String, 'annual' or 'monthly'. Default to 'annual'.\n\t\n\texternalId: String, customer's own ID. This ID is optional and will be included in the Apollo application, to associate it with a third party's identifier.\n\t\n\tleadSource: Object. Used when a platform has multiple partners and each partner has multiple subdomains, we will use this field to differentiate the traffic from each subdomain and generate applications in the right Apollo launchpads. If not exist, new application will be generated in default affiliate launchpad. This field is OPTIONAL.\n\t\n\tembeddedOptions: Object. Contains configurations only for embedded workflows. This field is OPTIONAL.\n\n\n\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "affiliates",
+            ":affiliateId",
+            "tenant",
+            "application"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "affiliateId",
+              "description": "(Required) Your affiliate name. Provided by APOLLO"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) API key for request",
+            "key": "x-api-key",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "multipart/form-data"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        }
+      },
+      "response": [
+        {
+          "id": "33bce353-74ba-4e40-8d80-cc553d352168",
+          "name": "```\n{\n  \"data\": {\n    \"quoteLink\": \"https://apollo.securequotebot.com/tenants?quote=2ed228e4-ee00-40f0-ac02-2e16376fed30\",\n    \"quote\": {\n        \"premiums\": {\n            \"contentsPremium\": 39,\n            \"alePremium\": 20,\n            \"liabilityPremium\": 185,\n            \"addonPremium\": 0\n        },\n        \"policyExpiryDate\": \"2024-01-23T14:29:42-08:00\",\n        \"taxesAndFees\": {\n            \"annual\": 28.35,\n            \"monthly\": 59.4\n        },\n        \"total\": {\n            \"annual\": 272.35,\n            \"monthly\": 303.4,\n            \"monthlyPayment\": 25.2\n        }\n    }\n  }\n}\n```",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                "tenant",
+                "application"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Your affiliate name. Provided by APOLLO"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API key for request",
+                "key": "x-api-key",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "56c5c9be-f579-4d1e-bdce-bdd4217ab474",
+    "name": "Public API - Affiliates",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Affiliates",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,510 @@
+{
+  "item": [
+    {
+      "id": "8765b23c-2d0c-4b93-bab5-c710dca1fb79",
+      "name": "Get Compliance Status for Tenant",
+      "request": {
+        "name": "Get Compliance Status for Tenant",
+        "description": {
+          "content": "Retrieve the Tenant's current Compliance Status",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "compliance",
+            ":partnerId",
+            ":propertyId",
+            ":tenantId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "partnerId",
+              "description": "(Required) The Partner name"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "propertyId",
+              "description": "(Required) The Property ID, or \"P-Code\""
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "tenantId",
+              "description": "(Required) The Tenant ID, or \"T-Code\""
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "The provided API Key ",
+            "key": "x-api-key",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "4dfcbf47-fd30-4c29-aad5-7172cb67defa",
+          "name": "Policy Summary",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "compliance",
+                ":partnerId",
+                ":propertyId",
+                ":tenantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerId",
+                  "description": "(Required) The Partner name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "propertyId",
+                  "description": "(Required) The Property ID, or \"P-Code\""
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) The Tenant ID, or \"T-Code\""
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The provided API Key ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"partnerId\": \"string\",\n  \"propertyId\": \"string\",\n  \"tenantId\": \"string\",\n  \"status\": \"string\",\n  \"updatedAt\": \"string\",\n  \"policy\": {\n    \"startDate\": \"string\",\n    \"endDate\": \"string\",\n    \"policyNumber\": \"string\",\n    \"provider\": \"string\",\n    \"liability\": 8062\n  },\n  \"links\": {\n    \"upload\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e5d82cb7-f9e2-49f1-8684-f13b5203e2b9",
+          "name": "User Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "compliance",
+                ":partnerId",
+                ":propertyId",
+                ":tenantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerId",
+                  "description": "(Required) The Partner name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "propertyId",
+                  "description": "(Required) The Property ID, or \"P-Code\""
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) The Tenant ID, or \"T-Code\""
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The provided API Key ",
+                "key": "x-api-key",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "581b584d-92d7-40ef-b788-75b531d9414e",
+      "name": "Get Compliance Status For Property",
+      "request": {
+        "name": "Get Compliance Status For Property",
+        "description": {
+          "content": "Retrieve the Compliance Statuses for all Tenants of a Property",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "compliance",
+            ":partnerId",
+            ":propertyId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "partnerId",
+              "description": "(Required) The Partner name"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "propertyId",
+              "description": "(Required) The Property ID, or \"P-Code\""
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "The provided API Key ",
+            "key": "x-api-key",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ab9b036a-4756-4eff-bcdd-5eef22b8a52b",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "compliance",
+                ":partnerId",
+                ":propertyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerId",
+                  "description": "(Required) The Partner name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "propertyId",
+                  "description": "(Required) The Property ID, or \"P-Code\""
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The provided API Key ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"partnerId\": \"string\",\n    \"propertyId\": \"string\",\n    \"tenantId\": \"string\",\n    \"status\": \"string\",\n    \"updatedAt\": \"string\",\n    \"policy\": {\n      \"startDate\": \"string\",\n      \"endDate\": \"string\",\n      \"policyNumber\": \"string\",\n      \"provider\": \"string\",\n      \"liability\": 6806\n    }\n  },\n  {\n    \"partnerId\": \"string\",\n    \"propertyId\": \"string\",\n    \"tenantId\": \"string\",\n    \"status\": \"string\",\n    \"updatedAt\": \"string\",\n    \"policy\": {\n      \"startDate\": \"string\",\n      \"endDate\": \"string\",\n      \"policyNumber\": \"string\",\n      \"provider\": \"string\",\n      \"liability\": 4845\n    }\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5d5ba3e1-c68d-4607-a021-9e4d976961f2",
+      "name": "Get Tenant Quote",
+      "request": {
+        "name": "Get Tenant Quote",
+        "description": {
+          "content": "Generate a quote for Tenant Insurance",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "quote",
+            "tenant",
+            ":partnerId"
+          ],
+          "host": [
+            "{{quote-tenant-partnerId-Url}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "partnerId",
+              "description": "(Required) The Partner name"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "The provided API Key",
+            "key": "x-api-key",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"propertyId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"contents\": \"<integer>\",\n  \"ale\": \"<integer>\",\n  \"liability\": \"<integer>\",\n  \"deductible\": \"<integer>\",\n  \"water\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "66e634d8-a094-41de-8851-3f2f7db035d3",
+          "name": "Tenant Insurance Quote",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "quote",
+                "tenant",
+                ":partnerId"
+              ],
+              "host": [
+                "{{quote-tenant-partnerId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerId",
+                  "description": "(Required) The Partner name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The provided API Key",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"contents\": \"<integer>\",\n  \"ale\": \"<integer>\",\n  \"liability\": \"<integer>\",\n  \"deductible\": \"<integer>\",\n  \"water\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"link\": \"string\",\n  \"annual\": 1563,\n  \"monthly\": 954,\n  \"monthlyPayment\": 126\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b5bab77d-42d3-41de-9326-d60419963437",
+      "name": "Post Policy Event to Partner Destination",
+      "request": {
+        "name": "Post Policy Event to Partner Destination",
+        "description": {
+          "content": "Example of a partner destination callback that is invoked when a relevant Policy event occurs \n\n**Note** - this is not an actual endpoint, just the specification for the callback.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "compliance",
+            "callback",
+            "example"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "API Key (recommended)",
+            "key": "x-api-key",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"partnerId\": \"<string>\",\n  \"propertyId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"updatedAt\": \"<string>\",\n  \"policy\": {\n    \"startDate\": \"<string>\",\n    \"endDate\": \"<string>\",\n    \"policyNumber\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"liability\": \"<integer>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.covertrack.ca",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.covertrack.ca",
+      "key": "quote-tenant-partnerId-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "a6db8dd4-2ce9-497e-aef4-e4c3b63fee30",
+    "name": "CoverTrack API's",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Provides API endpoints for: \n* Accessing the current coverage status for partner tenants\n* Generating Tenant Insurance quotes\n* Policy access for Partner Properties",
+      "type": "text/plain"
+    }
+  }
+}

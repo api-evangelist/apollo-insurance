@@ -1,20 +1,23 @@
 generated: '2026-07-25'
 method: derived
 status: candidate
-source: >-
-  openapi/apollo-insurance-affiliates.yml, openapi/apollo-insurance-covertrack.yml
+source: openapi/apollo-insurance-affiliates.yml, openapi/apollo-insurance-covertrack.yml
 searched:
   hosted_server: none
   probes:
-  - {url: 'https://docs.apollocover.com/', result: 'no MCP server advertised'}
-  - {url: 'https://apollocover.com/', result: 'no MCP server advertised'}
-  - {registry: npm, query: apollocover, result: 'no packages'}
-  - {registry: npm, query: covertrack, result: 'no packages'}
-  note: >-
-    APOLLO publishes no hosted or remote MCP server, no stdio server and no MCP registry entry.
-    The tool set below is a CANDIDATE derived one-to-one from the operations APOLLO actually
-    publishes in its OpenAPI definitions — it is a design proposal, not an APOLLO product.
-
+  - url: https://docs.apollocover.com/
+    result: no MCP server advertised
+  - url: https://apollocover.com/
+    result: no MCP server advertised
+  - registry: npm
+    query: apollocover
+    result: no packages
+  - registry: npm
+    query: covertrack
+    result: no packages
+  note: APOLLO publishes no hosted or remote MCP server, no stdio server and no MCP registry entry. The
+    tool set below is a CANDIDATE derived one-to-one from the operations APOLLO actually publishes in
+    its OpenAPI definitions — it is a design proposal, not an APOLLO product.
 server:
   name: apollo-insurance
   transport: http
@@ -24,11 +27,9 @@ server:
     type: apiKey
     parameter: x-api-key
     location: header
-    note: >-
-      Partner-scoped and hand-issued. An MCP server fronting this API needs a per-affiliate (or
-      per-partner) key, plus the affiliateId / partnerId bound at server configuration time
-      rather than passed by the model, since they scope every call.
-
+    note: Partner-scoped and hand-issued. An MCP server fronting this API needs a per-affiliate (or per-partner)
+      key, plus the affiliateId / partnerId bound at server configuration time rather than passed by the
+      model, since they scope every call.
 tools:
 - name: quote_tenant_application
   description: Price a tenant insurance application for an affiliate without creating anything.
@@ -37,11 +38,11 @@ tools:
   side_effects: none
   consequence: read-like (POST for payload size only)
 - name: create_tenant_application
-  description: >-
-    Create a pre-filled application and return a quoteLink into the affiliate's co-branded
+  description: Create a pre-filled application and return a quoteLink into the affiliate's co-branded
     APOLLO launchpad. Does not bind a policy — the consumer completes purchase on the launchpad.
   source_operation: openapi/apollo-insurance-affiliates.yml#public-api-affiliates-application-post
-  input_from: parameters (affiliateId, insuranceType) + requestBody (insuranceData | embeddedOptions, paymentPeriod, externalId, leadSource)
+  input_from: parameters (affiliateId, insuranceType) + requestBody (insuranceData | embeddedOptions,
+    paymentPeriod, externalId, leadSource)
   side_effects: creates a customer-facing application record
   consequence: write
   dedupe: pass the partner's own externalId to prevent duplicate applications
@@ -52,7 +53,7 @@ tools:
   input_from: parameters (partnerId, propertyId, tenantId)
   side_effects: none
   consequence: read
-  returns: 'status enum ACTIVE | PENDING | NOT_SUBMITTED | DECLINED, plus optional third-party policy detail'
+  returns: status enum ACTIVE | PENDING | NOT_SUBMITTED | DECLINED, plus optional third-party policy detail
 - name: list_property_compliance
   description: Read compliance status for every tenant of a property.
   source_operation: openapi/apollo-insurance-covertrack.yml#get-compliance-partnerId-propertyId
@@ -63,27 +64,27 @@ tools:
 - name: quote_covertrack_tenant
   description: Generate a tenant insurance quote for a CoverTrack partner property/tenant.
   source_operation: openapi/apollo-insurance-covertrack.yml#post-quote-tenant-partnerId
-  input_from: parameters (partnerId) + requestBody (propertyId, tenantId, contents, ale, liability, deductible, water)
+  input_from: parameters (partnerId) + requestBody (propertyId, tenantId, contents, ale, liability, deductible,
+    water)
   side_effects: none
   consequence: read-like (POST for payload size only)
-
 excluded:
 - operation: openapi/apollo-insurance-covertrack.yml#post-compliance-callback-example
-  reason: >-
-    Not a callable endpoint. The spec states plainly "this is not an actual endpoint, just the
-    specification for the callback" — it documents the payload APOLLO POSTs to a partner
-    destination. Captured in asyncapi/apollo-insurance-covertrack-webhooks.yml instead.
+  reason: Not a callable endpoint. The spec states plainly "this is not an actual endpoint, just the specification
+    for the callback" — it documents the payload APOLLO POSTs to a partner destination. Captured in asyncapi/apollo-insurance-covertrack-webhooks.yml
+    instead.
 - operations:
   - openapi/apollo-insurance-affiliates-legacy.yml#post-api-affiliates-affiliateId-tenant-quote
   - openapi/apollo-insurance-affiliates-legacy.yml#post-affiliates-affiliateId-application
-  reason: >-
-    Superseded generation of the same two capabilities, on the same hosts, with no declared
-    security scheme and no documented error responses. Tooling the current generation instead.
-
-privacy_note: >-
-  Every request body on the affiliate surface carries personal information — name, birthdate,
-  email, phone, home address and contents limits. Any MCP deployment fronting this API is
-  moving Canadian consumer PII and should bind consent and audit before an agent is allowed to
-  call create_tenant_application.
-
+  reason: Superseded generation of the same two capabilities, on the same hosts, with no declared security
+    scheme and no documented error responses. Tooling the current generation instead.
+privacy_note: Every request body on the affiliate surface carries personal information — name, birthdate,
+  email, phone, home address and contents limits. Any MCP deployment fronting this API is moving Canadian
+  consumer PII and should bind consent and audit before an agent is allowed to call create_tenant_application.
 crosswalk: mcp/apollo-insurance-tool-crosswalk.yml
+deployment:
+  mode: none
+  verified: derived
+  tools: 5
+  checked: '2026-08-12'
+  source: catalog MCP census

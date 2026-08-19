@@ -1,0 +1,2116 @@
+{
+  "item": [
+    {
+      "id": "5dccbd0f-6df9-45b7-aa98-47f0ae19aa5e",
+      "name": "affiliates",
+      "description": {
+        "content": "APOLLO affiliate",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c3a4d86-5fe7-476b-9e37-148734ee080d",
+          "name": "Create an application",
+          "request": {
+            "name": "Create an application",
+            "description": {
+              "content": "\nCreate a pre-filled application based on the data provided in the payload.\n\nYou MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.\n\nYou MUST provide the `x-api-key` security token in the header.\n        ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                ":insuranceType",
+                "application"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tenant",
+                  "key": "insuranceType",
+                  "description": "(Required) Type of products: tenant, contractors, etc"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"<string>\",\n    \"businessAddressCity\": \"<string>\",\n    \"operations\": \"<string>\",\n    \"businessAddressStreet\": \"<string>\",\n    \"nonlistedOperation\": \"<string>\",\n    \"businessAddressUnit\": \"<string>\",\n    \"businessAddressProvince\": \"<string>\",\n    \"buildingAge\": \"<string>\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"ageApplicant\": \"<string>\",\n    \"personalLiability\": \"<float>\",\n    \"deductible\": \"<float>\",\n    \"propertyLimitApplicant\": \"<float>\",\n    \"aleLimitApplicant\": \"<float>\",\n    \"offPremisesLimitApplicant\": \"<float>\",\n    \"policyPackage\": \"<string>\",\n    \"sewerDisclaimer\": \"<string>\",\n    \"specialLimitException\": \"<string>\",\n    \"jewelryLimit\": \"<float>\",\n    \"bicyclesLimit\": \"<float>\",\n    \"computersLimit\": \"<float>\",\n    \"portablesLimit\": \"<float>\",\n    \"fineArtLimit\": \"<string>\",\n    \"nearbyWaterbody\": \"<string>\",\n    \"priorFlood\": \"<string>\",\n    \"floodriskBelowGround\": \"<string>\",\n    \"sburiskBelowGround\": \"<string>\",\n    \"claims\": \"<string>\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"<string>\",\n    \"totalRoommates\": \"<float>\",\n    \"nameRoommate1\": \"<string>\",\n    \"ageRoommate1\": \"<string>\",\n    \"propertyLimitRoommate1\": \"<float>\",\n    \"aleLimitRoommate1\": \"<float>\",\n    \"nameRoommate2\": \"<string>\",\n    \"ageRoommate2\": \"<string>\",\n    \"propertyLimitRoommate2\": \"<float>\",\n    \"aleLimitRoommate2\": \"<float>\",\n    \"nameRoommate3\": \"<string>\",\n    \"ageRoommate3\": \"<string>\",\n    \"propertyLimitRoommate3\": \"<float>\",\n    \"aleLimitRoommate3\": \"<float>\",\n    \"totalSemesters\": \"<string>\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"<string>\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"<string>\",\n    \"propertyId\": \"<string>\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"<string>\",\n  \"leadSource\": {\n    \"partnerName\": \"<string>\",\n    \"partnerSubdomain\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8be48d98-31bc-4982-b575-75d6a4fb2ee5",
+              "name": "A link to the generated application will be provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"quoteLink\": \"https://apollo.securequotebotdev.com/tenant?quote=6fa455a8-8b11-4a6e-b7fa-80619f7d66e7\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2489d7df-f5ba-4af2-a566-1e186fdc0e27",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"_original\": {},\n    \"details\": [\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      },\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ab5d8df-17d0-4d9c-b35e-553a9a4727af",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0aed2c7b-dad8-4c51-aaf2-e64a3d348b13",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9c1ffb9-8f76-4199-8d61-279ab69f1e29",
+          "name": "Quote an application",
+          "request": {
+            "name": "Quote an application",
+            "description": {
+              "content": "\nQuote an application based on the data provided in the payload.\n\nYou MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.\n\nYou MUST provide the `x-api-key` security token in the header.\n        ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                ":insuranceType",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tenant",
+                  "key": "insuranceType",
+                  "description": "(Required) Type of products: tenant, contractors, etc"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"<string>\",\n    \"businessAddressCity\": \"<string>\",\n    \"operations\": \"<string>\",\n    \"businessAddressStreet\": \"<string>\",\n    \"nonlistedOperation\": \"<string>\",\n    \"businessAddressUnit\": \"<string>\",\n    \"businessAddressProvince\": \"<string>\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"ageApplicant\": \"25-50\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 2500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"No\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"No\",\n    \"priorFlood\": \"No\",\n    \"floodriskBelowGround\": \"No\",\n    \"sburiskBelowGround\": \"No\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"No\",\n    \"totalRoommates\": \"<float>\",\n    \"nameRoommate1\": \"<string>\",\n    \"ageRoommate1\": \"<string>\",\n    \"propertyLimitRoommate1\": \"<float>\",\n    \"aleLimitRoommate1\": \"<float>\",\n    \"nameRoommate2\": \"<string>\",\n    \"ageRoommate2\": \"<string>\",\n    \"propertyLimitRoommate2\": \"<float>\",\n    \"aleLimitRoommate2\": \"<float>\",\n    \"nameRoommate3\": \"<string>\",\n    \"ageRoommate3\": \"<string>\",\n    \"propertyLimitRoommate3\": \"<float>\",\n    \"aleLimitRoommate3\": \"<float>\",\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "753cc7fe-2f3e-4c42-b080-fbf8b5ed9250",
+              "name": "Generated quote for based on the provided data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"premiums\": {\n      \"contentsPremium\": 405,\n      \"alePremium\": 26,\n      \"liabilityPremium\": 178,\n      \"addonPremium\": 0\n    },\n    \"policyExpiryDate\": \"2023-07-05T00:01:00-07:00\",\n    \"subtotal\": {\n      \"annual\": 653.76,\n      \"monthly\": 714.72,\n      \"instalment\": 702.51\n    },\n    \"stripeFees\": {\n      \"annual\": 19.84,\n      \"monthly\": 25.08,\n      \"instalment\": 24.1\n    },\n    \"taxesAndFees\": {\n      \"annual\": 64.6,\n      \"monthly\": 130.8,\n      \"instalment\": 112.32\n    },\n    \"total\": {\n      \"annual\": 673.6,\n      \"monthly\": 739.8,\n      \"monthlyPayment\": 61.65,\n      \"instalment\": 726.61,\n      \"instalmentDownPayment\": 171.85,\n      \"instalmentMonthlyPayment\": 61.64,\n      \"instalmentNumMonths\": 9\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bbeada8-79ec-4cc1-ab51-0e64c76fcfa6",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"_original\": {},\n    \"details\": [\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      },\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b0792c2-993c-4999-9f9c-34be79aae76b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "752a0af5-1299-4605-8d46-a93ae31de816",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "85b33ab9-2aa9-44f1-ad2e-c2979ffa8c59",
+      "name": "api",
+      "description": {
+        "content": "APOLLO public API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f06c5271-124f-410c-a612-cfdc3bde9806",
+          "name": "Create an application",
+          "request": {
+            "name": "Create an application",
+            "description": {
+              "content": "\nCreate a pre-filled application based on the data provided in the payload.\n\nYou MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.\n\nYou MUST provide the `x-api-key` security token in the header.\n        ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                ":insuranceType",
+                "application"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tenant",
+                  "key": "insuranceType",
+                  "description": "(Required) Type of products: tenant, contractors, etc"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"<string>\",\n    \"businessAddressCity\": \"<string>\",\n    \"operations\": \"<string>\",\n    \"businessAddressStreet\": \"<string>\",\n    \"nonlistedOperation\": \"<string>\",\n    \"businessAddressUnit\": \"<string>\",\n    \"businessAddressProvince\": \"<string>\",\n    \"buildingAge\": \"<string>\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"ageApplicant\": \"<string>\",\n    \"personalLiability\": \"<float>\",\n    \"deductible\": \"<float>\",\n    \"propertyLimitApplicant\": \"<float>\",\n    \"aleLimitApplicant\": \"<float>\",\n    \"offPremisesLimitApplicant\": \"<float>\",\n    \"policyPackage\": \"<string>\",\n    \"sewerDisclaimer\": \"<string>\",\n    \"specialLimitException\": \"<string>\",\n    \"jewelryLimit\": \"<float>\",\n    \"bicyclesLimit\": \"<float>\",\n    \"computersLimit\": \"<float>\",\n    \"portablesLimit\": \"<float>\",\n    \"fineArtLimit\": \"<string>\",\n    \"nearbyWaterbody\": \"<string>\",\n    \"priorFlood\": \"<string>\",\n    \"floodriskBelowGround\": \"<string>\",\n    \"sburiskBelowGround\": \"<string>\",\n    \"claims\": \"<string>\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"<string>\",\n    \"totalRoommates\": \"<float>\",\n    \"nameRoommate1\": \"<string>\",\n    \"ageRoommate1\": \"<string>\",\n    \"propertyLimitRoommate1\": \"<float>\",\n    \"aleLimitRoommate1\": \"<float>\",\n    \"nameRoommate2\": \"<string>\",\n    \"ageRoommate2\": \"<string>\",\n    \"propertyLimitRoommate2\": \"<float>\",\n    \"aleLimitRoommate2\": \"<float>\",\n    \"nameRoommate3\": \"<string>\",\n    \"ageRoommate3\": \"<string>\",\n    \"propertyLimitRoommate3\": \"<float>\",\n    \"aleLimitRoommate3\": \"<float>\",\n    \"totalSemesters\": \"<string>\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"<string>\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"<string>\",\n    \"propertyId\": \"<string>\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"<string>\",\n  \"leadSource\": {\n    \"partnerName\": \"<string>\",\n    \"partnerSubdomain\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8766065-08e4-483a-86b9-c2d4a69e195c",
+              "name": "A link to the generated application will be provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"quoteLink\": \"https://apollo.securequotebotdev.com/tenant?quote=6fa455a8-8b11-4a6e-b7fa-80619f7d66e7\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78bdf2cc-a7e7-4cf7-9bad-23866df5c007",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"_original\": {},\n    \"details\": [\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      },\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22828b0a-81b9-415c-bde2-b33931838238",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb7dd670-d41c-469f-9dfe-f30fc68ff56d",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a7b493b-f5fe-42ef-89a2-48da4da33469",
+          "name": "Quote an application",
+          "request": {
+            "name": "Quote an application",
+            "description": {
+              "content": "\nQuote an application based on the data provided in the payload.\n\nYou MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.\n\nYou MUST provide the `x-api-key` security token in the header.\n        ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                ":insuranceType",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tenant",
+                  "key": "insuranceType",
+                  "description": "(Required) Type of products: tenant, contractors, etc"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"<string>\",\n    \"businessAddressCity\": \"<string>\",\n    \"operations\": \"<string>\",\n    \"businessAddressStreet\": \"<string>\",\n    \"nonlistedOperation\": \"<string>\",\n    \"businessAddressUnit\": \"<string>\",\n    \"businessAddressProvince\": \"<string>\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"ageApplicant\": \"25-50\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 2500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"No\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"No\",\n    \"priorFlood\": \"No\",\n    \"floodriskBelowGround\": \"No\",\n    \"sburiskBelowGround\": \"No\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"No\",\n    \"totalRoommates\": \"<float>\",\n    \"nameRoommate1\": \"<string>\",\n    \"ageRoommate1\": \"<string>\",\n    \"propertyLimitRoommate1\": \"<float>\",\n    \"aleLimitRoommate1\": \"<float>\",\n    \"nameRoommate2\": \"<string>\",\n    \"ageRoommate2\": \"<string>\",\n    \"propertyLimitRoommate2\": \"<float>\",\n    \"aleLimitRoommate2\": \"<float>\",\n    \"nameRoommate3\": \"<string>\",\n    \"ageRoommate3\": \"<string>\",\n    \"propertyLimitRoommate3\": \"<float>\",\n    \"aleLimitRoommate3\": \"<float>\",\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c3101ca-01c1-488a-91df-9a7352d3adc0",
+              "name": "Generated quote for based on the provided data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"premiums\": {\n      \"contentsPremium\": 405,\n      \"alePremium\": 26,\n      \"liabilityPremium\": 178,\n      \"addonPremium\": 0\n    },\n    \"policyExpiryDate\": \"2023-07-05T00:01:00-07:00\",\n    \"subtotal\": {\n      \"annual\": 653.76,\n      \"monthly\": 714.72,\n      \"instalment\": 702.51\n    },\n    \"stripeFees\": {\n      \"annual\": 19.84,\n      \"monthly\": 25.08,\n      \"instalment\": 24.1\n    },\n    \"taxesAndFees\": {\n      \"annual\": 64.6,\n      \"monthly\": 130.8,\n      \"instalment\": 112.32\n    },\n    \"total\": {\n      \"annual\": 673.6,\n      \"monthly\": 739.8,\n      \"monthlyPayment\": 61.65,\n      \"instalment\": 726.61,\n      \"instalmentDownPayment\": 171.85,\n      \"instalmentMonthlyPayment\": 61.64,\n      \"instalmentNumMonths\": 9\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c25e564-5362-4f25-8fbe-e2fe648e9f07",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"_original\": {},\n    \"details\": [\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      },\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "269cd01c-0e18-466f-8bce-0983be2823fb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "487bdd03-2eb9-417c-8a2e-a1d4e19d26a5",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "06274d2c-1838-4e57-94de-834bf68aca43",
+      "name": "application",
+      "description": {
+        "content": "Insurance Application",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b77906d4-e30f-4a06-8eb5-6a82fdec3633",
+          "name": "Create an application",
+          "request": {
+            "name": "Create an application",
+            "description": {
+              "content": "\nCreate a pre-filled application based on the data provided in the payload.\n\nYou MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.\n\nYou MUST provide the `x-api-key` security token in the header.\n        ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                ":insuranceType",
+                "application"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tenant",
+                  "key": "insuranceType",
+                  "description": "(Required) Type of products: tenant, contractors, etc"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"<string>\",\n    \"businessAddressCity\": \"<string>\",\n    \"operations\": \"<string>\",\n    \"businessAddressStreet\": \"<string>\",\n    \"nonlistedOperation\": \"<string>\",\n    \"businessAddressUnit\": \"<string>\",\n    \"businessAddressProvince\": \"<string>\",\n    \"buildingAge\": \"<string>\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"ageApplicant\": \"<string>\",\n    \"personalLiability\": \"<float>\",\n    \"deductible\": \"<float>\",\n    \"propertyLimitApplicant\": \"<float>\",\n    \"aleLimitApplicant\": \"<float>\",\n    \"offPremisesLimitApplicant\": \"<float>\",\n    \"policyPackage\": \"<string>\",\n    \"sewerDisclaimer\": \"<string>\",\n    \"specialLimitException\": \"<string>\",\n    \"jewelryLimit\": \"<float>\",\n    \"bicyclesLimit\": \"<float>\",\n    \"computersLimit\": \"<float>\",\n    \"portablesLimit\": \"<float>\",\n    \"fineArtLimit\": \"<string>\",\n    \"nearbyWaterbody\": \"<string>\",\n    \"priorFlood\": \"<string>\",\n    \"floodriskBelowGround\": \"<string>\",\n    \"sburiskBelowGround\": \"<string>\",\n    \"claims\": \"<string>\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"<string>\",\n    \"totalRoommates\": \"<float>\",\n    \"nameRoommate1\": \"<string>\",\n    \"ageRoommate1\": \"<string>\",\n    \"propertyLimitRoommate1\": \"<float>\",\n    \"aleLimitRoommate1\": \"<float>\",\n    \"nameRoommate2\": \"<string>\",\n    \"ageRoommate2\": \"<string>\",\n    \"propertyLimitRoommate2\": \"<float>\",\n    \"aleLimitRoommate2\": \"<float>\",\n    \"nameRoommate3\": \"<string>\",\n    \"ageRoommate3\": \"<string>\",\n    \"propertyLimitRoommate3\": \"<float>\",\n    \"aleLimitRoommate3\": \"<float>\",\n    \"totalSemesters\": \"<string>\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"<string>\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"<string>\",\n    \"propertyId\": \"<string>\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"<string>\",\n  \"leadSource\": {\n    \"partnerName\": \"<string>\",\n    \"partnerSubdomain\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac32e10b-53ed-4770-b325-03b11ae8437e",
+              "name": "A link to the generated application will be provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"quoteLink\": \"https://apollo.securequotebotdev.com/tenant?quote=6fa455a8-8b11-4a6e-b7fa-80619f7d66e7\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecf0ece2-8ff6-4f5d-93ea-d5905aa44f76",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"_original\": {},\n    \"details\": [\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      },\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d142a311-948f-4e22-8684-f586560b10b9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4e56a80-a070-43b3-8470-a46cd12a7e58",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  },\n  \"embeddedOptions\": {\n    \"embeddedPlatform\": \"yardi\",\n    \"embeddedType\": \"start\",\n    \"tenantId\": \"T12345678\",\n    \"propertyId\": \"P12345678\"\n  },\n  \"paymentPeriod\": \"annual\",\n  \"externalId\": \"uniqueId_12345678\",\n  \"leadSource\": {\n    \"partnerName\": \"APOLLO Insurance\",\n    \"partnerSubdomain\": \"apollo\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1ab4b215-d103-49c2-b052-a9849a86dfa2",
+      "name": "quote",
+      "description": {
+        "content": "Insurance Application Quote",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f389dd7b-0e42-44f0-8b0a-4df9ed08c0b6",
+          "name": "Quote an application",
+          "request": {
+            "name": "Quote an application",
+            "description": {
+              "content": "\nQuote an application based on the data provided in the payload.\n\nYou MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.\n\nYou MUST provide the `x-api-key` security token in the header.\n        ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "affiliates",
+                ":affiliateId",
+                ":insuranceType",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "affiliateId",
+                  "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "tenant",
+                  "key": "insuranceType",
+                  "description": "(Required) Type of products: tenant, contractors, etc"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"<string>\",\n    \"businessAddressCity\": \"<string>\",\n    \"operations\": \"<string>\",\n    \"businessAddressStreet\": \"<string>\",\n    \"nonlistedOperation\": \"<string>\",\n    \"businessAddressUnit\": \"<string>\",\n    \"businessAddressProvince\": \"<string>\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"ageApplicant\": \"25-50\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 2500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"No\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"No\",\n    \"priorFlood\": \"No\",\n    \"floodriskBelowGround\": \"No\",\n    \"sburiskBelowGround\": \"No\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"No\",\n    \"totalRoommates\": \"<float>\",\n    \"nameRoommate1\": \"<string>\",\n    \"ageRoommate1\": \"<string>\",\n    \"propertyLimitRoommate1\": \"<float>\",\n    \"aleLimitRoommate1\": \"<float>\",\n    \"nameRoommate2\": \"<string>\",\n    \"ageRoommate2\": \"<string>\",\n    \"propertyLimitRoommate2\": \"<float>\",\n    \"aleLimitRoommate2\": \"<float>\",\n    \"nameRoommate3\": \"<string>\",\n    \"ageRoommate3\": \"<string>\",\n    \"propertyLimitRoommate3\": \"<float>\",\n    \"aleLimitRoommate3\": \"<float>\",\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43e70a20-8f71-49f2-90af-9f4d0d1e9737",
+              "name": "Generated quote for based on the provided data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"premiums\": {\n      \"contentsPremium\": 405,\n      \"alePremium\": 26,\n      \"liabilityPremium\": 178,\n      \"addonPremium\": 0\n    },\n    \"policyExpiryDate\": \"2023-07-05T00:01:00-07:00\",\n    \"subtotal\": {\n      \"annual\": 653.76,\n      \"monthly\": 714.72,\n      \"instalment\": 702.51\n    },\n    \"stripeFees\": {\n      \"annual\": 19.84,\n      \"monthly\": 25.08,\n      \"instalment\": 24.1\n    },\n    \"taxesAndFees\": {\n      \"annual\": 64.6,\n      \"monthly\": 130.8,\n      \"instalment\": 112.32\n    },\n    \"total\": {\n      \"annual\": 673.6,\n      \"monthly\": 739.8,\n      \"monthlyPayment\": 61.65,\n      \"instalment\": 726.61,\n      \"instalmentDownPayment\": 171.85,\n      \"instalmentMonthlyPayment\": 61.64,\n      \"instalmentNumMonths\": 9\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efc2b7e9-e9f3-4c1a-a29b-3969793a25a6",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"_original\": {},\n    \"details\": [\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      },\n      {\n        \"message\": \"\\\"body.insuranceData.businessAddressPostal\\\" is required\",\n        \"path\": [\n          \"body\",\n          \"insuranceData\",\n          \"businessAddressPostal\"\n        ],\n        \"type\": \"any.required\",\n        \"context\": {\n          \"label\": \"body.insuranceData.businessAddressPostal\",\n          \"key\": \"businessAddressPostal\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bb756ea-cc92-44bb-aa85-145f36f54645",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6104f5c5-62b0-406a-8d59-615acf1a2f54",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "affiliates",
+                    ":affiliateId",
+                    ":insuranceType",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "affiliateId",
+                      "description": "(Required) Affiliate/Subdomain, provided by APOLLO"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "tenant",
+                      "key": "insuranceType",
+                      "description": "(Required) Type of products: tenant, contractors, etc"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insuranceData\": {\n    \"businessAddressPostal\": \"L9Y3Z2\",\n    \"businessAddressCity\": \"Collingwood\",\n    \"operations\": \"Low Rise\",\n    \"businessAddressStreet\": \"123 Main Street\",\n    \"nonlistedOperation\": \"Combination high rise & townhouse complex\",\n    \"businessAddressUnit\": \"456\",\n    \"businessAddressProvince\": \"on\",\n    \"buildingAge\": \"Under 35 years\",\n    \"birthdate\": \"<dateTime>\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@gmail.com\",\n    \"phoneNumber\": \"(604) 789-2341\",\n    \"ageApplicant\": \"Under 25\",\n    \"personalLiability\": 1000000,\n    \"deductible\": 500,\n    \"propertyLimitApplicant\": 10000,\n    \"aleLimitApplicant\": 5000,\n    \"offPremisesLimitApplicant\": 5000,\n    \"policyPackage\": \"Basic\",\n    \"sewerDisclaimer\": \"I agree\",\n    \"specialLimitException\": \"Yes\",\n    \"jewelryLimit\": 2000,\n    \"bicyclesLimit\": 1000,\n    \"computersLimit\": 2500,\n    \"portablesLimit\": 1000,\n    \"fineArtLimit\": \"$1,000 Total / $250 per item\",\n    \"nearbyWaterbody\": \"Yes\",\n    \"priorFlood\": \"Yes\",\n    \"floodriskBelowGround\": \"Yes\",\n    \"sburiskBelowGround\": \"Yes\",\n    \"claims\": \"No Claims\",\n    \"policyUTCOffset\": \"<float>\",\n    \"policyStartDate\": \"<dateTime>\",\n    \"unrelatedRoommates\": \"Yes\",\n    \"totalRoommates\": 1,\n    \"nameRoommate1\": \"Jane Smith\",\n    \"ageRoommate1\": \"Under 25\",\n    \"propertyLimitRoommate1\": 10000,\n    \"aleLimitRoommate1\": 5000,\n    \"nameRoommate2\": \"Joe Schmoe\",\n    \"ageRoommate2\": \"Under 25\",\n    \"propertyLimitRoommate2\": 10000,\n    \"aleLimitRoommate2\": 5000,\n    \"nameRoommate3\": \"Joe Bloggs\",\n    \"ageRoommate3\": \"Under 25\",\n    \"propertyLimitRoommate3\": 10000,\n    \"aleLimitRoommate3\": 5000,\n    \"totalSemesters\": \"12 months\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f512fc8f-e877-432f-bf64-d4daac5ab18f",
+    "name": "Affiliates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n## The APOLLO Affiliates API\n\nThe `Production Server` should only be used for live data.\n\nFeel free to test the API using rather the `Test Server` or `Mock Server` to test out any endpoints before moving to production.\n\nAll endpoints require an `affiliateId` (provided by your APOLLO Contact) and a `insuranceType` in the path. Currently only the `tenant` insurance type is available.\n\nAll endpoints require a `x-api-key` security token in the header. This token will be provided to you by APOLLO.\n",
+      "type": "text/plain"
+    }
+  }
+}

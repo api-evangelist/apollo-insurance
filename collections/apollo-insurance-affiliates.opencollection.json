@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Affiliates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "api",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0/api/affiliates/:affiliateId/:insuranceType/application",
+            "params": [
+              {
+                "name": "affiliateId",
+                "value": "",
+                "type": "path",
+                "description": "Affiliate/Subdomain, provided by APOLLO"
+              },
+              {
+                "name": "insuranceType",
+                "value": "",
+                "type": "path",
+                "description": "Type of products: tenant, contractors, etc"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "\nCreate a pre-filled application based on the data provided in the payload.\n\nYou MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.\n\nYou MUST provide the `x-api-key` security token in the header.\n        "
+        },
+        {
+          "info": {
+            "name": "Quote an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0/api/affiliates/:affiliateId/:insuranceType/quote",
+            "params": [
+              {
+                "name": "affiliateId",
+                "value": "",
+                "type": "path",
+                "description": "Affiliate/Subdomain, provided by APOLLO"
+              },
+              {
+                "name": "insuranceType",
+                "value": "",
+                "type": "path",
+                "description": "Type of products: tenant, contractors, etc"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "\nQuote an application based on the data provided in the payload.\n\nYou MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.\n\nYou MUST provide the `x-api-key` security token in the header.\n        "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

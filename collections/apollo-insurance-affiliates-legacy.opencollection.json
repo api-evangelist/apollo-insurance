@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public API - Affiliates",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Generate a quote",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0/api/affiliates/:affiliateId/tenant/quote",
+        "headers": [
+          {
+            "name": "x-api-key",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "affiliateId",
+            "value": "",
+            "type": "path",
+            "description": "Your affiliate name. Provided by APOLLO"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a quote, based on a specific affiliate\n\nThe route expects your affiliate subdomain, which will be provided to your by your APOLLO contact."
+    },
+    {
+      "info": {
+        "name": "Create an application",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0/api/affiliates/:affiliateId/tenant/application",
+        "headers": [
+          {
+            "name": "x-api-key",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "affiliateId",
+            "value": "",
+            "type": "path",
+            "description": "Your affiliate name. Provided by APOLLO"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a pre-filled application, based on a specific affiliate\n\nThe route expects your affiliate subdomain, which will be provided to your by your APOLLO contact.\n\nIn the payload there are four top-level keys, `insuranceData`, `externalId`, `paymentPeriod`, `leadSource`, and `embeddedOptions`. \n\n\t\n\tinsuranceData: Object, containing application form question answers. The field is required if embeddedOptions is not included in the body.\n\t\n\tpaymentPeriod: String, 'annual' or 'monthly'. Default to '"
+    }
+  ],
+  "bundled": true
+}
