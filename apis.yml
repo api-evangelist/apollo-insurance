@@ -31,6 +31,17 @@ tags:
 - Insurance
 - Canada
 - Insurtech
+- Brokers
+- Embedded Insurance
+- Property and Casualty
+- Tenant Insurance
+- Quoting
+- Distribution
+- Compliance
+tags_raw:
+- Insurance
+- Canada
+- Insurtech
 - Broker
 - Embedded Insurance
 - Property and Casualty
@@ -59,6 +70,12 @@ apis:
   - Quoting
   - Embedded Insurance
   - Tenant Insurance
+  - Affiliates
+  tags_raw:
+  - Insurance
+  - Quoting
+  - Embedded Insurance
+  - Tenant Insurance
   - Affiliate
   properties:
   - type: Documentation
@@ -82,6 +99,11 @@ apis:
   humanURL: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
   baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
   tags:
+  - Insurance
+  - Quoting
+  - Tenant Insurance
+  - Affiliates
+  tags_raw:
   - Insurance
   - Quoting
   - Tenant Insurance
