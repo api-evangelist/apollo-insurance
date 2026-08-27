@@ -53,101 +53,117 @@ created: '2026-07-25'
 modified: '2026-07-25'
 specificationVersion: '0.23'
 apis:
-- aid: apollo-insurance:apollo-affiliates-api
-  name: APOLLO Affiliates API
-  description: >-
-    The current APOLLO Affiliate API. Two partner-scoped POST operations — quote an
-    application and create an application — scoped by affiliateId (the partner's
-    co-branded APOLLO subdomain) and insuranceType (currently only `tenant`). Creating an
-    application returns a quoteLink into the affiliate's co-branded APOLLO launchpad with
-    the customer's responses pre-filled. Authenticated with an x-api-key header token
-    issued by an APOLLO contact; separate tokens for the test and production servers, plus
-    a Stoplight mock server for prototyping.
+- aid: apollo-insurance:apollo-insurance-affiliates-api
+  name: APOLLO Insurance Affiliates API
+  description: The Affiliates API from APOLLO Insurance — 2 operation(s) for affiliates.
   humanURL: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
   baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
   tags:
-  - Insurance
-  - Quoting
-  - Embedded Insurance
-  - Tenant Insurance
   - Affiliates
-  tags_raw:
-  - Insurance
-  - Quoting
-  - Embedded Insurance
-  - Tenant Insurance
-  - Affiliate
   properties:
+  - type: OpenAPI
+    url: openapi/apollo-insurance-affiliates-api-openapi.yml
   - type: Documentation
     url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
   - type: APIReference
     url: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
-  - type: OpenAPI
-    url: openapi/apollo-insurance-affiliates.yml
-  - type: Overlay
-    url: overlays/apollo-insurance-affiliates-overlay.yaml
   - type: GettingStarted
     url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
-- aid: apollo-insurance:apollo-public-api-affiliates
-  name: APOLLO Public API - Affiliates
-  description: >-
-    The earlier APOLLO public affiliate surface, still published in its own Stoplight
-    project. Two POST operations fixed to the tenant line — generate a quote (returning
-    contents, ALE, liability and add-on premium components with a policy expiry date) and
-    create an application. Same AWS ca-central-1 test and production hosts as the current
-    Affiliates API; the project also carries a Webhooks page, which is present but empty.
-  humanURL: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
+  - type: Webhooks
+    url: asyncapi/apollo-insurance-covertrack-webhooks.yml
+- aid: apollo-insurance:apollo-insurance-api-api
+  name: APOLLO Insurance API
+  description: APOLLO public API
+  humanURL: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
   baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
   tags:
-  - Insurance
-  - Quoting
-  - Tenant Insurance
-  - Affiliates
-  tags_raw:
-  - Insurance
-  - Quoting
-  - Tenant Insurance
-  - Affiliate
+  - api
   properties:
+  - type: OpenAPI
+    url: openapi/apollo-insurance-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+  - type: GettingStarted
+    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
   - type: Documentation
     url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
   - type: APIReference
     url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
-  - type: OpenAPI
-    url: openapi/apollo-insurance-affiliates-legacy.yml
-  - type: Overlay
-    url: overlays/apollo-insurance-affiliates-legacy-overlay.yaml
-- aid: apollo-insurance:apollo-covertrack-api
-  name: APOLLO CoverTrack API
-  description: >-
-    CoverTrack is APOLLO's tenant-insurance compliance product for REITs and property
-    managers, served from its own api.covertrack.ca host. Three real operations plus one
-    documented callback — read a single tenant's compliance status (ACTIVE, PENDING,
-    NOT_SUBMITTED or DECLINED, with optional policy detail including the third-party
-    carrier's policy number and provider), read compliance status for every tenant of a
-    property, and generate a tenant insurance quote for a partner. The fourth path is an
-    example specification of a partner destination callback that APOLLO POSTs when a
-    relevant policy event occurs — the only event-driven surface APOLLO documents.
-  humanURL: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
-  baseURL: https://api.covertrack.ca
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
+  - type: Webhooks
+    url: asyncapi/apollo-insurance-covertrack-webhooks.yml
+- aid: apollo-insurance:apollo-insurance-compliance-api
+  name: APOLLO Insurance Compliance API
+  description: The Compliance API from APOLLO Insurance — 3 operation(s) for compliance.
+  humanURL: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+  baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
   tags:
-  - Insurance
   - Compliance
-  - Tenant Insurance
-  - Property Management
-  - Quoting
   properties:
+  - type: OpenAPI
+    url: openapi/apollo-insurance-compliance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+  - type: GettingStarted
+    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
   - type: Documentation
     url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
   - type: APIReference
     url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
+  - type: Webhooks
+    url: asyncapi/apollo-insurance-covertrack-webhooks.yml
+- aid: apollo-insurance:apollo-insurance-quote-api
+  name: APOLLO Insurance Quote API
+  description: The Quote API from APOLLO Insurance — 1 operation(s) for quote.
+  humanURL: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+  baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
+  tags:
+  - Quote
+  properties:
   - type: OpenAPI
-    url: openapi/apollo-insurance-covertrack.yml
-  - type: Overlay
-    url: overlays/apollo-insurance-covertrack-overlay.yaml
+    url: openapi/apollo-insurance-quote-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
+  - type: GettingStarted
+    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
+  - type: Documentation
+    url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
+  - type: APIReference
+    url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
   - type: Webhooks
     url: asyncapi/apollo-insurance-covertrack-webhooks.yml
 common:
+- type: Overlay
+  url: overlays/apollo-insurance-affiliates-overlay.yaml
+- type: Overlay
+  url: overlays/apollo-insurance-affiliates-legacy-overlay.yaml
+- type: Overlay
+  url: overlays/apollo-insurance-covertrack-overlay.yaml
 - type: LLMsTxt
   url: llms/apollo-insurance-llms.txt
 - type: MCPServer
