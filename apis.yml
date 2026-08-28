@@ -26,6 +26,18 @@ description: >-
   conduct, and Consumer-Driven Banking excludes insurance entirely — so nothing forces
   this disclosure; APOLLO published it as a distribution strategy. No ACORD, AL3, IVANS or
   agency-management-system reference appears anywhere in its public site or documentation.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://platform-assets.apollocover.com/apollo.svg
 tags:
 - Insurance
