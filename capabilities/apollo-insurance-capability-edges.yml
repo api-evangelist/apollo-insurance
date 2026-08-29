@@ -1,0 +1,44 @@
+slug: apollo-insurance
+provider: APOLLO Insurance
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Insurance
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Quote
+  spec_file: apollo-insurance-quote-api-openapi.yml
+  capability_id: BC-2110.60
+  capability_id_l1: BC-2110
+  capability_name: Quote & Submission Management
+  confidence: 0.9
+  evidence: POST /quote/tenant/{partnerId} "Get Tenant Quote"; "Generating Tenant Insurance quotes"
+  reason: Operation generates insurance quotes for tenant insurance via partner distribution — quote &
+    submission management within insurance distribution.
+- tag: api
+  spec_file: apollo-insurance-api-api-openapi.yml
+  capability_id: BC-2110.60
+  capability_id_l1: BC-2110
+  capability_name: Quote & Submission Management
+  confidence: 0.85
+  evidence: '"Create an application" and "Quote an application"; schemas TenantInsuranceQuoteQuestions,
+    LeadSource'
+  reason: Affiliate-channel endpoints capture insurance applications and generate quotes — submission
+    intake and quote generation in a distribution channel.
+- tag: Affiliates
+  spec_file: apollo-insurance-affiliates-api-openapi.yml
+  capability_id: BC-2110.60
+  capability_id_l1: BC-2110
+  capability_name: Quote & Submission Management
+  confidence: 0.7
+  evidence: '"POST /api/affiliates/{affiliateId}/tenant/quote  Generate a quote", "Create an application"'
+  reason: Affiliate/partner-embedded flow that generates tenant insurance quotes and submits applications
+    — quote and submission intake within distribution. Could alternatively be read as distribution channel
+    operation, hence 0.7.

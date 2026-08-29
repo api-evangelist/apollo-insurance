@@ -170,6 +170,9 @@ apis:
   - type: Webhooks
     url: asyncapi/apollo-insurance-covertrack-webhooks.yml
 common:
+- type: CapabilityMap
+  url: capabilities/apollo-insurance-capability-edges.yml
+  name: APOLLO Insurance Business Capability Map
 - type: Overlay
   url: overlays/apollo-insurance-affiliates-overlay.yaml
 - type: Overlay
