@@ -96,7 +96,8 @@ apis:
   description: APOLLO public API
   humanURL: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
   baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
-  tags:
+  tags: []
+  tags_raw:
   - api
   properties:
   - type: OpenAPI
@@ -149,6 +150,8 @@ apis:
   humanURL: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
   baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
   tags:
+  - Quotes
+  tags_raw:
   - Quote
   properties:
   - type: OpenAPI
