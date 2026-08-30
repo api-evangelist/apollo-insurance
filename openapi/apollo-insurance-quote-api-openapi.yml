@@ -1,0 +1,98 @@
+openapi: 3.2.0
+info:
+  title: CoverTrack API's Quote API
+  version: '1.0'
+  summary: Various CoverTrack Functions
+  description: "Provides API endpoints for: \n* Accessing the current coverage status for partner tenants\n* Generating Tenant Insurance quotes\n* Policy access for Partner Properties"
+servers:
+- url: https://api.covertrack.ca
+  description: Production
+- url: https://api.covertrack-dev.ca
+  description: Test
+tags:
+- name: Quote
+paths:
+  /quote/tenant/{partnerId}:
+    parameters:
+    - schema:
+        type: string
+      name: partnerId
+      in: path
+      required: true
+      description: The Partner name
+    - schema:
+        type: string
+      in: header
+      name: x-api-key
+      description: The provided API Key
+    servers:
+    - url: https://api.covertrack.ca
+      description: Production
+    - url: https://api.covertrack-dev.ca
+      description: Test
+    post:
+      summary: Get Tenant Quote
+      tags:
+      - Quote
+      responses:
+        '200':
+          description: Tenant Insurance Quote
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    link: string
+                    annual: 0
+                    monthly: 0
+                    monthlyPayment: 0
+                properties:
+                  link:
+                    type: string
+                    description: link to complete the insurance application
+                  annual:
+                    type: integer
+                    description: Annual policy cost
+                  monthly:
+                    type: integer
+                    description: Monthly policy cost, total
+                  monthlyPayment:
+                    type: integer
+                    description: Monthly policy cost, per month
+      operationId: post-quote-tenant-partnerId
+      x-stoplight:
+        id: sqh2u9cfzhvnk
+      description: Generate a quote for Tenant Insurance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                propertyId:
+                  type: string
+                tenantId:
+                  type: string
+                contents:
+                  type: integer
+                ale:
+                  type: integer
+                liability:
+                  type: integer
+                deductible:
+                  type: integer
+                water:
+                  type: boolean
+              x-examples:
+                Example 1:
+                  propertyId: string
+                  tenantId: string
+                  contents: 0
+                  ale: 0
+                  liability: 0
+                  deductible: 0
+                  water: true
+        description: Tenant Insurance Quote Parameters
+x-stoplight:
+  id: fu18p9wlkzenb
