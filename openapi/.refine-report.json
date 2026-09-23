@@ -1,0 +1,40 @@
+{
+  "provider": "apollo-insurance",
+  "sources": [
+    "_original/apollo-insurance-affiliates-legacy.yml",
+    "_original/apollo-insurance-affiliates.yml",
+    "_original/apollo-insurance-covertrack.yml"
+  ],
+  "outputs": [
+    "apollo-insurance-affiliates-api-openapi.yml",
+    "apollo-insurance-api-api-openapi.yml",
+    "apollo-insurance-compliance-api-openapi.yml",
+    "apollo-insurance-quote-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apollo-insurance-affiliates-legacy.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apollo-insurance-affiliates-legacy.yml: tagged paths POST /api/affiliates/{affiliateId}/tenant/quote -> Affiliates",
+    "apollo-insurance-affiliates-legacy.yml: tagged paths POST /api/affiliates/{affiliateId}/tenant/application -> Affiliates",
+    "apollo-insurance-affiliates-legacy.yml: declared missing tag: Affiliates",
+    "apollo-insurance-affiliates.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apollo-insurance-affiliates.yml: multi-axis tagging (4 tags, 1 first tags, 3.00x duplication over 2 operations) \u2014 split on first tag, 2 operations narrowed",
+    "apollo-insurance-covertrack.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apollo-insurance-covertrack.yml: tagged paths GET /compliance/{partnerId}/{propertyId}/{tenantId} -> Compliance",
+    "apollo-insurance-covertrack.yml: tagged paths GET /compliance/{partnerId}/{propertyId} -> Compliance",
+    "apollo-insurance-covertrack.yml: tagged paths POST /quote/tenant/{partnerId} -> Quote",
+    "apollo-insurance-covertrack.yml: tagged paths POST /compliance/callback/example -> Compliance",
+    "apollo-insurance-covertrack.yml: declared missing tag: Compliance",
+    "apollo-insurance-covertrack.yml: declared missing tag: Quote",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "apollo-insurance-affiliates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apollo-insurance-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apollo-insurance-compliance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apollo-insurance-quote-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

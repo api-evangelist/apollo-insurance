@@ -3,7 +3,13 @@ info:
   title: CoverTrack API's Quote API
   version: '1.0'
   summary: Various CoverTrack Functions
-  description: "Provides API endpoints for: \n* Accessing the current coverage status for partner tenants\n* Generating Tenant Insurance quotes\n* Policy access for Partner Properties"
+  description: 'Provides API endpoints for:
+
+    * Accessing the current coverage status for partner tenants
+
+    * Generating Tenant Insurance quotes
+
+    * Policy access for Partner Properties'
 servers:
 - url: https://api.covertrack.ca
   description: Production

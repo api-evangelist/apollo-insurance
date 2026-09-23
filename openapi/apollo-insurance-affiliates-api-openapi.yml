@@ -204,7 +204,28 @@ paths:
       responses:
         '200':
           description: "```\n{\n  \"data\": {\n    \"quoteLink\": \"https://apollo.securequotebot.com/tenants?quote=2ed228e4-ee00-40f0-ac02-2e16376fed30\",\n    \"quote\": {\n        \"premiums\": {\n            \"contentsPremium\": 39,\n            \"alePremium\": 20,\n            \"liabilityPremium\": 185,\n            \"addonPremium\": 0\n        },\n        \"policyExpiryDate\": \"2024-01-23T14:29:42-08:00\",\n        \"taxesAndFees\": {\n            \"annual\": 28.35,\n            \"monthly\": 59.4\n        },\n        \"total\": {\n            \"annual\": 272.35,\n            \"monthly\": 303.4,\n            \"monthlyPayment\": 25.2\n        }\n    }\n  }\n}\n```"
-      description: "Create a pre-filled application, based on a specific affiliate\n\nThe route expects your affiliate subdomain, which will be provided to your by your APOLLO contact.\n\nIn the payload there are four top-level keys, `insuranceData`, `externalId`, `paymentPeriod`, `leadSource`, and `embeddedOptions`. \n\n\t\n\tinsuranceData: Object, containing application form question answers. The field is required if embeddedOptions is not included in the body.\n\t\n\tpaymentPeriod: String, 'annual' or 'monthly'. Default to 'annual'.\n\t\n\texternalId: String, customer's own ID. This ID is optional and will be included in the Apollo application, to associate it with a third party's identifier.\n\t\n\tleadSource: Object. Used when a platform has multiple partners and each partner has multiple subdomains, we will use this field to differentiate the traffic from each subdomain and generate applications in the right Apollo launchpads. If not exist, new application will be generated in default affiliate launchpad. This field is OPTIONAL.\n\t\n\tembeddedOptions: Object. Contains configurations only for embedded workflows. This field is OPTIONAL.\n\n\n\n"
+      description: 'Create a pre-filled application, based on a specific affiliate
+
+
+        The route expects your affiliate subdomain, which will be provided to your by your APOLLO contact.
+
+
+        In the payload there are four top-level keys, `insuranceData`, `externalId`, `paymentPeriod`, `leadSource`, and `embeddedOptions`.
+
+
+        insuranceData: Object, containing application form question answers. The field is required if embeddedOptions is not included in the body.
+
+
+        paymentPeriod: String, ''annual'' or ''monthly''. Default to ''annual''.
+
+
+        externalId: String, customer''s own ID. This ID is optional and will be included in the Apollo application, to associate it with a third party''s identifier.
+
+
+        leadSource: Object. Used when a platform has multiple partners and each partner has multiple subdomains, we will use this field to differentiate the traffic from each subdomain and generate applications in the right Apollo launchpads. If not exist, new application will be generated in default affiliate launchpad. This field is OPTIONAL.
+
+
+        embeddedOptions: Object. Contains configurations only for embedded workflows. This field is OPTIONAL.'
       requestBody:
         content:
           application/json:

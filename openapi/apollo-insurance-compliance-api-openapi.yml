@@ -3,7 +3,13 @@ info:
   title: CoverTrack API's Compliance API
   version: '1.0'
   summary: Various CoverTrack Functions
-  description: "Provides API endpoints for: \n* Accessing the current coverage status for partner tenants\n* Generating Tenant Insurance quotes\n* Policy access for Partner Properties"
+  description: 'Provides API endpoints for:
+
+    * Accessing the current coverage status for partner tenants
+
+    * Generating Tenant Insurance quotes
+
+    * Policy access for Partner Properties'
 servers:
 - url: https://api.covertrack.ca
   description: Production
@@ -103,14 +109,67 @@ paths:
       operationId: post-compliance-callback-example
       x-stoplight:
         id: v0dqrojr6nrc7
-      description: "Example of a partner destination callback that is invoked when a relevant Policy event occurs \n\n**Note** - this is not an actual endpoint, just the specification for the callback."
+      description: 'Example of a partner destination callback that is invoked when a relevant Policy event occurs
+
+
+        **Note** - this is not an actual endpoint, just the specification for the callback.'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ComplianceStatus'
 components:
+  responses:
+    ComplianceStatus:
+      description: Policy Summary
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ComplianceStatusDetail'
   schemas:
+    ComplianceStatus:
+      type: object
+      x-examples:
+        Example 1:
+          partnerId: string
+          propertyId: string
+          tenantId: string
+          status: string
+          updatedAt: string
+          policy:
+            startDate: string
+            endDate: string
+            policyNumber: string
+            provider: string
+            liability: 0
+          links:
+            upload: string
+      properties:
+        partnerId:
+          type: string
+        propertyId:
+          type: string
+        tenantId:
+          type: string
+        status:
+          type: string
+          description: ACTIVE | PENDING | NOT_SUBMITTED | DECLINED
+        updatedAt:
+          type: string
+        policy:
+          type: object
+          description: Optional policy details
+          properties:
+            startDate:
+              type: string
+            endDate:
+              type: string
+            policyNumber:
+              type: string
+            provider:
+              type: string
+            liability:
+              type: integer
     ComplianceStatusDetail:
       type: object
       x-stoplight:
@@ -163,55 +222,5 @@ components:
               type: string
               description: Unique link for updating policy information
       title: ComplianceStatusDetail
-    ComplianceStatus:
-      type: object
-      x-examples:
-        Example 1:
-          partnerId: string
-          propertyId: string
-          tenantId: string
-          status: string
-          updatedAt: string
-          policy:
-            startDate: string
-            endDate: string
-            policyNumber: string
-            provider: string
-            liability: 0
-          links:
-            upload: string
-      properties:
-        partnerId:
-          type: string
-        propertyId:
-          type: string
-        tenantId:
-          type: string
-        status:
-          type: string
-          description: ACTIVE | PENDING | NOT_SUBMITTED | DECLINED
-        updatedAt:
-          type: string
-        policy:
-          type: object
-          description: Optional policy details
-          properties:
-            startDate:
-              type: string
-            endDate:
-              type: string
-            policyNumber:
-              type: string
-            provider:
-              type: string
-            liability:
-              type: integer
-  responses:
-    ComplianceStatus:
-      description: Policy Summary
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ComplianceStatusDetail'
 x-stoplight:
   id: fu18p9wlkzenb
