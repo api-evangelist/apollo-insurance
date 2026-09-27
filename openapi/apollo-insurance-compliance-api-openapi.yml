@@ -119,13 +119,6 @@ paths:
             schema:
               $ref: '#/components/schemas/ComplianceStatus'
 components:
-  responses:
-    ComplianceStatus:
-      description: Policy Summary
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ComplianceStatusDetail'
   schemas:
     ComplianceStatus:
       type: object
@@ -222,5 +215,12 @@ components:
               type: string
               description: Unique link for updating policy information
       title: ComplianceStatusDetail
+  responses:
+    ComplianceStatus:
+      description: Policy Summary
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ComplianceStatusDetail'
 x-stoplight:
   id: fu18p9wlkzenb

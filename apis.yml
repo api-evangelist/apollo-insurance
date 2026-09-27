@@ -108,33 +108,6 @@ apis:
     url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
   - type: Webhooks
     url: asyncapi/apollo-insurance-covertrack-webhooks.yml
-- aid: apollo-insurance:apollo-insurance-api-api
-  name: APOLLO Insurance API
-  description: APOLLO public API
-  humanURL: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
-  baseURL: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
-  tags: []
-  tags_raw:
-  - api
-  properties:
-  - type: OpenAPI
-    url: openapi/apollo-insurance-api-api-openapi.yml
-  - type: Documentation
-    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
-  - type: APIReference
-    url: https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api
-  - type: GettingStarted
-    url: https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction
-  - type: Documentation
-    url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
-  - type: APIReference
-    url: https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates
-  - type: Documentation
-    url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
-  - type: APIReference
-    url: https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s
-  - type: Webhooks
-    url: asyncapi/apollo-insurance-covertrack-webhooks.yml
 - aid: apollo-insurance:apollo-insurance-compliance-api
   name: APOLLO Insurance Compliance API
   description: The Compliance API from APOLLO Insurance — 3 operation(s) for compliance.

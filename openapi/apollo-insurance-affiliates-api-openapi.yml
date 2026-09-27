@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Public Affiliates API
+  title: Apollo Insurance Affiliates API
   version: '1.0'
-  description: Affiliates
+  description: 'Operations tagged Affiliates across 2 of this provider''s published API definitions: apollo-insurance-affiliates-legacy.yml, apollo-insurance-affiliates.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0
   description: TEST
@@ -190,6 +190,11 @@ paths:
         description: "### Schema for insuranceData:\n\n---\n`businessAddressPostal`: Applicant Postal Code\n\n    Type: string\n    Required: Yes\n---\n\n`businessAddressCity`: Applicant City\n\n    Type: string\n    Required: Yes\n---\n\n`operations`: What type of home does applicant need insurance for\n\n    Type: string\n    Valid Values: [High Rise, Low Rise, Townhouse, Semi-Detached or Duplex or Triplex, Detached House, Other]\n    Required: Yes\n---\n\n`nonlistedOperation`: Describe the type of home if operations value is Other, the field is enabled if operations is Other\n\n    Type: string\n    Default: Other home type\n    Required: No or Conditional\n---\n\n`businessAddressStreet`: Street Address - Includes street number and street name, i.e., 123 Main Street\n\n    Type: string\n    Required: Yes\n---\n\n`businessAddressUnit`: Unit number. The field is required if the operations is High Rise or Low Rise\n\n    Type: string\n    Required: No or Conditional\n---\n\n`businessAddressProvince`: Province code in 2 letter formet\n\n    Type: string\n    Required: No or Conditional\n---\n\n`buildingAge`: How old is the building you reside at, approximately\n\n    Type: string\n    Valid Values: [Under 35 years, 35-70 years, Over 70 years]\n    Default: Under 35 years\n    Required: No or Conditional\n---\n\n`birthdate`: What is the applicant's date of birth?\n\n    Type: string\n    Valid Values: Date, in valid date format. ie: YYYY-MM-DD, ie 1985-03-20\n    Required: No or Conditional\n    \n---\n\n`firstName`: Applicant first name\n\n    Type: string\n    Default: Replace With Your First Name\n    Required: No or Conditional\n---\n\n`lastName`: Applicant last name\n\n    Type: string\n    Default: Replace With Your Last Name\n    Required: No or Conditional\n---\n\n`email`: Applicant email\n\n    Type: string\n    Default: REPLACE_WITH_YOUR_EMAIL@domain.com\n    Required: No or Conditional\n---\n\n`phoneNumber`: Applicant phone number in 10 digit generic format\n\n    Type: string\n    Default: 1001000000\n    Required: No or Conditional\n---\n\n`ageApplicant`: Applicant age range\n\n    Type: string\n    Valid Values: [Under 25, 25-50, Over 50]\n    Default: 25-50\n    Required: No or Conditional\n---\n\n`personalLiability`: How much Personal Liability coverage would the applicant like\n\n    Type: number\n    Default: 1000000\n    Required: No or Conditional\n---\n\n`deductible`: Policy deductible\n\n    Type: number\n    Default: 2500\n    Required: No or Conditional\n---\n\n`propertyLimitApplicant`: Applicant personal Contents coverage limit\n\n    Type: number\n    Default: 10000\n    Required: No or Conditional\n---\n\n`aleLimitApplicant`: Additional Living Expenses - This coverage pays for extra costs to live while your residence is uninhabitable due to an insured loss.\n     If propertyLimitApplicant is 10000, value should be 5000;\n     If propertyLimitApplicant is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n\n\n    Type: number\n    Default: 5000\n    Required: No or Conditional\n---\n\n`offPremisesLimitApplicant`: Contents stored off-premises\n\n    Type: number\n    Default: 5000\n    Required: No or Conditional\n---\n\n`policyPackage`: What type of Package would the applicant like to purchase\n\n    Type: string\n    Valid Values: [Basic, Enhanced, Premium]\n    Default: Basic\n    Required: No or Conditional\n---\n\n`sewerDisclaimer`: Agree to continue without Sewer Backup coverage - when policyPackage = Basic or Enhanced\n\n    Type: string\n    Valid Values: [I agree]\n    Default: I agree\n    Required: No or Conditional\n---\n\n`specialLimitException`: Default Jewelry - $2,000, Bicycles and eBikes - $1,000, Computer Coverage - $2,500, Portable Devices - $1,000, Fine Arts - $1,000. Wish to purchase a higher limit for any of the items?\n\n    Type: string\n    Valid Values: [Yes, No]\n    Default: No\n    Required: No or Conditional\n---\n\n`jewelryLimit`: Jewelry limit, the field is enabled if specialLimitException is Yes.\n\n    Type: number\n    Default: 2000\n    Required: No or Conditional\n---\n\n`bicyclesLimit`: Bicycles and eBikes limit, the field is enabled if specialLimitException is Yes.\n\n    Type: number\n    Default: 1000\n    Required: No or Conditional\n---\n\n`computersLimit`: On-premises computers and digital media, the field is enabled if specialLimitException is Yes.\n\n    Type: number\n    Default: 2500\n    Required: No or Conditional\n---\n\n`portablesLimit`: Portable Electronic Devices - on and off premises, the field is enabled if specialLimitException is Yes.\n\n    Type: number\n    Default: 1000\n    Required: No or Conditional\n---\n\n`fineArtLimit`: Fine Arts limit, the field is enabled if specialLimitException is Yes.\n\n    Type: string\n    Valid Values: [$1,000 Total / $250 per item, $5,000 Total / $500 per item, $7,500 Total / $1000 per item]\n    Default: $1,000 Total / $250 per item\n    Required: No or Conditional\n---\n\n`nearbyWaterbody`: Is this residence located within 300 meters of a major body of water (river, lake etc) or a known flood plain\n\n    Type: string\n    Valid Values: [Yes, No]\n    Default: No\n    Required: No or Conditional\n---\n\n`priorFlood`: Has this property ever suffered a damage from flood (to the applicant knowledge)\n\n    Type: string\n    Valid Values: [Yes, No]\n    Default: No\n    Required: No or Conditional\n---\n\n`floodriskBelowGround`: Are any of your personal belongings located or stored on the ground or below ground level of the building? The field is enabled if nearby-waterbody and prior-flood are Yes.\n\n    Type: string\n    Valid Values: [Yes, No]\n    Default: No\n    Required: No or Conditional\n---\n\n`sburiskBelowGround`: Is your residence unit located on the Main Floor or in the basement\n\n    Type: string\n    Valid Values: [Yes, No]\n    Default: No\n    Required: No or Conditional\n---\n\n`claims`: In the last 5 years, have the applicant made any claims under a Personal Property or Liability insurance\n\n    Type: string\n    Valid Values: [No Claims, 1 Claim, Ineligible: More than 1 Claim]\n    Default: No Claims\n    Required: No or Conditional\n    \n---\n\n`policyUTCOffset`: UTC Offset for policy effective date. The number can be transformed from timezone. For ex, -07:00 => -420\n\n    Type: number,\n    Default: -420,\n    Required: No or Conditional\n---\n\n`policyStartDate`: The date that the policy starts to take effect in yyyy-mm-dd format, the date must be a future time including today.\n\n    Type: string\n    Default: Date string for tomorrow date. Ex. if today is 2022-04-14, the default will be 2022-04-15\n    Required: No or Conditional\n---\n\n`unrelatedRoommates`: Any roommates who are not related to the applicant\n\n    Type: string\n    Valid Values: [Yes, No]\n    Default: No\n    Required: No or Conditional\n---\n\n`totalRoommates`: How many unrelated roommates or families the applicant lives with. The field is enabled only if unrelatedRoommates = Yes\n\n    Type: number\n    Required: No or Conditional\n---\n\n`nameRoommate1`: Full Name of roommate 1, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1\n\n    Type: string\n    Required: No or Conditional\n---\n\n`ageRoommate1`: Roommate 1 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1\n\n    Type: string\n    Valid Values: [Under 25, 25-50, Over 50]\n    Required: No or Conditional\n---\n\n`propertyLimitRoommate1`: Roommate 1 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1\n\n    Type: number\n    Required: No or Conditional\n---\n\n`aleLimitRoommate1`: Additional Living Expenses for roommates.\n     If the corresponding aleLimitRoommate is 0, this field should not be included;\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate  is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n\n\n    Type: number\n    Default: 5000\n    Required: No or Conditional\n---\n\n`nameRoommate2`: Full Name of roommate 2, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2\n\n    Type: string\n    Required: No or Conditional\n---\n\n`ageRoommate2`: Roommate 2 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2\n\n    Type: string\n    Valid Values: [Under 25, 25-50, Over 50]\n    Required: No or Conditional\n---\n\n`propertyLimitRoommate2`: Roommate 2 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2\n\n    Type: number\n    Required: No or Conditional\n---\n\n`aleLimitRoommate2`: Additional Living Expenses for roommates.\n      If the corresponding aleLimitRoommate is 0, this field should not be included;\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate  is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n\n\n    Type: number\n    Default: 5000\n    Required: No or Conditional\n---\n\n`nameRoommate3`: Full Name of roommate 3, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3\n\n    Type: string\n    Required: No or Conditional\n---\n\n`ageRoommate3`: Roommate 3 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3\n\n    Type: string\n    Valid Values: [Under 25, 25-50, Over 50]\n    Required: No or Conditional\n---\n\n`propertyLimitRoommate3`: Roommate 3 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3\n\n    Type: number\n    Required: No or Conditional\n---\n\n`aleLimitRoommate3`: Additional Living Expenses for roommates.\n     If the corresponding aleLimitRoommate is 0, this field should not be included;\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate  is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n\n\n    Type: number\n    Default: 5000\n    Required: No or Conditional\n---\n"
       tags:
       - Affiliates
+    servers:
+    - url: https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0
+      description: TEST
+    - url: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
+      description: PRODUCTION
   /api/affiliates/{affiliateId}/tenant/application:
     parameters:
     - schema:
@@ -303,4 +308,1192 @@ paths:
       x-internal: false
       tags:
       - Affiliates
+    servers:
+    - url: https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0
+      description: TEST
+    - url: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
+      description: PRODUCTION
+  /api/affiliates/{affiliateId}/{insuranceType}/application:
+    post:
+      tags:
+      - Affiliates
+      summary: Create an application
+      description: 'Create a pre-filled application based on the data provided in the payload.
+
+
+        You MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.
+
+
+        You MUST provide the `x-api-key` security token in the header.'
+      operationId: public-api-affiliates-application-post
+      responses:
+        '200':
+          description: A link to the generated application will be provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      quoteLink:
+                        type: string
+                        description: Link to the generated application.
+                        example: https://apollo.securequotebotdev.com/tenant?quote=6fa455a8-8b11-4a6e-b7fa-80619f7d66e7
+                    additionalProperties: false
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/400InsuranceDataValidationError'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      parameters:
+      - in: path
+        name: affiliateId
+        required: true
+        description: Affiliate/Subdomain, provided by APOLLO
+        schema:
+          type: string
+          example: apollo
+      - in: path
+        name: insuranceType
+        required: true
+        description: 'Type of products: tenant, contractors, etc'
+        schema:
+          type: string
+          enum:
+          - tenant
+          example: tenant
+          default: tenant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                insuranceData:
+                  anyOf:
+                  - $ref: '#/components/schemas/TenantInsuranceQuestions'
+                  description: Contains application form question answers. The field is REQUIRED when creating non-embedded applications.
+                embeddedOptions:
+                  $ref: '#/components/schemas/EmbeddedOptions'
+                paymentPeriod:
+                  $ref: '#/components/schemas/PaymentPeriod'
+                externalId:
+                  $ref: '#/components/schemas/ExternalId'
+                leadSource:
+                  $ref: '#/components/schemas/LeadSource'
+              additionalProperties: false
+        description: '
+
+          A typical payload MUST include `insuranceData`. The payload SHOULD also contain `paymentPeriod`, `externalId`, and `leadSource` if possible.
+
+
+          An embedded flow payload MUST include `embeddedOptions`. The payload SHOULD also contain `paymentPeriod`, `externalId`, and `leadSource` if possible. The payload COULD also contain `insuranceData`.
+
+
+          The fields provided for `insuranceData` WILL change based on the `insuranceType`.
+
+          '
+      security:
+      - apiKeyAuth: []
+    servers:
+    - url: https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0
+      description: Test Server
+    - url: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
+      description: Production Server
+  /api/affiliates/{affiliateId}/{insuranceType}/quote:
+    post:
+      tags:
+      - Affiliates
+      summary: Quote an application
+      description: 'Quote an application based on the data provided in the payload.
+
+
+        You MUST provide your `affiliateId` (provided by APOLLO) and the `insuranceType` in the path.
+
+
+        You MUST provide the `x-api-key` security token in the header.'
+      operationId: public-api-affiliates-quote-post
+      responses:
+        '200':
+          description: Generated quote for based on the provided data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      premiums:
+                        type: object
+                        properties:
+                          contentsPremium:
+                            type: number
+                            format: double
+                            example: 405
+                          alePremium:
+                            type: number
+                            format: double
+                            example: 26
+                          liabilityPremium:
+                            type: number
+                            format: double
+                            example: 178
+                          addonPremium:
+                            type: number
+                            format: double
+                            example: 0
+                        additionalProperties: false
+                      policyExpiryDate:
+                        type: string
+                        format: date-time
+                        example: '2023-07-05T00:01:00-07:00'
+                      subtotal:
+                        type: object
+                        properties:
+                          annual:
+                            type: number
+                            format: double
+                            example: 653.76
+                          monthly:
+                            type: number
+                            format: double
+                            example: 714.72
+                          instalment:
+                            type: number
+                            format: double
+                            example: 702.51
+                        additionalProperties: false
+                      stripeFees:
+                        type: object
+                        properties:
+                          annual:
+                            type: number
+                            format: double
+                            example: 19.84
+                          monthly:
+                            type: number
+                            format: double
+                            example: 25.08
+                          instalment:
+                            type: number
+                            format: double
+                            example: 24.1
+                        additionalProperties: false
+                      taxesAndFees:
+                        type: object
+                        properties:
+                          annual:
+                            type: number
+                            format: double
+                            example: 64.6
+                          monthly:
+                            type: number
+                            format: double
+                            example: 130.8
+                          instalment:
+                            type: number
+                            format: double
+                            example: 112.32
+                        additionalProperties: false
+                      total:
+                        type: object
+                        properties:
+                          annual:
+                            type: number
+                            format: double
+                            example: 673.6
+                          monthly:
+                            type: number
+                            format: double
+                            example: 739.8
+                          monthlyPayment:
+                            type: number
+                            format: double
+                            example: 61.65
+                          instalment:
+                            type: number
+                            format: double
+                            example: 726.61
+                          instalmentDownPayment:
+                            type: number
+                            format: double
+                            example: 171.85
+                          instalmentMonthlyPayment:
+                            type: number
+                            format: double
+                            example: 61.64
+                          instalmentNumMonths:
+                            type: integer
+                            example: 9
+                        additionalProperties: false
+                    additionalProperties: false
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/400InsuranceDataValidationError'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      parameters:
+      - in: path
+        name: affiliateId
+        required: true
+        description: Affiliate/Subdomain, provided by APOLLO
+        schema:
+          type: string
+          example: apollo
+      - in: path
+        name: insuranceType
+        required: true
+        description: 'Type of products: tenant, contractors, etc'
+        schema:
+          type: string
+          enum:
+          - tenant
+          example: tenant
+          default: tenant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                insuranceData:
+                  anyOf:
+                  - $ref: '#/components/schemas/TenantInsuranceQuoteQuestions'
+                  description: Contains application form question answers.
+              required:
+              - insuranceData
+      security:
+      - apiKeyAuth: []
+    servers:
+    - url: https://o73td82enk.execute-api.ca-central-1.amazonaws.com/1_0_0
+      description: Test Server
+    - url: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
+      description: Production Server
+components:
+  schemas:
+    TenantInsuranceQuoteQuestions:
+      type: object
+      properties:
+        businessAddressPostal:
+          type: string
+          pattern: ([A-Za-z]\d){3}
+          minLength: 6
+          maxLength: 6
+          description: Applicant Postal Code
+          example: L9Y3Z2
+        businessAddressCity:
+          type: string
+          description: Applicant City
+          example: Collingwood
+        operations:
+          type: string
+          enum:
+          - High Rise
+          - Low Rise
+          - Townhouse
+          - Semi-Detached or Duplex or Triplex
+          - Detached House
+          - Other
+          description: What type of home does applicant need insurance for
+          example: Low Rise
+        nonlistedOperation:
+          type: string
+          description: Describe the type of home if operations value is Other, the field is enabled if operations is Other
+          example: Combination high rise & townhouse complex
+        businessAddressStreet:
+          type: string
+          description: Street Address - Includes street number and street name.
+          example: 123 Main Street
+        businessAddressUnit:
+          type: string
+          description: Unit number. The field is required if the operations is High Rise or Low Rise
+          example: '456'
+        businessAddressProvince:
+          type: string
+          minLength: 2
+          maxLength: 2
+          description: Province code in 2 letter format
+          example: 'on'
+        buildingAge:
+          type: string
+          enum:
+          - Under 35 years
+          - 35-70 years
+          - Over 70 years
+          description: How old is the building you reside at, approximately
+          example: Under 35 years
+          default: Under 35 years
+        birthdate:
+          type: string
+          format: date-time
+          pattern: \d{4}-\d{2}-\d{2}
+          description: The birth date of the applicant in yyyy-mm-dd format.
+          example: '1985-03-20'
+        firstName:
+          type: string
+          description: Applicant first name
+          example: John
+        lastName:
+          type: string
+          description: Applicant last name
+          example: Doe
+        email:
+          type: string
+          format: email
+          description: Applicant email
+          example: john.doe@gmail.com
+        phoneNumber:
+          type: string
+          description: Applicant phone number ex. 6135550148, +16135550148, (613) 555-0148
+          example: (604) 789-2341
+        ageApplicant:
+          type: string
+          enum:
+          - Under 25
+          - 25-50
+          - Over 50
+          description: Applicant age range
+          example: Under 25
+          default: 25-50
+        personalLiability:
+          type: number
+          format: float
+          enum:
+          - 1000000
+          - 2000000
+          description: How much Personal Liability coverage would the applicant like
+          example: 1000000
+          default: 1000000
+        deductible:
+          type: number
+          format: float
+          enum:
+          - 500
+          - 1000
+          - 2500
+          description: Policy deductible
+          example: 500
+          default: 2500
+        propertyLimitApplicant:
+          type: number
+          format: float
+          enum:
+          - 10000
+          - 20000
+          - 30000
+          - 40000
+          - 60000
+          - 80000
+          - 100000
+          - 125000
+          - 150000
+          description: Applicant personal Contents coverage limit
+          example: 10000
+          default: 10000
+        aleLimitApplicant:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 10000
+          - 15000
+          - 20000
+          - 30000
+          description: "Additional Living Expenses - This coverage pays for extra costs to live while your residence is uninhabitable due to an insured loss.\n     If propertyLimitApplicant is 10000, value should be 5000;\n     If propertyLimitApplicant is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n    "
+          example: 5000
+          default: 5000
+        offPremisesLimitApplicant:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 7500
+          - 10000
+          description: Contents stored off-premises
+          example: 5000
+          default: 5000
+        policyPackage:
+          type: string
+          enum:
+          - Basic
+          - Enhanced
+          - Premium
+          description: What type of Package would the applicant like to purchase
+          example: Basic
+          default: Basic
+        sewerDisclaimer:
+          type: string
+          enum:
+          - I agree
+          description: Agree to continue without Sewer Backup coverage - when policyPackage = Basic or Enhanced
+          example: I agree
+          default: I agree
+        specialLimitException:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Default Jewelry - $2,000, Bicycles and eBikes - $1,000, Computer Coverage - $2,500, Portable Devices - $1,000, Fine Arts - $1,000. Wish to purchase a higher limit for any of the items?
+          example: 'Yes'
+          default: 'No'
+        jewelryLimit:
+          type: number
+          format: float
+          enum:
+          - 2000
+          - 5000
+          - 7500
+          - 10000
+          description: Jewelry limit, the field is enabled if specialLimitException is Yes.
+          example: 2000
+          default: 2000
+        bicyclesLimit:
+          type: number
+          format: float
+          enum:
+          - 1000
+          - 2000
+          - 5000
+          description: Bicycles and eBikes limit, the field is enabled if specialLimitException is Yes.
+          example: 1000
+          default: 1000
+        computersLimit:
+          type: number
+          format: float
+          enum:
+          - 2500
+          - 5000
+          - 7500
+          - 10000
+          description: On-premises computers and digital media, the field is enabled if specialLimitException is Yes.
+          example: 2500
+          default: 2500
+        portablesLimit:
+          type: number
+          format: float
+          enum:
+          - 1000
+          - 2000
+          - 5000
+          description: Portable Electronic Devices - on and off premises, the field is enabled if specialLimitException is Yes.
+          example: 1000
+          default: 1000
+        fineArtLimit:
+          type: string
+          enum:
+          - $1,000 Total / $250 per item
+          - $5,000 Total / $500 per item
+          - $7,500 Total / $1000 per item
+          description: Fine Arts limit, the field is enabled if specialLimitException is Yes.
+          example: $1,000 Total / $250 per item
+          default: $1,000 Total / $250 per item
+        nearbyWaterbody:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Is this residence located within 300 meters of a major body of water (river, lake etc) or a known flood plain
+          example: 'Yes'
+          default: 'No'
+        priorFlood:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Has this property ever suffered a damage from flood (to the applicant knowledge)
+          example: 'Yes'
+          default: 'No'
+        floodriskBelowGround:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Are any of your personal belongings located or stored on the ground or below ground level of the building? The field is enabled if nearby-waterbody and prior-flood are Yes.
+          example: 'Yes'
+          default: 'No'
+        sburiskBelowGround:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Is your residence unit located on the Main Floor or in the basement
+          example: 'Yes'
+          default: 'No'
+        claims:
+          type: string
+          enum:
+          - No Claims
+          - 1 Claim
+          - 'Ineligible: More than 1 Claim'
+          description: In the last 5 years, have the applicant made any claims under a Personal Property or Liability insurance
+          example: No Claims
+          default: No Claims
+        policyUTCOffset:
+          type: number
+          format: float
+          description: UTC Offset for policy effective date. The number can be transformed from timezone. For ex, -07:00 => -420
+        policyStartDate:
+          type: string
+          format: date-time
+          pattern: \d{4}-\d{2}-\d{2}
+          description: The date that the policy starts to take effect in yyyy-mm-dd format, the date must be a future time including today.
+        unrelatedRoommates:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Any roommates who are not related to the applicant
+          example: 'Yes'
+          default: 'No'
+        totalRoommates:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 3
+          description: How many unrelated roommates or families the applicant lives with. The field is enabled only if unrelatedRoommates = Yes
+          example: 1
+        nameRoommate1:
+          type: string
+          description: Full Name of roommate 1, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1
+          example: Jane Smith
+        ageRoommate1:
+          type: string
+          enum:
+          - Under 25
+          - 25-50
+          - Over 50
+          description: Roommate 1 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1
+          example: Under 25
+        propertyLimitRoommate1:
+          type: number
+          format: float
+          enum:
+          - 0
+          - 10000
+          - 20000
+          - 30000
+          - 40000
+          - 60000
+          - 80000
+          - 100000
+          - 125000
+          - 150000
+          description: Roommate 1 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1
+          example: 10000
+        aleLimitRoommate1:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 10000
+          - 15000
+          - 20000
+          - 30000
+          description: "Additional Living Expenses for roommates.\n     If the corresponding aleLimitRoommate is 0, this field should not be included.\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n    "
+          example: 5000
+        nameRoommate2:
+          type: string
+          description: Full Name of roommate 2, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2
+          example: Joe Schmoe
+        ageRoommate2:
+          type: string
+          enum:
+          - Under 25
+          - 25-50
+          - Over 50
+          description: Roommate 2 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2
+          example: Under 25
+        propertyLimitRoommate2:
+          type: number
+          format: float
+          enum:
+          - 0
+          - 10000
+          - 20000
+          - 30000
+          - 40000
+          - 60000
+          - 80000
+          - 100000
+          - 125000
+          - 150000
+          description: Roommate 2 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2
+          example: 10000
+        aleLimitRoommate2:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 10000
+          - 15000
+          - 20000
+          - 30000
+          description: "Additional Living Expenses for roommates.\n     If the corresponding aleLimitRoommate is 0, this field should not be included.\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n    "
+          example: 5000
+        nameRoommate3:
+          type: string
+          description: Full Name of roommate 3, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3
+          example: Joe Bloggs
+        ageRoommate3:
+          type: string
+          enum:
+          - Under 25
+          - 25-50
+          - Over 50
+          description: Roommate 3 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3
+          example: Under 25
+        propertyLimitRoommate3:
+          type: number
+          format: float
+          enum:
+          - 0
+          - 10000
+          - 20000
+          - 30000
+          - 40000
+          - 60000
+          - 80000
+          - 100000
+          - 125000
+          - 150000
+          description: Roommate 3 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3
+          example: 10000
+        aleLimitRoommate3:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 10000
+          - 15000
+          - 20000
+          - 30000
+          description: "Additional Living Expenses for roommates.\n     If the corresponding aleLimitRoommate is 0, this field should not be included.\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n    "
+          example: 5000
+        totalSemesters:
+          type: string
+          enum:
+          - 12 months
+          description: How long would you like to purchase this policy for - should always be 12 months
+          example: 12 months
+          default: 12 months
+      required:
+      - businessAddressPostal
+      - businessAddressCity
+      - operations
+      - businessAddressStreet
+    EmbeddedOptions:
+      type: object
+      properties:
+        embeddedPlatform:
+          type: string
+          enum:
+          - yardi
+          description: Embedded platform.
+          example: yardi
+        embeddedType:
+          type: string
+          enum:
+          - start
+          description: Embedded Type.
+          example: start
+          default: start
+        tenantId:
+          anyOf:
+          - type: string
+            description: The Yardi tcode / residentId.
+            example: T12345678
+            x-required: true
+        propertyId:
+          anyOf:
+          - type: string
+            description: The Yardi property code / propertyId.
+            example: P12345678
+            x-required: true
+      required:
+      - embeddedPlatform
+      additionalProperties: false
+      description: Embedded application creation options for the embedded workflows. This field is REQUIRED when creating an embedded application.
+    ExternalId:
+      type: string
+      description: Customer's own unique ID. This ID will be included in the APOLLO application to prevent duplicate applications from being created for the client.
+      example: uniqueId_12345678
+    LeadSource:
+      type: object
+      properties:
+        partnerName:
+          type: string
+          description: The partner name, for example it can be the landlord name
+          example: APOLLO Insurance
+        partnerSubdomain:
+          type:
+          - string
+          - 'null'
+          description: The subdomain name under the partner Name. If this field is empty, will fallback to the partner default launchpad
+          example: apollo
+      required:
+      - partnerName
+      additionalProperties: false
+      description: Contains application form question answers for the specified type of insurance.
+    PaymentPeriod:
+      type: string
+      enum:
+      - annual
+      - monthly
+      description: Payment period for the application
+      example: annual
+      default: annual
+    TenantInsuranceQuestions:
+      type: object
+      properties:
+        businessAddressPostal:
+          type: string
+          pattern: ([A-Za-z]\d){3}
+          minLength: 6
+          maxLength: 6
+          description: Applicant Postal Code
+          example: L9Y3Z2
+        businessAddressCity:
+          type: string
+          description: Applicant City
+          example: Collingwood
+        operations:
+          type: string
+          enum:
+          - High Rise
+          - Low Rise
+          - Townhouse
+          - Semi-Detached or Duplex or Triplex
+          - Detached House
+          - Other
+          description: What type of home does applicant need insurance for
+          example: Low Rise
+        nonlistedOperation:
+          type: string
+          description: Describe the type of home if operations value is Other, the field is enabled if operations is Other
+          example: Combination high rise & townhouse complex
+        businessAddressStreet:
+          type: string
+          description: Street Address - Includes street number and street name.
+          example: 123 Main Street
+        businessAddressUnit:
+          type: string
+          description: Unit number. The field is required if the operations is High Rise or Low Rise
+          example: '456'
+        businessAddressProvince:
+          type: string
+          minLength: 2
+          maxLength: 2
+          description: Province code in 2 letter format
+          example: 'on'
+        buildingAge:
+          type: string
+          enum:
+          - Under 35 years
+          - 35-70 years
+          - Over 70 years
+          description: How old is the building you reside at, approximately
+          example: Under 35 years
+        birthdate:
+          type: string
+          format: date-time
+          pattern: \d{4}-\d{2}-\d{2}
+          description: The birth date of the applicant in yyyy-mm-dd format.
+          example: '1985-03-20'
+        firstName:
+          type: string
+          description: Applicant first name
+          example: John
+        lastName:
+          type: string
+          description: Applicant last name
+          example: Doe
+        email:
+          type: string
+          format: email
+          description: Applicant email
+          example: john.doe@gmail.com
+        phoneNumber:
+          type: string
+          description: Applicant phone number ex. 6135550148, +16135550148, (613) 555-0148
+          example: (604) 789-2341
+        ageApplicant:
+          type: string
+          enum:
+          - Under 25
+          - 25-50
+          - Over 50
+          description: Applicant age range
+          example: Under 25
+        personalLiability:
+          type: number
+          format: float
+          enum:
+          - 1000000
+          - 2000000
+          description: How much Personal Liability coverage would the applicant like
+          example: 1000000
+        deductible:
+          type: number
+          format: float
+          enum:
+          - 500
+          - 1000
+          - 2500
+          description: Policy deductible
+          example: 500
+        propertyLimitApplicant:
+          type: number
+          format: float
+          enum:
+          - 10000
+          - 20000
+          - 30000
+          - 40000
+          - 60000
+          - 80000
+          - 100000
+          - 125000
+          - 150000
+          description: Applicant personal Contents coverage limit
+          example: 10000
+        aleLimitApplicant:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 10000
+          - 15000
+          - 20000
+          - 30000
+          description: "Additional Living Expenses - This coverage pays for extra costs to live while your residence is uninhabitable due to an insured loss.\n     If propertyLimitApplicant is 10000, value should be 5000;\n     If propertyLimitApplicant is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n    "
+          example: 5000
+        offPremisesLimitApplicant:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 7500
+          - 10000
+          description: Contents stored off-premises
+          example: 5000
+        policyPackage:
+          type: string
+          enum:
+          - Basic
+          - Enhanced
+          - Premium
+          description: What type of Package would the applicant like to purchase
+          example: Basic
+        sewerDisclaimer:
+          type: string
+          enum:
+          - I agree
+          description: Agree to continue without Sewer Backup coverage - when policyPackage = Basic or Enhanced
+          example: I agree
+        specialLimitException:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Default Jewelry - $2,000, Bicycles and eBikes - $1,000, Computer Coverage - $2,500, Portable Devices - $1,000, Fine Arts - $1,000. Wish to purchase a higher limit for any of the items?
+          example: 'Yes'
+        jewelryLimit:
+          type: number
+          format: float
+          enum:
+          - 2000
+          - 5000
+          - 7500
+          - 10000
+          description: Jewelry limit, the field is enabled if specialLimitException is Yes.
+          example: 2000
+        bicyclesLimit:
+          type: number
+          format: float
+          enum:
+          - 1000
+          - 2000
+          - 5000
+          description: Bicycles and eBikes limit, the field is enabled if specialLimitException is Yes.
+          example: 1000
+        computersLimit:
+          type: number
+          format: float
+          enum:
+          - 2500
+          - 5000
+          - 7500
+          - 10000
+          description: On-premises computers and digital media, the field is enabled if specialLimitException is Yes.
+          example: 2500
+        portablesLimit:
+          type: number
+          format: float
+          enum:
+          - 1000
+          - 2000
+          - 5000
+          description: Portable Electronic Devices - on and off premises, the field is enabled if specialLimitException is Yes.
+          example: 1000
+        fineArtLimit:
+          type: string
+          enum:
+          - $1,000 Total / $250 per item
+          - $5,000 Total / $500 per item
+          - $7,500 Total / $1000 per item
+          description: Fine Arts limit, the field is enabled if specialLimitException is Yes.
+          example: $1,000 Total / $250 per item
+        nearbyWaterbody:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Is this residence located within 300 meters of a major body of water (river, lake etc) or a known flood plain
+          example: 'Yes'
+        priorFlood:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Has this property ever suffered a damage from flood (to the applicant knowledge)
+          example: 'Yes'
+        floodriskBelowGround:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Are any of your personal belongings located or stored on the ground or below ground level of the building? The field is enabled if nearby-waterbody and prior-flood are Yes.
+          example: 'Yes'
+        sburiskBelowGround:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Is your residence unit located on the Main Floor or in the basement
+          example: 'Yes'
+        claims:
+          type: string
+          enum:
+          - No Claims
+          - 1 Claim
+          - 'Ineligible: More than 1 Claim'
+          description: In the last 5 years, have the applicant made any claims under a Personal Property or Liability insurance
+          example: No Claims
+        policyUTCOffset:
+          type: number
+          format: float
+          description: UTC Offset for policy effective date. The number can be transformed from timezone. For ex, -07:00 => -420
+        policyStartDate:
+          type: string
+          format: date-time
+          pattern: \d{4}-\d{2}-\d{2}
+          description: The date that the policy starts to take effect in yyyy-mm-dd format, the date must be a future time including today.
+        unrelatedRoommates:
+          type: string
+          enum:
+          - 'Yes'
+          - 'No'
+          description: Any roommates who are not related to the applicant
+          example: 'Yes'
+        totalRoommates:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 3
+          description: How many unrelated roommates or families the applicant lives with. The field is enabled only if unrelatedRoommates = Yes
+          example: 1
+        nameRoommate1:
+          type: string
+          description: Full Name of roommate 1, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1
+          example: Jane Smith
+        ageRoommate1:
+          type: string
+          enum:
+          - Under 25
+          - 25-50
+          - Over 50
+          description: Roommate 1 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1
+          example: Under 25
+        propertyLimitRoommate1:
+          type: number
+          format: float
+          enum:
+          - 0
+          - 10000
+          - 20000
+          - 30000
+          - 40000
+          - 60000
+          - 80000
+          - 100000
+          - 125000
+          - 150000
+          description: Roommate 1 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 1
+          example: 10000
+        aleLimitRoommate1:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 10000
+          - 15000
+          - 20000
+          - 30000
+          description: "Additional Living Expenses for roommates.\n     If the corresponding aleLimitRoommate is 0, this field should not be included.\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n    "
+          example: 5000
+        nameRoommate2:
+          type: string
+          description: Full Name of roommate 2, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2
+          example: Joe Schmoe
+        ageRoommate2:
+          type: string
+          enum:
+          - Under 25
+          - 25-50
+          - Over 50
+          description: Roommate 2 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2
+          example: Under 25
+        propertyLimitRoommate2:
+          type: number
+          format: float
+          enum:
+          - 0
+          - 10000
+          - 20000
+          - 30000
+          - 40000
+          - 60000
+          - 80000
+          - 100000
+          - 125000
+          - 150000
+          description: Roommate 2 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 2
+          example: 10000
+        aleLimitRoommate2:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 10000
+          - 15000
+          - 20000
+          - 30000
+          description: "Additional Living Expenses for roommates.\n     If the corresponding aleLimitRoommate is 0, this field should not be included.\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n    "
+          example: 5000
+        nameRoommate3:
+          type: string
+          description: Full Name of roommate 3, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3
+          example: Joe Bloggs
+        ageRoommate3:
+          type: string
+          enum:
+          - Under 25
+          - 25-50
+          - Over 50
+          description: Roommate 3 age range, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3
+          example: Under 25
+        propertyLimitRoommate3:
+          type: number
+          format: float
+          enum:
+          - 0
+          - 10000
+          - 20000
+          - 30000
+          - 40000
+          - 60000
+          - 80000
+          - 100000
+          - 125000
+          - 150000
+          description: Roommate 3 property limit, the field is enabled if unrelatedRoommates is Yes and totalRoommates >= 3
+          example: 10000
+        aleLimitRoommate3:
+          type: number
+          format: float
+          enum:
+          - 5000
+          - 10000
+          - 15000
+          - 20000
+          - 30000
+          description: "Additional Living Expenses for roommates.\n     If the corresponding aleLimitRoommate is 0, this field should not be included.\n     If the corresponding aleLimitRoommate is 10000, value should be 5000;\n     If the corresponding aleLimitRoommate is 20000 or 30000, value can be one of [5000, 10000, 15000];\n     Otherwise, can be any of the valid values\n    "
+          example: 5000
+        totalSemesters:
+          type: string
+          enum:
+          - 12 months
+          description: How long would you like to purchase this policy for - should always be 12 months
+          example: 12 months
+      required:
+      - businessAddressPostal
+      - businessAddressCity
+      - operations
+      - businessAddressStreet
+  responses:
+    400InsuranceDataValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: object
+                properties:
+                  _original:
+                    type: object
+                    properties: {}
+                    additionalProperties: false
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                          example: '"body.insuranceData.businessAddressPostal" is required'
+                        path:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                          - body
+                          - insuranceData
+                          - businessAddressPostal
+                        type:
+                          type: string
+                          example: any.required
+                        context:
+                          type: object
+                          properties:
+                            label:
+                              type: string
+                              example: body.insuranceData.businessAddressPostal
+                            key:
+                              type: string
+                              example: businessAddressPostal
+                          additionalProperties: false
+                      additionalProperties: false
+                additionalProperties: false
+            additionalProperties: false
+    '404':
+      description: Not found
+    '403':
+      description: Forbidden
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-refined-from:
+- apollo-insurance-affiliates-legacy.yml
+- apollo-insurance-affiliates.yml
 x-extension-1: null
