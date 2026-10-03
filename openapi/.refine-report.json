@@ -10,9 +10,7 @@
     "apollo-insurance-compliance-api-openapi.yml",
     "apollo-insurance-quote-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -31,12 +29,10 @@
     "apollo-insurance-covertrack.yml: declared missing tag: Compliance",
     "apollo-insurance-covertrack.yml: declared missing tag: Quote",
     "tag 'Affiliates' spans 2 source specs (apollo-insurance-affiliates-legacy.yml, apollo-insurance-affiliates.yml): per-path servers applied",
-    "superseded outputs removed: apollo-insurance-api-api-openapi.yml",
-    "apis.yml register: written (+0 apis, 3 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "apollo-insurance-affiliates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apollo-insurance-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "apollo-insurance-compliance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "apollo-insurance-quote-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]

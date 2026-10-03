@@ -120,49 +120,6 @@ paths:
               $ref: '#/components/schemas/ComplianceStatus'
 components:
   schemas:
-    ComplianceStatus:
-      type: object
-      x-examples:
-        Example 1:
-          partnerId: string
-          propertyId: string
-          tenantId: string
-          status: string
-          updatedAt: string
-          policy:
-            startDate: string
-            endDate: string
-            policyNumber: string
-            provider: string
-            liability: 0
-          links:
-            upload: string
-      properties:
-        partnerId:
-          type: string
-        propertyId:
-          type: string
-        tenantId:
-          type: string
-        status:
-          type: string
-          description: ACTIVE | PENDING | NOT_SUBMITTED | DECLINED
-        updatedAt:
-          type: string
-        policy:
-          type: object
-          description: Optional policy details
-          properties:
-            startDate:
-              type: string
-            endDate:
-              type: string
-            policyNumber:
-              type: string
-            provider:
-              type: string
-            liability:
-              type: integer
     ComplianceStatusDetail:
       type: object
       x-stoplight:
@@ -215,6 +172,49 @@ components:
               type: string
               description: Unique link for updating policy information
       title: ComplianceStatusDetail
+    ComplianceStatus:
+      type: object
+      x-examples:
+        Example 1:
+          partnerId: string
+          propertyId: string
+          tenantId: string
+          status: string
+          updatedAt: string
+          policy:
+            startDate: string
+            endDate: string
+            policyNumber: string
+            provider: string
+            liability: 0
+          links:
+            upload: string
+      properties:
+        partnerId:
+          type: string
+        propertyId:
+          type: string
+        tenantId:
+          type: string
+        status:
+          type: string
+          description: ACTIVE | PENDING | NOT_SUBMITTED | DECLINED
+        updatedAt:
+          type: string
+        policy:
+          type: object
+          description: Optional policy details
+          properties:
+            startDate:
+              type: string
+            endDate:
+              type: string
+            policyNumber:
+              type: string
+            provider:
+              type: string
+            liability:
+              type: integer
   responses:
     ComplianceStatus:
       description: Policy Summary
