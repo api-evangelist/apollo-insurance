@@ -577,7 +577,75 @@ paths:
     - url: https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0
       description: Production Server
 components:
+  responses:
+    400InsuranceDataValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: object
+                properties:
+                  _original:
+                    type: object
+                    properties: {}
+                    additionalProperties: false
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                          example: '"body.insuranceData.businessAddressPostal" is required'
+                        path:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                          - body
+                          - insuranceData
+                          - businessAddressPostal
+                        type:
+                          type: string
+                          example: any.required
+                        context:
+                          type: object
+                          properties:
+                            label:
+                              type: string
+                              example: body.insuranceData.businessAddressPostal
+                            key:
+                              type: string
+                              example: businessAddressPostal
+                          additionalProperties: false
+                      additionalProperties: false
+                additionalProperties: false
+            additionalProperties: false
+    '404':
+      description: Not found
+    '403':
+      description: Forbidden
   schemas:
+    LeadSource:
+      type: object
+      properties:
+        partnerName:
+          type: string
+          description: The partner name, for example it can be the landlord name
+          example: APOLLO Insurance
+        partnerSubdomain:
+          type:
+          - string
+          - 'null'
+          description: The subdomain name under the partner Name. If this field is empty, will fallback to the partner default launchpad
+          example: apollo
+      required:
+      - partnerName
+      additionalProperties: false
+      description: Contains application form question answers for the specified type of insurance.
     TenantInsuranceQuoteQuestions:
       type: object
       properties:
@@ -988,59 +1056,6 @@ components:
       - businessAddressCity
       - operations
       - businessAddressStreet
-    ExternalId:
-      type: string
-      description: Customer's own unique ID. This ID will be included in the APOLLO application to prevent duplicate applications from being created for the client.
-      example: uniqueId_12345678
-    EmbeddedOptions:
-      type: object
-      properties:
-        embeddedPlatform:
-          type: string
-          enum:
-          - yardi
-          description: Embedded platform.
-          example: yardi
-        embeddedType:
-          type: string
-          enum:
-          - start
-          description: Embedded Type.
-          example: start
-          default: start
-        tenantId:
-          anyOf:
-          - type: string
-            description: The Yardi tcode / residentId.
-            example: T12345678
-            x-required: true
-        propertyId:
-          anyOf:
-          - type: string
-            description: The Yardi property code / propertyId.
-            example: P12345678
-            x-required: true
-      required:
-      - embeddedPlatform
-      additionalProperties: false
-      description: Embedded application creation options for the embedded workflows. This field is REQUIRED when creating an embedded application.
-    LeadSource:
-      type: object
-      properties:
-        partnerName:
-          type: string
-          description: The partner name, for example it can be the landlord name
-          example: APOLLO Insurance
-        partnerSubdomain:
-          type:
-          - string
-          - 'null'
-          description: The subdomain name under the partner Name. If this field is empty, will fallback to the partner default launchpad
-          example: apollo
-      required:
-      - partnerName
-      additionalProperties: false
-      description: Contains application form question answers for the specified type of insurance.
     TenantInsuranceQuestions:
       type: object
       properties:
@@ -1437,57 +1452,42 @@ components:
       description: Payment period for the application
       example: annual
       default: annual
-  responses:
-    '404':
-      description: Not found
-    '403':
-      description: Forbidden
-    400InsuranceDataValidationError:
-      description: Validation error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: object
-                properties:
-                  _original:
-                    type: object
-                    properties: {}
-                    additionalProperties: false
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        message:
-                          type: string
-                          example: '"body.insuranceData.businessAddressPostal" is required'
-                        path:
-                          type: array
-                          items:
-                            type: string
-                          example:
-                          - body
-                          - insuranceData
-                          - businessAddressPostal
-                        type:
-                          type: string
-                          example: any.required
-                        context:
-                          type: object
-                          properties:
-                            label:
-                              type: string
-                              example: body.insuranceData.businessAddressPostal
-                            key:
-                              type: string
-                              example: businessAddressPostal
-                          additionalProperties: false
-                      additionalProperties: false
-                additionalProperties: false
-            additionalProperties: false
+    EmbeddedOptions:
+      type: object
+      properties:
+        embeddedPlatform:
+          type: string
+          enum:
+          - yardi
+          description: Embedded platform.
+          example: yardi
+        embeddedType:
+          type: string
+          enum:
+          - start
+          description: Embedded Type.
+          example: start
+          default: start
+        tenantId:
+          anyOf:
+          - type: string
+            description: The Yardi tcode / residentId.
+            example: T12345678
+            x-required: true
+        propertyId:
+          anyOf:
+          - type: string
+            description: The Yardi property code / propertyId.
+            example: P12345678
+            x-required: true
+      required:
+      - embeddedPlatform
+      additionalProperties: false
+      description: Embedded application creation options for the embedded workflows. This field is REQUIRED when creating an embedded application.
+    ExternalId:
+      type: string
+      description: Customer's own unique ID. This ID will be included in the APOLLO application to prevent duplicate applications from being created for the client.
+      example: uniqueId_12345678
   securitySchemes:
     apiKeyAuth:
       type: apiKey
