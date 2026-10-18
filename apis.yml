@@ -60,7 +60,7 @@ tags:
 - Insurance
 - Canada
 - Insurtech
-- Brokers
+- Brokerage
 - Embedded Insurance
 - Property and Casualty
 - Tenant Insurance
@@ -78,6 +78,7 @@ tags_raw:
 - Quoting
 - Distribution
 - Compliance
+- Brokers
 created: '2026-07-25'
 modified: '2026-07-25'
 specificationVersion: '0.23'
