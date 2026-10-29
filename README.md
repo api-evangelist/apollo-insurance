@@ -1,4 +1,4 @@
-# APOLLO Insurance (apollo-insurance)
+# APOLLO Insurance
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,116 +64,131 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-APOLLO Insurance (APOLLO Insurance Agency Ltd., apollocover.com) is a Vancouver-founded Canadian digital insurance brokerage and MGA-style distribution platform that sells personal and small-commercial coverage entirely online — tenant and student tenant insurance in every province, homeowner, condo and townhouse, landlord and pet insurance on the personal side, and general liability, professional liability and directors and officers coverage on the business side. APOLLO does not underwrite; it distributes on a commission basis on behalf of A+ to A- rated Canadian carriers, and it sits in the thin digital-broker layer of a Big-Few Canadian market dominated by Intact, Definity, Co-operators and Desjardins. Its distinctive business is embedded tenant insurance for REITs and property managers: automated resident enrolment at lease signing, renewal handling, and real-time building-level compliance tracking, delivered through a Yardi Systems integration and its CoverTrack compliance product.
+APOLLO Insurance (APOLLO Insurance Agency Ltd., apollocover.com) is a Vancouver-founded Canadian digital insurance brokerage and MGA-style distribution platform that sells personal and small-commercial coverage entirely online — tenant and student tenant insurance in every province, homeowner, condo and townhouse, landlord and pet insurance on the personal side, and general liability, professional liability and directors and officers coverage on the business side. APOLLO does not underwrite; it distributes on a commission basis on behalf of A+ to A- rated Canadian carriers, and it sits in the thin digital-broker layer of a Big-Few Canadian market dominated by Intact, Definity, Co-operators and Desjardins. Its distinctive business is embedded tenant insurance for REITs and property managers: automated resident enrolment at lease signing, renewal handling, and real-time building-level compliance tracking, delivered through a Yardi Systems integration and its CoverTrack compliance product. Unusually for the Canadian insurance sector, APOLLO publishes a genuine, publicly readable developer portal at docs.apollocover.com — a Stoplight workspace with three public projects and downloadable OpenAPI definitions covering quote and application (pre-fill) for tenant insurance and compliance-status lookup for partner properties. The surface is real but partner-scoped: every call needs an affiliateId (a co-branded APOLLO subdomain) and an x-api-key token that APOLLO issues by hand to affiliates and property-manager partners, so there is no self-serve credential path and no consumer-facing API. Canada has no open-insurance mandate — OSFI supervises prudentially, the provinces (FSRA, AMF) supervise market conduct, and Consumer-Driven Banking excludes insurance entirely — so nothing forces this disclosure; APOLLO published it as a distribution strategy. No ACORD, AL3, IVANS or agency-management-system reference appears anywhere in its public site or documentation.
 
-Unusually for the Canadian insurance sector, APOLLO publishes a genuine, publicly readable developer portal at [docs.apollocover.com](https://docs.apollocover.com/) — a Stoplight workspace with three public projects and downloadable OpenAPI definitions covering quote and application (pre-fill) for tenant insurance and compliance-status lookup for partner properties. The surface is real but partner-scoped: every call needs an `affiliateId` (a co-branded APOLLO subdomain) and an `x-api-key` token that APOLLO issues by hand to affiliates and property-manager partners, so there is no self-serve credential path and no consumer-facing API. Canada has no open-insurance mandate — OSFI supervises prudentially, the provinces (FSRA, AMF) supervise market conduct, and Consumer-Driven Banking excludes insurance entirely — so nothing forces this disclosure; APOLLO published it as a distribution strategy. No ACORD, AL3, IVANS or agency-management-system reference appears anywhere in its public site or documentation.
+**Areas:** Insurance · Canada · Insurtech · Brokerage · Embedded Insurance · Property and Casualty · Tenant Insurance · Quoting · Distribution · Compliance
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/apollo-insurance/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apollo-insurance/refs/heads/main/apis.yml)
+## APOLLO Insurance on APIs.io
 
-## Tags
+Everything profiled for APOLLO Insurance is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apollo-insurance/](https://apis.io/providers/apollo-insurance/)** — or go straight to one of the APIs or properties below.
 
-- Insurance
-- Canada
-- Insurtech
-- Broker
-- Embedded Insurance
-- Property and Casualty
-- Tenant Insurance
-- Quoting
-- Distribution
-- Compliance
+### APIs (3)
 
-## Timestamps
+- [APOLLO Insurance Affiliates API](https://apis.io/apis/apollo-insurance/apollo-insurance-affiliates-api/) — The Affiliates API from APOLLO Insurance — 2 operation(s) for affiliates.
+- [APOLLO Insurance Compliance API](https://apis.io/apis/apollo-insurance/apollo-insurance-compliance-api/) — The Compliance API from APOLLO Insurance — 3 operation(s) for compliance.
+- [APOLLO Insurance Quote API](https://apis.io/apis/apollo-insurance/apollo-insurance-quote-api/) — The Quote API from APOLLO Insurance — 1 operation(s) for quote.
 
-- **Created:** 2026-07-25
-- **Modified:** 2026-07-25
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### APOLLO Affiliates API
+#### AsyncAPI (1)
 
-The current APOLLO Affiliate API. Two partner-scoped POST operations — quote an application and create an application — scoped by `affiliateId` (the partner's co-branded APOLLO subdomain) and `insuranceType` (currently only `tenant`). Creating an application returns a `quoteLink` into the affiliate's co-branded APOLLO launchpad with the customer's responses pre-filled. Authenticated with an `x-api-key` header token issued by an APOLLO contact; separate tokens for the test and production servers, plus a Stoplight mock server for prototyping.
+Event-driven and webhook contracts.
 
-- **Human URL:** [https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api](https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api)
-- **Base URL:** `https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0`
+- [Apollo Insurance Covertrack Webhooks](https://apis.io/asyncapis/apollo-insurance/apollo-insurance-covertrack-webhooks/)
 
-#### Tags
+#### MCP servers (1)
 
-- Insurance
-- Quoting
-- Embedded Insurance
-- Tenant Insurance
-- Affiliate
+Model Context Protocol servers that expose the API to agents.
 
-#### Properties
+- [apollo-insurance](https://apis.io/servers/apollo-insurance/apollo-insurance/)
 
-- [Documentation](https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction)
-- [API Reference](https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api)
-- [OpenAPI](openapi/apollo-insurance-affiliates.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+#### Agentic access (1)
 
-### APOLLO Public API - Affiliates
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The earlier APOLLO public affiliate surface, still published in its own Stoplight project. Two POST operations fixed to the tenant line — generate a quote (returning contents, ALE, liability and add-on premium components with a policy expiry date) and create an application. Same AWS ca-central-1 test and production hosts as the current Affiliates API; the project also carries a Webhooks page, which is present but empty.
+- [Apollo Insurance Agentic Access](https://apis.io/agentic-access/apollo-insurance/apollo-insurance-agentic-access/)
 
-- **Human URL:** [https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates](https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates)
-- **Base URL:** `https://fpl95knwc1.execute-api.ca-central-1.amazonaws.com/1_0_0`
+#### Collections (3)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Insurance
-- Quoting
-- Tenant Insurance
-- Affiliate
+- [Affiliates API](https://apis.io/collections/apollo-insurance/open-apollo-insurance-affiliates/)
+- [Public API - Affiliates](https://apis.io/collections/apollo-insurance/open-apollo-insurance-affiliates-legacy/)
+- [CoverTrack API's](https://apis.io/collections/apollo-insurance/open-apollo-insurance-covertrack/)
 
-#### Properties
+#### Overlays (3)
 
-- [Documentation](https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates)
-- [API Reference](https://docs.apollocover.com/docs/affiliate-api/18a87d4863056-public-api-affiliates)
-- [OpenAPI](openapi/apollo-insurance-affiliates-legacy.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-### APOLLO CoverTrack API
+- [Apollo Insurance Affiliates Legacy Overlay](https://apis.io/overlays/apollo-insurance/apollo-insurance-affiliates-legacy-overlay/)
+- [Apollo Insurance Affiliates Overlay](https://apis.io/overlays/apollo-insurance/apollo-insurance-affiliates-overlay/)
+- [Apollo Insurance Covertrack Overlay](https://apis.io/overlays/apollo-insurance/apollo-insurance-covertrack-overlay/)
 
-CoverTrack is APOLLO's tenant-insurance compliance product for REITs and property managers, served from its own `api.covertrack.ca` host. Three real operations plus one documented callback — read a single tenant's compliance status (`ACTIVE`, `PENDING`, `NOT_SUBMITTED` or `DECLINED`, with optional policy detail including the third-party carrier's policy number and provider), read compliance status for every tenant of a property, and generate a tenant insurance quote for a partner. The fourth path is an example specification of a partner destination callback that APOLLO POSTs when a relevant policy event occurs — the only event-driven surface APOLLO documents.
+#### Security (3)
 
-- **Human URL:** [https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s](https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s)
-- **Base URL:** `https://api.covertrack.ca`
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Apollo Insurance Authentication](https://apis.io/security/apollo-insurance/apollo-insurance-authentication/)
+- [Apollo Insurance Domain Security](https://apis.io/security/apollo-insurance/apollo-insurance-domain-security/)
+- [Apollo Insurance Trust Center](https://apis.io/security/apollo-insurance/apollo-insurance-trust-center/)
 
-- Insurance
-- Compliance
-- Tenant Insurance
-- Property Management
-- Quoting
+## Where to find this API
 
-#### Properties
-
-- [Documentation](https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s)
-- [API Reference](https://docs.apollocover.com/docs/covertrack-api/fu18p9wlkzenb-cover-track-api-s)
-- [OpenAPI](openapi/apollo-insurance-covertrack.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://apollocover.com/)
-- [Developer Portal](https://docs.apollocover.com/)
 - [Documentation](https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction)
-- [Partners](https://apollocover.com/partnerships)
-- [Support Center](https://help.apollocover.com/)
-- [Customer Portal](https://policy-portal.apollocover.com/)
+- [Getting started](https://docs.apollocover.com/docs/public-affiliate-api/27500feeac1b7-introduction)
+- [API reference](https://docs.apollocover.com/docs/public-affiliate-api/a8a7ea17b0889-affiliates-api)
+- [Support](https://help.apollocover.com/en/)
 - [Blog](https://apollocover.com/magazine)
-- [Privacy Policy](https://apollocover.com/privacy-policy)
+- [Compliance](https://apollocover.com/security)
+- [Terms of service](https://apollocover.com/terms-conditions/)
+- [Privacy policy](https://apollocover.com/privacy-policy)
 
-## API Posture
+## API Evangelist rating
 
-- **Developer portal:** `https://docs.apollocover.com/` — HTTP 200, Stoplight-hosted, publicly readable, no login wall.
-- **OpenAPI harvested:** 3 definitions, verbatim, from Stoplight's own export URLs. See `review.yml` for full provenance.
-- **ACORD posture:** No ACORD reference found. ACORD, AL3, ACORD XML, NGDS, IVANS, agency download, Applied Epic and Vertafore AMS360 all return zero matches across the public site, the docs portal and all three definitions. The only named third-party integration is Yardi Systems, a property-management platform.
-- **Insurance verbs:** QUOTE yes; BIND partial (creates a pre-filled application and hands off to a hosted web funnel — it does not bind machine-to-machine); ISSUE no; FNOL/claims no.
-- **Auth:** static `x-api-key` header token, provisioned manually by an APOLLO contact, separate keys per environment. No OAuth2, no OIDC discovery, no mTLS, no scopes.
-- **Webhooks:** no AsyncAPI and no event catalog — only an example partner-destination policy-event callback specified inside the CoverTrack definition, and an empty "Webhooks" documentation page.
-- **Lines exposed:** tenant (renter) only. None of APOLLO's homeowner, condo, landlord, pet, general liability, professional liability or D&O products have an API.
-- **Home market:** Canada — no open-insurance mandate; OSFI prudential, provincial market conduct (FSRA, AMF); Consumer-Driven Banking excludes insurance.
+**Kin Score 52.4** — developing · rubric 0.25.0 · scored 2026-10-23
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 79.5 |
+| Contract quality | 57.7 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 43.4 |
 
-- Kin Lane — kin@apievangelist.com
+**Agent readiness 24.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | derived (partial credit) |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 26.3** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apollo-insurance/](https://apis.io/providers/apollo-insurance/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for APOLLO Insurance: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apollo-insurance/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
